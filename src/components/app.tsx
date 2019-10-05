@@ -1,10 +1,11 @@
-import * as React from 'react';
-import Nav from './navbar';
+import * as React from "react";
+import Nav from "./navbar";
+import Header from "./header";
 
 const App = () => {
   return (
     <div>
-      <Nav />
+      <Header />
     </div>
   );
 };
