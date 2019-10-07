@@ -5,6 +5,7 @@ import Header from "./header";
 import Biography from "./bio";
 import Footer from "./footer";
 import About from "./about";
+import Blog from "./blog";
 
 const App = () => {
   return (
@@ -12,6 +13,7 @@ const App = () => {
       <Switch>
         <Route exact path="/" component={Biography} />
         <Route exact path="/about" component={About} />
+        <Route exact path="/blog" component={Blog} />
       </Switch>
       <Footer />
     </div>
