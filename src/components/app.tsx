@@ -9,7 +9,6 @@ import About from "./about";
 const App = () => {
   return (
     <div>
-      <Header />
       <Switch>
         <Route exact path="/" component={Biography} />
         <Route exact path="/about" component={About} />

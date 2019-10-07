@@ -12,7 +12,7 @@ interface Props {
 }
 const Section = (props: Props) => (
   <div className="section">
-    <section>
+    <section style={{ flexDirection: props.flexDirect } as React.CSSProperties}>
       <img
         style={{ borderRadius: props.borderRadius }}
         src={props.imgUrl}
