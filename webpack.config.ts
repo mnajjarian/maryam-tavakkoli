@@ -10,6 +10,7 @@ const config: webpack.Configuration = {
   },
   devtool: "source-map",
   devServer: {
+    historyApiFallback: true,
     contentBase: path.resolve(__dirname, "build"),
     compress: true,
     port: 3000,
@@ -25,7 +26,10 @@ const config: webpack.Configuration = {
         test: /\.(s*)css$/,
         loader: ["style-loader", "css-loader", "sass-loader"]
       },
-      { test: /\.(jpe?g|png|gif|svg)$/i, loader: "file-loader" }
+      {
+        test: /\.(jpe?g|png|gif|svg)$/i,
+        loader: "file-loader"
+      }
     ]
   }
 };

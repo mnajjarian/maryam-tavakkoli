@@ -1,0 +1,82 @@
+.section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 100vh;
+  background: url("../assets/images/Light-blue.jpg") fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    color: $main-dark-color;
+
+    img {
+      height: 100%;
+      width: 350px;
+      padding: 40px;
+    }
+    article {
+      width: 40%;
+      div {
+        height: 40px;
+        min-height: 19px;
+        width: 142px;
+        border: 2px solid $main-dark-color;
+        color: $main-dark-color;
+        padding: 4px 12px;
+        font-size: 0.7rem;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        &:hover {
+          border-color: $light-french;
+        }
+        &:hover a {
+          color: $light-french;
+        }
+        a {
+          text-decoration: none;
+          text-transform: capitalize;
+          font-size: 1rem;
+          white-space: nowrap;
+          color: initial;
+        }
+      }
+      span {
+        display: block;
+        margin-bottom: 10px;
+        width: 116px;
+        height: 5px;
+        border-top: 2px solid rgba(39, 34, 62, 1);
+      }
+    }
+    h2 {
+      margin: 0;
+      text-transform: capitalize;
+    }
+    p {
+      line-height: 1.65;
+      letter-spacing: 0.1px;
+      font-size: 1.1rem;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    section {
+      flex-direction: column;
+      article {
+        width: 100%;
+        margin: 0 auto;
+        padding: 20px;
+      }
+    }
+  }
+}

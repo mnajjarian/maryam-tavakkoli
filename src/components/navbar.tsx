@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import classNames from "classnames";
+import { Link } from "react-router-dom";
 
 const Nav = () => {
   const [toggle, setToggle] = React.useState(false);
@@ -23,15 +24,9 @@ const Nav = () => {
         })}
       >
         <ul>
-          <li>
-            <a href="">Home</a>
-          </li>
-          <li>
-            <a href="">About</a>
-          </li>
-          <li>
-            <a href="">Blog</a>
-          </li>
+          <Link to="/">Home</Link>
+          <Link to="/about">About</Link>
+          <Link to="/blog">Blog</Link>
         </ul>
       </nav>
     </div>
