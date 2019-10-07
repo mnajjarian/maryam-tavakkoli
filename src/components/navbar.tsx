@@ -4,8 +4,25 @@ import { Link } from "react-router-dom";
 
 const Nav = () => {
   const [toggle, setToggle] = React.useState(false);
+
+  useEffect(() => {
+    const nav = document.getElementById("nav");
+    if (nav) {
+      const sticky = nav.offsetTop;
+      const scrollCallBack = window.addEventListener("scroll", () => {
+        if (window.pageYOffset > sticky) {
+          nav.classList.add("sticky");
+        } else {
+          nav.classList.remove("sticky");
+        }
+      }) as any;
+      return () => {
+        window.removeEventListener("scroll", scrollCallBack) as any;
+      };
+    }
+  }, []);
   return (
-    <div className="navbar">
+    <div id="nav" className="navbar">
       <div
         className={classNames({
           navbar__menu: true,
