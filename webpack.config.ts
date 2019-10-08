@@ -24,7 +24,12 @@ const config: webpack.Configuration = {
       { test: /\.(ts|tsx)$/, loader: "ts-loader" },
       {
         test: /\.(s*)css$/,
-        loader: ["style-loader", "css-loader", "sass-loader"]
+        loader: [
+          "style-loader",
+          "css-loader",
+          "resolve-url-loader",
+          "sass-loader"
+        ]
       },
       {
         test: /\.(jpe?g|png|gif|svg)$/i,
