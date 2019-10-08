@@ -3,7 +3,7 @@
     {
       "id": "1",
       "author": "maryam tavakkoli",
-      "authorImg": "../static/images/bio-image.jpg",
+      "authorImg": "assets/images/bio-image.jpg",
       "authorBio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Et tortor at risus viverra adipiscing at. Velit dignissim sodales ut eu sem integer vitae justo eget. Eget mauris pharetra et ultrices neque ornare. Aliquam ut porttitor leo a diam.",
       "title": "Scelerisque In Dictum Non Consectetur",
       "shortDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sed euismod nisi porta lorem mollis aliquam ut porttitor. Ut eu sem integer vitae justo. Neque laoreet suspendisse interdum consectetur libero id faucibus. Venenatis cras sed felis eget velit aliquet.",
@@ -30,14 +30,14 @@
           ]
         }
       ],
-      "imgUrl": "../static/images/tech-image.jpg",
+      "imgUrl": "assets/images/tech-image.jpg",
       "tags": ["Cloud", "Azure", "AWS", "GoogleCloud"],
       "createdAt": "2018-09-28T10:55:51.603Z"
     },
     {
       "id": "2",
       "author": "maryam tavakkoli",
-      "authorImg": "../static/images/bio-image.jpg",
+      "authorImg": "assets/images/bio-image.jpg",
       "authorBio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Et tortor at risus viverra adipiscing at. Velit dignissim sodales ut eu sem integer vitae justo eget. Eget mauris pharetra et ultrices neque ornare. Aliquam ut porttitor leo a diam.",
       "title": "lorem sed risus ultricies tristique",
       "shortDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sed euismod nisi porta lorem mollis aliquam ut porttitor. Ut eu sem integer vitae justo. Neque laoreet suspendisse interdum consectetur libero id faucibus. Venenatis cras sed felis eget velit aliquet.",
@@ -64,14 +64,14 @@
           ]
         }
       ],
-      "imgUrl": "../static/images/tech-image.jpg",
+      "imgUrl": "assets/images/tech-image.jpg",
       "tags": ["Cloud", "Azure", "AWS", "GoogleCloud"],
       "createdAt": "2018-09-28T10:55:51.603Z"
     },
     {
       "id": "3",
       "author": "maryam tavakkoli",
-      "authorImg": "../static/images/bio-image.jpg",
+      "authorImg": "assets/images/bio-image.jpg",
       "authorBio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Et tortor at risus viverra adipiscing at. Velit dignissim sodales ut eu sem integer vitae justo eget. Eget mauris pharetra et ultrices neque ornare. Aliquam ut porttitor leo a diam.",
       "title": "molestie at elementum eu facilisis",
       "shortDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sed euismod nisi porta lorem mollis aliquam ut porttitor. Ut eu sem integer vitae justo. Neque laoreet suspendisse interdum consectetur libero id faucibus. Venenatis cras sed felis eget velit aliquet.",
@@ -98,14 +98,14 @@
           ]
         }
       ],
-      "imgUrl": "../static/images/tech-image.jpg",
+      "imgUrl": "assets/images/tech-image.jpg",
       "tags": ["Cloud", "Azure", "AWS", "GoogleCloud"],
       "createdAt": "2018-09-28T10:55:51.603Z"
     },
     {
       "id": "4",
       "author": "maryam tavakkoli",
-      "authorImg": "../static/images/bio-image.jpg",
+      "authorImg": "assets/images/bio-image.jpg",
       "authorBio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Et tortor at risus viverra adipiscing at. Velit dignissim sodales ut eu sem integer vitae justo eget. Eget mauris pharetra et ultrices neque ornare. Aliquam ut porttitor leo a diam.",
       "title": "urna nunc id cursus metus",
       "shortDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sed euismod nisi porta lorem mollis aliquam ut porttitor. Ut eu sem integer vitae justo. Neque laoreet suspendisse interdum consectetur libero id faucibus. Venenatis cras sed felis eget velit aliquet.",
@@ -132,14 +132,14 @@
           ]
         }
       ],
-      "imgUrl": "../static/images/tech-image.jpg",
+      "imgUrl": "assets/images/tech-image.jpg",
       "tags": ["Cloud", "Azure", "AWS", "GoogleCloud"],
       "createdAt": "2018-09-28T10:55:51.603Z"
     },
     {
       "id": "5",
       "author": "maryam tavakkoli",
-      "authorImg": "../static/images/bio-image.jpg",
+      "authorImg": "assets/images/bio-image.jpg",
       "authorBio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Et tortor at risus viverra adipiscing at. Velit dignissim sodales ut eu sem integer vitae justo eget. Eget mauris pharetra et ultrices neque ornare. Aliquam ut porttitor leo a diam.",
       "title": "purus faucibus ornare suspendisse sed",
       "shortDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sed euismod nisi porta lorem mollis aliquam ut porttitor. Ut eu sem integer vitae justo. Neque laoreet suspendisse interdum consectetur libero id faucibus. Venenatis cras sed felis eget velit aliquet.",
@@ -166,7 +166,7 @@
           ]
         }
       ],
-      "imgUrl": "../static/images/tech-image.jpg",
+      "imgUrl": "assets/images/tech-image.jpg",
       "tags": ["Cloud", "Azure", "AWS", "GoogleCloud"],
       "createdAt": "2018-09-28T10:55:51.603Z"
     }

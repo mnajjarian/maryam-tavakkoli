@@ -1,3 +1,5 @@
+@import "../abstracts/variables";
+
 .footer {
   height: 200px;
   width: 100%;
@@ -41,13 +43,15 @@
             }
           }
           .linkedin {
-            -webkit-mask: url("../assets/icons/linkedin.svg") no-repeat center;
-            mask: url("../assets/icons/linkedin.svg") no-repeat center;
+            -webkit-mask: url("../../assets/icons/linkedin.svg") no-repeat
+              center;
+            mask: url("../../assets/icons/linkedin.svg") no-repeat center;
           }
 
           .facebook {
-            -webkit-mask: url("../assets/icons/facebook.svg") no-repeat center;
-            mask: url("../assets/icons/facebook.svg");
+            -webkit-mask: url("../../assets/icons/facebook.svg") no-repeat
+              center;
+            mask: url("../../assets/icons/facebook.svg");
           }
         }
       }

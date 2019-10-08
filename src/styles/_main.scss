@@ -1,7 +1,9 @@
 @import "./base/reset";
-@import "./abstracts//variables";
+@import "./abstracts/variables";
 @import "./layout/header";
 @import "./layout/blog-header";
 @import "./layout/footer";
 @import "./layout/navbar";
 @import "./layout/section";
+@import "./pages/blog";
+@import "./components/post";

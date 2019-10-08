@@ -1,5 +1,5 @@
-import * as React from "react";
-import * as ReactDOM from "react-dom";
+import React from "react";
+import ReactDOM from "react-dom";
 import { Router } from "react-router";
 import { BrowserRouter } from "react-router-dom";
 import { createBrowserHistory } from "history";
