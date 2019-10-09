@@ -8,6 +8,7 @@ const Footer = () => (
         <li>
           <a
             href="https://www.linkedin.com/in/maryam-tavakoli/"
+            rel="noopener noreferrer"
             target="_blank"
           >
             <div className="linkedin"></div>
@@ -16,6 +17,7 @@ const Footer = () => (
         <li>
           <a
             href="https://www.facebook.com/maryam.tavakkoli.39566"
+            rel="noopener noreferrer"
             target="_blank"
           >
             <div className="facebook"></div>

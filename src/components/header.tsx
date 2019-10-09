@@ -4,11 +4,9 @@ import Nav from "./navbar";
 const Header = () => {
   return (
     <Fragment>
-      <header>
-        <div>
-          <h1>
-            <a href="/">maryam tavakkoli</a>
-          </h1>
+      <header className="header">
+        <div className="header__content">
+          <h1 className="header__title">maryam tavakkoli</h1>
           <span>cloud engineer</span>
         </div>
       </header>

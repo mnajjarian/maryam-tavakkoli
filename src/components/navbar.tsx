@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import classNames from "classnames";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Nav = () => {
   const [toggle, setToggle] = React.useState(false);
@@ -16,9 +16,9 @@ const Nav = () => {
           nav.classList.remove("sticky");
         }
       }) as any;
-      return () => {
+   /*    return () => {
         window.removeEventListener("scroll", scrollCallBack) as any;
-      };
+      }; */
     }
   }, []);
   return (
@@ -41,9 +41,9 @@ const Nav = () => {
         })}
       >
         <ul>
-          <Link to="/">Home</Link>
-          <Link to="/about">About</Link>
-          <Link to="/blog">Blog</Link>
+          <NavLink to="/">Home</NavLink>
+          <NavLink to="/about">About</NavLink>
+          <NavLink to="/blog">Blog</NavLink>
         </ul>
       </nav>
     </div>

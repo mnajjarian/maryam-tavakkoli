@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
-import BlogHeader from "./blog-header";
-import BlogPosts from "./blog-posts";
+import BlogHeader from "./blogHeader";
+import BlogPosts from "./blogBody";
 import posts from "../db.json";
 import Nav from "./navbar";
 

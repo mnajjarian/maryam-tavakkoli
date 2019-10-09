@@ -43,6 +43,7 @@ nav {
 .navbar {
   display: flex;
   justify-content: center;
+  z-index: 44;
   &__menu {
     position: absolute;
     top: 0;
