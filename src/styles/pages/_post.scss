@@ -1,3 +1,4 @@
+@import "../abstracts/variables";
 .nav__wrapper {
   height: 50px;
 }
@@ -11,41 +12,47 @@
     margin: 0 auto;
     padding: 0 1rem;
   }
+  &__short {
+    width: 100%;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 200%;
+  }
+  &__title {
+    word-wrap: break-word;
+  }
+
   &__article {
-    margin-top: 80px;
+    padding-top: 80px;
     font-family: Merriweather, serif;
     color: #484848;
   }
-  &__header {
-    img {
-      width: 100%;
-    }
-    p {
-      width: 100%;
-      margin: 0.25rem 0 0.5rem 0;
-      font-size: 1.25rem;
-      font-weight: 800;
+  &__paragraph {
+    &__title {
+      margin-bottom: 0;
     }
   }
-  footer {
-    section {
+  &__footer {
+    &__content {
       text-align: center;
       width: 80%;
       margin: 0 auto;
       padding: 0 1rem;
-      img {
-        width: 120px;
-        height: 120px;
-        margin: 0.25rem auto 1rem;
-        border-radius: 50%;
-      }
-      p {
-        text-align: left;
-        font-size: 1.1rem;
-        &:nth-child(3) {
-          margin-bottom: 0.6rem;
-          text-align: center;
-        }
+    }
+    &__img {
+      width: 120px;
+      height: 120px;
+      margin: 0.25rem auto 1rem;
+      border-radius: 50%;
+    }
+    &__text {
+      text-align: left;
+      font-size: 1.1rem;
+      width: 60%;
+      margin: 0 auto;
+      &:nth-child(3) {
+        margin-bottom: 0.6rem;
+        text-align: center;
       }
     }
   }
@@ -53,7 +60,7 @@
     font-family: "Lato", sans-serif;
     font-weight: bold;
     font-size: 1.2rem;
-    color: var(--main-bg-color);
+    color: $main-bg-color;
   }
   &__author {
     display: flex;
@@ -61,11 +68,56 @@
     margin: 1rem 0;
     height: auto;
     width: 100%;
-    img {
+    &__img {
       width: 70px;
       height: 70px;
       margin: 0.25rem;
       border-radius: 50%;
+    }
+    &--name {
+      text-transform: capitalize;
+    }
+  }
+  &__img {
+    width: 100%;
+  }
+  &__social {
+    text-align: center;
+    width: 100%;
+    padding: 1.5rem 0;
+    font-family: "Lato", sans-serif;
+    &__title {
+      color: #484848;
+      font-size: 1.25rem;
+      font-weight: 600;
+      vertical-align: middle;
+    }
+    &__buttons {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-top: 0.25rem;
+    }
+    &__facebook {
+      mask: url("../../assets/icons/facebook-2.svg");
+    }
+    &__linkedin {
+      mask: url("../../assets/icons/linkedin-2.svg");
+    }
+    &__twitter {
+      mask: url("../../assets/icons/twitter-2.svg");
+    }
+    &__facebook,
+    &__linkedin,
+    &__twitter {
+      width: 50px;
+      height: 50px;
+      background-color: $main-bg-color;
+      cursor: pointer;
+      margin: 0 0.25rem;
+      &:hover {
+        background-color: $main-dark-color;
+      }
     }
   }
 }
@@ -75,135 +127,74 @@
   padding: 0.5rem 0;
 }
 
-section > p {
-  width: 60%;
-  margin: 0 auto;
-}
-
-.social__share {
-  text-align: center;
-  width: 100%;
-  padding: 0.5rem 0;
-  font-family: "Lato", sans-serif;
-}
-.social__share > span {
-  color: #484848;
-  font-size: 1.25rem;
-  font-weight: 600;
-  vertical-align: middle;
-}
-.social__buttons {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-top: 0.25rem;
-}
-.facebook__icon,
-.linkedin__icon,
-.twitter__icon {
-  width: 50px;
-  height: 50px;
-  background-color: var(--main-bg-color);
-  cursor: pointer;
-  margin: 0 0.25rem;
-}
-.facebook__icon:hover,
-.linkedin__icon:hover,
-.twitter__icon:hover {
-  background-color: var(--main-dark-color);
-}
-.facebook__icon {
-  mask: url("../../assets/icons/facebook-2.svg");
-}
-.linkedin__icon {
-  mask: url("../../assets/icons/linkedin-2.svg");
-}
-.twitter__icon {
-  mask: url("../../assets/icons/twitter-2.svg");
-}
-
 .related__posts {
   text-align: center;
-}
-
-.related__posts > h2 {
-  margin: 0.25rem;
-}
-
-.related__posts > span {
-  margin: 0 auto 1rem auto;
-  display: block;
-  width: 350px;
-  height: 5px;
-  border-top: 2px solid var(--main-dark-color);
-}
-
-.card__wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 0.5rem 0.5rem 0.5rem;
-}
-.card__wrapper > ul {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  max-width: 100%;
-  list-style: none;
-  overflow-x: scroll;
-}
-.card__wrapper ul > li {
-  position: relative;
-  margin: 0 0.25rem;
-  flex-shrink: 0;
-  border: 1px solid var(--main-bg-color);
-  border-radius: 5px;
-  height: 200px;
-  width: 300px;
-  cursor: pointer;
-  color: var(--light-french);
-}
-.card__wrapper ul > li > p {
-  position: absolute;
-  bottom: 0;
-}
-.card__wrapper ul > li > img {
-  height: 100%;
-}
-.card__wrapper ul > li:hover {
-  border: 5px solid var(--light-french);
-}
-h1 {
-  font-size: 2.5rem;
-  word-wrap: break-word;
-}
-h2 {
-  font-size: 2rem;
-}
-p {
-  line-height: 200%;
-  font-size: 1.1rem;
-}
-strong {
-  text-transform: capitalize;
-}
-@media (max-width: 768px) {
-  section > p {
-    width: 100%;
+  &__title {
+    margin: 0.25rem;
   }
-  .profile__text {
-    width: 100%;
+  &--line {
+    margin: 0 auto 1rem auto;
+    display: block;
+    width: 350px;
+    height: 5px;
+    border-top: 2px solid $main-dark-color;
   }
-  .social__share {
+  &__card {
     display: flex;
-    flex-flow: column;
     justify-content: center;
     align-items: center;
+    margin: 0;
   }
-  .social__share > a {
-    margin: 1rem;
+  &__list {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    max-width: 100%;
+    list-style: none;
+    overflow-x: scroll;
   }
-  .social__buttons {
-    padding-top: 0.5rem;
+  &__items {
+    position: relative;
+    margin: 0 0.25rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    border: 1px solid var(--main-bg-color);
+    border-radius: 5px;
+    height: 200px;
+    cursor: pointer;
+    color: $light-french;
+    &:hover {
+      border: 5px solid $light-french;
+    }
+  }
+  &--img {
+    height: 100%;
+  }
+  &--text {
+    position: absolute;
+    color: wheat;
+    bottom: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav__wrapper {
+    height: 0;
+  }
+  .post {
+    &__short {
+      width: 100%;
+      font-size: 1.3rem;
+      font-weight: 700;
+      line-height: 1.5;
+    }
+    &__footer {
+      &__content,
+      &__text {
+        width: 100%;
+      }
+    }
   }
 }

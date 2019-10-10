@@ -1,5 +1,4 @@
 import React, { Fragment } from "react";
-import { useHistory } from "react-router-dom";
 import db from "../db.json";
 import Nav from "./navbar";
 
@@ -34,7 +33,6 @@ const Post = ({ match }: { match: any }) => {
   if (!post) {
     return <div></div>;
   }
-  console.log(match);
   return (
     <Fragment>
       <div className="nav__wrapper">
@@ -51,55 +49,66 @@ const Post = ({ match }: { match: any }) => {
                 day: "2-digit"
               }).format(new Date(post.createdAt))}
             </time>
-            <h1>{post.title}</h1>
+            <h1 className="post__title" >{post.title}</h1>
             <div className="post__author">
-              <img src={require(`../${post.authorImg}`)} alt="author image" />
+              <img className="post__author__img" src={require(`../${post.authorImg}`)} alt="author" />
               <p>
                 Written by:
                 <br />
-                <strong>{post.author}</strong>
+                <strong className="post__author--name" >{post.author}</strong>
               </p>
             </div>
-            <p>{post.shortDescription}</p>
-            <img src={require(`../${post.imgUrl}`)} />
+            <p className="post__short" >{post.shortDescription}</p>
+            <img className="post__img" src={require(`../${post.imgUrl}`)} alt="post"/>
           </header>
           {post.paragraph.map(p => (
-            <Fragment key={p.title}>
-              <h2>{p.title}</h2>
+            <div key={p.title}>
+              <h2 className="post__paragraph__title" >{p.title}</h2>
               {p.text.map(text => (
                 <p>{text}</p>
               ))}
-            </Fragment>
+            </div>
           ))}
-          <footer>
-            <section>
-              <h2>About the author</h2>
-              <img src={post.authorImg} alt="author image" />
-              <p>
+          <footer className="post__footer" >
+            <section className="post__footer__content" >
+              <h2  >About the author</h2>
+              <img className="post__footer__img" src={require(`../${post.authorImg}`)} alt="author" />
+              <p className="post__author--name" >
                 <strong>{post.author}</strong>
               </p>
               <p></p>
-              <p>{post.authorBio}</p>
+              <p className="post__footer__text" >{post.authorBio}</p>
             </section>
-            <div className="social__share">
-              <span>Share the blog post</span>
-              <div className="social__buttons">
-                <div className="facebook__icon"></div>
-                <div className="linkedin__icon"></div>
-                <div className="twitter__icon"></div>
+            <div className="post__social">
+              <span className="post__social__title" >Share the blog post</span>
+              <div className="post__social__buttons">
+                <div className="post__social__facebook"></div>
+                <div className="post__social__linkedin"></div>
+                <div className="post__social__twitter"></div>
               </div>
-              <div className="blog__spc"></div>
             </div>
           </footer>
         </article>
         <div className="related__posts">
-          <h2>Related blog posts</h2>
-          <span></span>
-          <div className="card__wrapper">
-            <ul>
-              <li>
-                <img src={require(`../${post.imgUrl}`)} />
-                <p>{post.title}</p>
+          <h2 className="related__posts__title" >Related blog posts</h2>
+          <span className="related__posts--line" ></span>
+          <div className="related__posts__card">
+            <ul className="related__posts__list" >
+              <li className="related__posts__items" >
+                <img className="related__posts--img" src={require(`../${post.imgUrl}`)} alt="related post"/>
+                <p className="related__posts--text" >{post.title}</p>
+              </li>
+              <li className="related__posts__items" >
+                <img className="related__posts--img" src={require(`../${post.imgUrl}`)} alt="related post"/>
+                <p className="related__posts--text" >{post.title}</p>
+              </li>
+              <li className="related__posts__items" >
+                <img className="related__posts--img" src={require(`../${post.imgUrl}`)} alt="related post" />
+                <p className="related__posts--text" >{post.title}</p>
+              </li>
+              <li className="related__posts__items" >
+                <img className="related__posts--img" src={require(`../${post.imgUrl}`)} alt="related post"/>
+                <p className="related__posts--text" >{post.title}</p>
               </li>
             </ul>
           </div>

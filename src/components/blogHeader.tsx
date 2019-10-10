@@ -1,6 +1,5 @@
 import React from "react";
 
-const imgTech = require("../assets/images/tech-image.jpg");
 
 interface Paragraph {
   title: string;
@@ -34,7 +33,7 @@ const BlogHeader = (props: Props) => {
             }).format(new Date(createdAt))}
           </span>
         </div>
-        <img src={imgTech} alt="tech" />
+        <img src={require(`../${imgUrl}`)} alt="tech" />
       </div>
     </div>
   );

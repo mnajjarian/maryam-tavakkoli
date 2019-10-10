@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, Route } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const timeIcon = require("../assets/icons/time-3.svg");
 const iconUser = require("../assets/icons/user.svg");

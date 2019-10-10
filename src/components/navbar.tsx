@@ -16,9 +16,9 @@ const Nav = () => {
           nav.classList.remove("sticky");
         }
       }) as any;
-   /*    return () => {
+       return () => 
         window.removeEventListener("scroll", scrollCallBack) as any;
-      }; */
+   
     }
   }, []);
   return (

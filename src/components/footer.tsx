@@ -26,7 +26,7 @@ const Footer = () => (
       </ul>
       <span>
         site by{" "}
-        <a href="https://github.com/mnajjarian" target="_blank">
+        <a href="https://github.com/mnajjarian" rel="noopener noreferrer" target="_blank">
           mahdi najjarian
         </a>
       </span>
