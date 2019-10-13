@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import Section from "./section";
 import Header from "./header";
+import Footer from "./footer";
 
 const bioImg = require("../assets/images/bio-image.jpg");
 
@@ -23,6 +24,7 @@ const Biography = () => (
     this position, I am conducting a research study on containerizing of
     a current telco IoT publish/subscribe application...'
     />
+    <Footer/>
   </Fragment>
 );
 

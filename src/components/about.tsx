@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import Section from "./section";
 import Header from "./header";
+import Footer from "./footer";
 
 const bioImage = require("../assets/images/bio-image.jpg");
 
@@ -26,6 +27,7 @@ const About = () => (
     Nokia’s cloud environment (NESC), Apache Kafka and GIT are
     technologies and tools which I am using during my work in Nokia.'
     />
+    <Footer />
   </Fragment>
 );
 
