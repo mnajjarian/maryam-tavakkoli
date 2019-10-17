@@ -5,6 +5,7 @@ import About from "./about";
 import Blog from "./blog";
 import Post from "./post";
 import Login from './login';
+import Dashboard from './dashboard';
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
           path="/blog/:id"
           component={(props: any) => (props ? <Post {...props} /> : null)}
         />
+        <Route exact path='/dashboard' component={Dashboard} />
 
       </Switch>
     </div>
