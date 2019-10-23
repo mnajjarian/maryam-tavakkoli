@@ -5,7 +5,7 @@ import About from "./about";
 import Blog from "./blog";
 import Post from "./post";
 import Login from './login';
-import Dashboard from './dashboard';
+import Dashboard from './Dashboard/dashboard';
 
 const App = () => {
   return (

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 const Sidebar = () => {
   return (
@@ -7,7 +7,7 @@ const Sidebar = () => {
         <div>
           <img
             className="sidebar__icon__image"
-            src={require(`../assets/images/bio-image.jpg`)}
+            src={require(`../../assets/images/bio-image.jpg`)}
             alt="admin"
           />
         </div>
