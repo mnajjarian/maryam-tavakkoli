@@ -1,12 +1,13 @@
 import React from 'react';
 import RichEditor from './editor';
-import Sidebar from './sidebar';
+import Nav from './nav';
 
 const Dashboard = () => (
     <div className="dashboard" >
-        <Sidebar />
-
-        <RichEditor />  
+        <Nav />
+        <div className="dashboard__editor">
+          <RichEditor />  
+        </div>    
     </div>
 );
 

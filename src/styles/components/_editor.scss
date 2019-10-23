@@ -1,39 +1,41 @@
-
-
 .RichEditor {
-    height: 80%;
-    width: 600px;
-    padding: 16px 8px;
-    box-shadow: #ddd 0px 0px 0px 1px inset;
-    border-radius: 5px;
-    padding: 8px;
-    margin: 16px;
-    &-controls {
-        width: 100%;
-        height: 40px;
-        display: flex;
-        align-items: center;
-        box-shadow: #eee 0px 0px 0px 1px;
-        padding: 4px;
-        margin-bottom: 8px;
-
+  height: 100%;
+  width: 100%;
+  border-radius: 5px;
+  margin-top: 45px;
+  &-controls {
+    position: fixed;
+    left: 0;
+    right: 0;
+    background-color: white;
+    z-index: 33;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 4px 2px -2px #eee;
+    padding: 12px;
+    margin-bottom: 8px;
+  }
+  &-styleButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 6px;
+    margin-right: 2px;
+    cursor: pointer;
+    &:hover {
+      background-color: #eee;
     }
-    &-styleButton {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 6px;
-        cursor: pointer;
-        &:hover {
-          background-color: #eee; 
-        }
-        &-icon {
-            width: 13px;
-        } 
-        
-
+    &-icon {
+      width: 13px;
     }
-    &-activeButton {
-        background-color: #eee; 
-    }
+  }
+  &-activeButton {
+    background-color: #eee;
+  }
+  &-editor {
+    height: 100%;
+    width: 100%;
+    margin-top: 50px;
+    padding: 18px;
+  }
 }
