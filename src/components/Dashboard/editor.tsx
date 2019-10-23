@@ -1,6 +1,7 @@
 import React, {
   useState,
-  KeyboardEvent
+  KeyboardEvent,
+  createRef
 } from "react";
 import {
   Editor,
@@ -9,14 +10,21 @@ import {
   getDefaultKeyBinding,
   DraftEditorCommand
 } from "draft-js";
-import { getBlockStyle } from './blockStyle';
+import { styleMap } from './customStyleMap';
+import { getBlockStyle } from './StyleTypes';
 import Toolbar from './Toolbar';
 
 const RichEditor = () => {
   const [editorState, setEditorState] = useState<EditorState>(
     EditorState.createEmpty()
   );
+let editor = createRef<Editor>();
 
+const focusEditor = () => {
+  if(editor.current) {
+    editor.current.focus()
+  }
+}
   const handleChange = (editorState: EditorState) => 
     setEditorState(editorState);
   
@@ -70,12 +78,14 @@ const RichEditor = () => {
            editorState={editorState}
            handleChange={handleChange}
         />
-      <div className={className} >
+      <div className={className} onClick={focusEditor} >
         <Editor
+          ref={editor}
           blockStyleFn={getBlockStyle}
           editorState={editorState}
           handleKeyCommand={handleKeyCommand}
           keyBindingFn={mapKeyToEditorCommand}
+          customStyleMap={styleMap}
           onChange={handleChange}
           placeholder="Tell a story..."
         />

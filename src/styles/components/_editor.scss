@@ -11,7 +11,7 @@
     z-index: 33;
     display: flex;
     align-items: center;
-    box-shadow: 0 4px 2px -2px #eee;
+    box-shadow: 0 0 0 1px rgba(0,0,0,.15), 0 2px 3px rgba(0,0,0,.2);;
     padding: 12px;
     margin-bottom: 8px;
   }
@@ -32,10 +32,43 @@
   &-activeButton {
     background-color: #eee;
   }
+  &-headers {
+      position: relative;
+      width: 100px;
+      margin-right: 8px;
+      &-select {
+          -webkit-appearance: none;
+          appearance: none;
+          border: none;
+          width: 100%;
+          box-shadow: none;
+          outline: none;
+          background: #eee;
+          padding: 8px;
+          
+          cursor: pointer;
+      }
+      &-arrow {
+          position: absolute;
+          right: 15px;
+          top: 50%;
+          margin-top: -3px;
+          height: 20px;
+          width: 20px;
+          z-index: 0;
+          background-color: black;
+          mask: url('../../assets/icons/arrow.svg') no-repeat center;
+          -webkit-mask: url('../../assets/icons/arrow.svg') no-repeat center;
+      }
+  }
+  
   &-editor {
     height: 100%;
     width: 100%;
     margin-top: 50px;
     padding: 18px;
   }
+}
+.public-DraftEditorPlaceholder-inner {
+    color: #aaa;
 }

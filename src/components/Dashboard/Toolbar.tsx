@@ -1,7 +1,6 @@
 import React from "react";
 import { EditorState, DraftBlockType, RichUtils } from "draft-js";
-import BlockStyle from './blockStyle';
-import InineStyle from "./inlineStyle";
+import StyleTypes from "./StyleTypes";
 
 interface ToolbarProps {
   editorState: EditorState;
@@ -20,8 +19,11 @@ const Toolbar = (props: ToolbarProps) => {
 
   return (
     <div className="RichEditor-controls">
-      <BlockStyle editorState={editorState} onToggle={toggleBlockType} />
-      <InineStyle editorState={editorState} onToggle={toggleInlineStyle} />
+      <StyleTypes
+        editorState={editorState}
+        onToggleBlock={toggleBlockType}
+        onToggleInline={toggleInlineStyle}
+      />
     </div>
   );
 };
