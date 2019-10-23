@@ -24,7 +24,8 @@ const BLOCK_TYPES: BlockTypes = [
   { label: "OL", style: "ordered-list-item", type: "BLOCK_TYPE" },
   { label: "Blockquote", style: "blockquote", type: "BLOCK_TYPE" },
   { label: "CodeBlock", style: "code-block", type: "BLOCK_TYPE" },
-  { label: "Monospace", style: "CODE", type: "INLINE_TYPE" }
+  { label: "Monospace", style: "CODE", type: "INLINE_TYPE" },
+  { label: "Strike", style: "STRIKETHROUGH", type: "INLINE_TYPE"}
 ];
 
 const BLOCK_TYPES_HEADING: BlockTypes = [
@@ -36,14 +37,7 @@ const BLOCK_TYPES_HEADING: BlockTypes = [
   { label: "Heading 6", style: "header-six", type: "BLOCK_TYPE" }
 ];
 
-export const getBlockStyle = (block: ContentBlock): string => {
-  switch (block.getType()) {
-    case "blockquote":
-      return "RichEditor-blockquote";
-    default:
-      return "";
-  }
-};
+
 
 interface StyleTypesProps {
   editorState: EditorState;

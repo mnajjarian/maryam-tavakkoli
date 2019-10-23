@@ -10,14 +10,14 @@ import {
   getDefaultKeyBinding,
   DraftEditorCommand
 } from "draft-js";
-import { styleMap } from './customStyleMap';
-import { getBlockStyle } from './StyleTypes';
+import { getBlockStyle } from './getBlockStyle';
 import Toolbar from './Toolbar';
 
 const RichEditor = () => {
   const [editorState, setEditorState] = useState<EditorState>(
     EditorState.createEmpty()
   );
+  console.log(editorState.getCurrentContent())
 let editor = createRef<Editor>();
 
 const focusEditor = () => {
@@ -85,7 +85,6 @@ const focusEditor = () => {
           editorState={editorState}
           handleKeyCommand={handleKeyCommand}
           keyBindingFn={mapKeyToEditorCommand}
-          customStyleMap={styleMap}
           onChange={handleChange}
           placeholder="Tell a story..."
         />
