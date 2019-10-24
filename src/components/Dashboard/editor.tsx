@@ -8,16 +8,22 @@ import {
   EditorState,
   RichUtils,
   getDefaultKeyBinding,
-  DraftEditorCommand
+  DraftEditorCommand,
+  convertToRaw,
 } from "draft-js";
 import { getBlockStyle } from './getBlockStyle';
 import Toolbar from './Toolbar';
+import Preview from "./preview";
 
 const RichEditor = () => {
   const [editorState, setEditorState] = useState<EditorState>(
     EditorState.createEmpty()
   );
-  console.log(editorState.getCurrentContent())
+  const content = editorState.getCurrentContent();
+  const [editorContent, setEditorContent] = useState<any>(
+    JSON.stringify(convertToRaw(content))
+  )
+ 
 let editor = createRef<Editor>();
 
 const focusEditor = () => {
@@ -25,9 +31,17 @@ const focusEditor = () => {
     editor.current.focus()
   }
 }
-  const handleChange = (editorState: EditorState) => 
+  const handleChange = (editorState: EditorState) => {
     setEditorState(editorState);
-  
+    setEditorContent(JSON.stringify(convertToRaw(content)));
+  } 
+    
+    
+    
+    const handleSave = (type: string) => () => {
+        console.log(JSON.stringify(convertToRaw(content)))
+        console.log(type)
+    }
 
   const handleKeyCommand = (
     command: DraftEditorCommand,
@@ -73,11 +87,16 @@ const focusEditor = () => {
   }
 
   return (
+    <div className='editor'>
+
+  
     <div className="RichEditor" >
         <Toolbar
            editorState={editorState}
            handleChange={handleChange}
+           handleSave={handleSave}
         />
+      
       <div className={className} onClick={focusEditor} >
         <Editor
           ref={editor}
@@ -89,6 +108,10 @@ const focusEditor = () => {
           placeholder="Tell a story..."
         />
       </div>
+      <Preview
+         
+      />
+    </div>
     </div>
   );
 };

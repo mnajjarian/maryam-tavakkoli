@@ -2,7 +2,6 @@ import React, { Fragment } from "react";
 import {
   EditorState,
   DraftBlockType,
-  ContentBlock,
   DraftInlineStyleType
 } from "draft-js";
 import HeaderStyleDropdown from "./headerStyleDropdown";

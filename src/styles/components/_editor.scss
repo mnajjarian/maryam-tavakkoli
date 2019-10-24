@@ -1,8 +1,22 @@
+.editor {
+    height: 100%;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+}
+
 .RichEditor {
   height: 100%;
   width: 100%;
   border-radius: 5px;
-  margin-top: 45px;
+  margin-top: 60px;
+  height: 100%;
+  &-controls {
+    display: flex;
+    align-items: center;
+  
+  }
+
   &-blockquote {
     border-left: 5px solid #eee;
     color: #666;
@@ -18,18 +32,7 @@
     color: '#444';
     text-decoration: 'line-through',
   }
-  &-controls {
-    position: fixed;
-    left: 0;
-    right: 0;
-    background-color: white;
-    z-index: 33;
-    display: flex;
-    align-items: center;
-    box-shadow: 0 0 0 1px rgba(0,0,0,.15), 0 2px 3px rgba(0,0,0,.2);;
-    padding: 12px;
-    margin-bottom: 8px;
-  }
+
   &-styleButton {
     display: flex;
     justify-content: center;
@@ -59,21 +62,8 @@
           box-shadow: none;
           outline: none;
           background: #eee;
-          padding: 8px;
-          
+          padding: 8px;   
           cursor: pointer;
-      }
-      &-arrow {
-          position: absolute;
-          right: 15px;
-          top: 50%;
-          margin-top: -3px;
-          height: 20px;
-          width: 20px;
-          z-index: 0;
-          background-color: black;
-          mask: url('../../assets/icons/arrow.svg') no-repeat center;
-          -webkit-mask: url('../../assets/icons/arrow.svg') no-repeat center;
       }
   }
   

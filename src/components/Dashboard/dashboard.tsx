@@ -6,7 +6,7 @@ const Dashboard = () => (
     <div className="dashboard" >
         <Nav />
         <div className="dashboard__editor">
-          <RichEditor />  
+          <RichEditor />
         </div>    
     </div>
 );
