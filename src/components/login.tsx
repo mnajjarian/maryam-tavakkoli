@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, FormEvent } from 'react';
+import { AuthContext } from '../contexts/authContexts';
 
 const Login = () => {
-    const[state, setState] = useState({username: '', password: ''});
+    const[state, setState] = useState({email: '', password: ''});
+    const { authService } = useContext(AuthContext);
 
     const handleChange = (e: React.FormEvent): void => {
         const {name, value } = e.target as HTMLInputElement;
@@ -11,17 +13,21 @@ const Login = () => {
             [name]: value
         })
     }
-    const { username, password } = state;
+    const { email, password } = state;
+    const handleSubmit = (e: FormEvent) => {
+        e.preventDefault()
+        authService.signin(state)
+    }
     return (
     <div className="login" >
-        <form className="login__form" >
+        <form className="login__form" onSubmit={handleSubmit} >
             <label className="login__form--label" htmlFor="username" >Username</label>
             <input
                   className="login__form--input"
               type="text"
-              name="username"
+              name="email"
               placeholder="Username"
-              value={username}
+              value={email}
               onChange={handleChange}
             />
             <label className="login__form--label" htmlFor="password" >Password</label>
