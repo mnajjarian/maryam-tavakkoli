@@ -13,7 +13,6 @@ import {
 } from "draft-js";
 import { getBlockStyle } from './getBlockStyle';
 import Toolbar from './Toolbar';
-import Preview from "./preview";
 
 const RichEditor = () => {
   const [editorState, setEditorState] = useState<EditorState>(
@@ -108,9 +107,6 @@ const focusEditor = () => {
           placeholder="Tell a story..."
         />
       </div>
-      <Preview
-         
-      />
     </div>
     </div>
   );
