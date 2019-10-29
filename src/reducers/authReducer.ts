@@ -1,22 +1,33 @@
-
-export interface InitState {
-    data?: any;
-    isLoading: boolean;
-    error?: string;
+export interface AuthState {
+    isLoggedIn: boolean;
+    token: string | null;
+    user: string | null;
+    error: string | null;
 }
-type Action = 
-| { type: 'request'}
-| { type: 'success', results: ''}
-| { type: 'failur', error: string }
+export const initialAuthState: AuthState = {
+    user: localStorage.getItem('user'),
+    token: localStorage.getItem('token'),
+    isLoggedIn: localStorage.getItem('token') !== undefined,
+    error: null
+}
 
-export const authReducer = (state: InitState, action: Action): InitState => {
+export type AuthAction = 
+| { type: 'SIGNIN_SUCCESS', payload: string}
+| { type: 'SIGNIN_ERROR', payload: string}
+| { type: 'SIGNUP_ERROR', payload: string}
+| { type: 'SET_ERRORS', payload: string }
+| { type: 'SET_USER', payload: string }
+
+
+
+export const authReducer = (state: AuthState, action: AuthAction) => {
+    console.log(action)
     switch (action.type) {
-        case 'request':
-            return { isLoading: true }
-        case 'success':
-            return { isLoading: false, data: action.results };
-        case 'failur':
-            return { isLoading: false, error: action.error };
+        case 'SIGNIN_ERROR':
+        case 'SIGNUP_ERROR':
+            return {...state, error: action.payload}
+        case 'SIGNIN_SUCCESS':
+            return { ...state, user: action.payload, isLoggedIn: true, error: null }
         default:
             return state;
     }
