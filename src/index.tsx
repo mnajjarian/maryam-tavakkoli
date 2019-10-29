@@ -3,19 +3,22 @@ import ReactDOM from "react-dom";
 import { Router } from "react-router";
 import { BrowserRouter } from "react-router-dom";
 import { createBrowserHistory } from "history";
-import { AuthProvider } from "./contexts/authContexts";
+import { AuthProvider } from "./contexts/authContext";
 import App from "./components/app";
 import "./styles/_main.scss";
+import { DataProvider } from "./contexts/dataContext";
 
 const history = createBrowserHistory();
 
 ReactDOM.render(
   <AuthProvider>
-    <BrowserRouter>
-      <Router history={history}>
-        <App />
-      </Router>
-    </BrowserRouter>
+    <DataProvider>
+      <BrowserRouter>
+        <Router history={history}>
+          <App />
+        </Router>
+      </BrowserRouter>
+    </DataProvider>
   </AuthProvider>,
   document.getElementById("root")
 );
