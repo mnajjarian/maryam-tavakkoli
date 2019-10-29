@@ -1,5 +1,5 @@
 import React, { useState, useContext, FormEvent } from 'react';
-import { AuthContext } from '../contexts/authContexts';
+import { AuthContext } from '../contexts/authContext';
 
 const Login = () => {
     const[state, setState] = useState({email: '', password: ''});
