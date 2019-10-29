@@ -48,6 +48,5 @@
     "@types/draft-js": "^0.10.37",
     "@types/react-router": "^5.1.1",
     "@types/react-router-dom": "^5.1.0"
-  },
-  "proxy": "http://localhost:3001/"
+  }
 }
