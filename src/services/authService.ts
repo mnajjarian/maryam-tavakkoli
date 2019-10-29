@@ -1,17 +1,28 @@
-import axios from 'axios'
-const baseURL = 'http://localhost:3001';
+import { Dispatch } from "react";
+import { customAxios, setAuthToken } from "./customAxios";
+import { AuthAction, AuthState } from '../reducers/authReducer';
 
-
-export const useAuthService = (state: any, dispatch: any) => {
-    const signin = (credentials: any) => {
-        console.log(credentials)
-        axios.post(`${baseURL}/login`, credentials, 
-        { withCredentials: true })
-        .then(res => {
-            console.log(res)
+export const useAuthService = (state: AuthState, dispatch: Dispatch<AuthAction>) => {
+  const signin = (credentials: any) => {
+    customAxios
+      .post('/login', credentials, { withCredentials: true })
+      .then(res => {
+        localStorage.setItem("token", res.data.token);
+        localStorage.setItem('user', res.data.name)
+        setAuthToken(res.data.token);
+        dispatch({
+            type: 'SIGNIN_SUCCESS',
+            payload: res.data.name
         })
-    };
-    return {
-        signin
-    }
+      })
+      .catch((err: Error) => {
+          dispatch({
+            type: 'SET_ERRORS',
+            payload: err.message,
+          });
+      })
+  };
+  return {
+    signin
+  };
 };
