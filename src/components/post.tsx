@@ -1,8 +1,12 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useContext, useEffect, useState } from "react";
 import db from "../db.json";
 import Nav from "./navbar";
+import { DataContext } from "../contexts/dataContext";
+import { convertFromRaw, EditorState } from "draft-js";
+import renderHTML from 'react-render-html';
+import { stateToHTML } from "draft-js-export-html";
 
-interface Paragraph {
+/* interface Paragraph {
   title: string;
   text: string[];
 }
@@ -116,6 +120,26 @@ const Post = ({ match }: { match: any }) => {
       </main>
     </Fragment>
   );
-};
+}; */
 
+
+const Post = () => {
+  const[posts, setposts] = useState()
+    const { data, dataService } = useContext(DataContext);
+    console.log(data)
+ 
+    console.log(data.blogs[0].content)
+
+    if(!data.blogs[0]) {
+      return <div></div>
+    }
+    const content = convertFromRaw(data.blogs[0].content);
+    const editorState = EditorState.createWithContent(content)
+    const editorContentHtml = stateToHTML(editorState.getCurrentContent())
+    return(
+        <div>
+            {renderHTML(editorContentHtml)}
+        </div>
+    )
+};
 export default Post;
