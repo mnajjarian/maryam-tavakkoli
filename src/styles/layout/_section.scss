@@ -16,6 +16,9 @@
     width: 100%;
     height: 100%;
     color: $main-dark-color;
+    &--row-reverse {
+      flex-direction: row-reverse;
+    }
   }
 
   &__article {

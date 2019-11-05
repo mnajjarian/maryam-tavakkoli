@@ -7,7 +7,6 @@ import Post from "./post";
 import Login from "./login";
 import Dashboard from "./Dashboard/dashboard";
 import { AuthContext } from "../contexts/authContext";
-import { userInfo } from "os";
 import { DataContext } from "../contexts/dataContext";
 
 interface Props {
@@ -16,7 +15,7 @@ interface Props {
 }
 const App = () => {
   const {authState: { isLoggedIn }} = useContext(AuthContext);
-  const { data, dataService } = useContext(DataContext);
+  const { dataService } = useContext(DataContext);
   const fetchAllPosts = () => dataService.getPosts();
   const fetchProfile = () => dataService.getProfile()
   useEffect(() => {

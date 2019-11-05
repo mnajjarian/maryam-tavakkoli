@@ -21,13 +21,14 @@ const RichEditor = () => {
     EditorState.createEmpty()
   );
   const content = editorState.getCurrentContent();
+
   const [editorContent, setEditorContent] = useState<any>(
     JSON.stringify(convertToRaw(content))
   )
-const { dataService, data } = useContext(DataContext)
+
+const { dataService } = useContext(DataContext)
 
 let editor = createRef<Editor>();
-console.log(data)
 const focusEditor = () => {
   if(editor.current) {
     editor.current.focus()
@@ -41,9 +42,7 @@ const focusEditor = () => {
     
     
     const handleSave = (type: string) => () => {
-        console.log(JSON.stringify(convertToRaw(content)))
-        console.log(type)
-        dataService.createNewPost(JSON.stringify(convertToRaw(content)))
+        dataService.createNewPost(editorContent)
     }
 
   const handleKeyCommand = (

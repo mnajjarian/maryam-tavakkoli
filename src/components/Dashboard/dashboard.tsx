@@ -1,7 +1,7 @@
-import React, { useContext, useState } from 'react';
+import React from 'react';
 import RichEditor from './editor';
-import { AuthContext } from '../../contexts/authContext';
 import Nav from './nav';
+import Profile from './profile';
 
 const Dashboard = () => {
     return(
@@ -9,7 +9,9 @@ const Dashboard = () => {
         <Nav />
         <div className="dashboard__editor">
         <RichEditor />
-        </div>    
+       
+        </div>  
+{/*         <Profile />  */} 
     </div>
 )};
 
