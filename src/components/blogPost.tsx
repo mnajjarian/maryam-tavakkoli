@@ -24,20 +24,26 @@ type PostProps = {
     createdAt: string;
   };
 };
-const Post = (props: PostProps) => {
+const Post = (props: any) => {
   const formatDate = (date: string) =>
     new Intl.DateTimeFormat("en-us", {
       year: "numeric",
       month: "short",
       day: "2-digit"
     }).format(new Date(date));
-  const { post } = props;
+
+  const { post, post: { content } } = props;
+
+  const draft = JSON.parse(content)
+  const {blocks} = draft;
+  const title = blocks.filter((b: any) => b.type === 'header-two')
+  const p = blocks.filter((b: any) => b.type === 'unstyled')
 
   return (
     <div className="posts">
-      <section>
+       <section>
         <div className="posts__content">
-          <h2>{post.title}</h2>
+          <h2>{title[0].text}</h2>
           <div className="posts__header">
             <span className="posts__icon">
               <img src={timeIcon} alt="clock icon" />
@@ -58,20 +64,20 @@ const Post = (props: PostProps) => {
           </div>
           <div className="posts__items">
             <p>
-              {post.paragraph[0].text[0].substring(0, 380) + "... "}
-              <Link to={`/blog/${post.title.split(" ").join("-")}`}>
+              {p[0].text.substring(0, 380) + "... "}
+              <Link to={`/blog/${title[0].text.split(" ").join("-")}`}>
                 read more
               </Link>
             </p>
-            <img src={require(`../${post.imgUrl}`)} alt={post.title} />
+     {/*        <img src={require(`../${post.imgUrl}`)} alt={post.title} /> */}
           </div>
           <ul className="posts__tags">
-            Tags:
+    {/*         Tags:
             {post.tags.map(tag => (
               <li key={tag}>
                 <a href="/">{tag}</a>
               </li>
-            ))}
+            ))} */}
           </ul>
         </div>
       </section>
