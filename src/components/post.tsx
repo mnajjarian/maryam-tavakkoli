@@ -1,15 +1,11 @@
 import React, { Fragment, useContext } from "react";
 import Nav from "./navbar";
 import { DataContext } from "../contexts/dataContext";
-import { convertFromRaw, EditorState } from "draft-js";
+import { convertFromRaw, EditorState, RawDraftContentState } from "draft-js";
 import renderHTML from 'react-render-html';
 import { stateToHTML } from "draft-js-export-html";
+import { BlogType } from './blog';
 
-interface Post {
-    id: string;
-    content: string;
-    createdAt: string;
-}
 const Post = ({ match }: { match: any }) => {
   const { data: {blogs } } = useContext(DataContext);
   const {
@@ -19,16 +15,16 @@ const Post = ({ match }: { match: any }) => {
     return <div></div>;
   }
 
-  const title = id.split("-").join(" ");
-  const post: Post = blogs.find((p: any) => p.content.includes(title));
+  const title: string = id.split("-").join(" ");
+  const post: BlogType = blogs.find((p: BlogType) => p.content.includes(title));
 
   if (!post) {
     return <div></div>;
   }
-  const draft = JSON.parse(post.content);
+  const rawDraft: RawDraftContentState = JSON.parse(post.content);
   
-  const content = convertFromRaw(draft);
-  const editorState = EditorState.createWithContent(content)
+  const content = convertFromRaw(rawDraft);
+  const editorState: EditorState = EditorState.createWithContent(content)
   const editorContentHtml = stateToHTML(editorState.getCurrentContent())
   return (
     <Fragment>
@@ -108,51 +104,4 @@ const Post = ({ match }: { match: any }) => {
   );
 };
 
-
-/* const Post = () => {
-  const[posts, setposts] = useState()
-    const { data, dataService } = useContext(DataContext);
-    console.log(data)
- 
-    console.log(data.blogs[0].content)
-
-    if(!data.blogs[0]) {
-      return <div></div>
-    }
-    const content = convertFromRaw(data.blogs[0].content);
-    const editorState = EditorState.createWithContent(content)
-    const editorContentHtml = stateToHTML(editorState.getCurrentContent())
-    return(
-        <div>
-            {renderHTML(editorContentHtml)}
-        </div>
-    )
-}; 
-
-const Post = ({ match }: { match: any }) => {
-  const { data, data: {blogs }, dataService } = useContext(DataContext);
-
-  const {
-    params: { id }
-  } = match;
-  if (!id) {
-    return <div></div>;
-  }
-
-  const title = id.split("-").join(" ");
-  const post = blogs.find((p: any) => p.content.includes(title));
-
-   if (!post) {
-    return <div></div>;
-  }
-  console.log(match)
-  const content = convertFromRaw(JSON.parse(post.content));
-  const editorState = EditorState.createWithContent(content)
-  const editorContentHtml = stateToHTML(editorState.getCurrentContent())
-  return(
-      <div className="post" >
-          {renderHTML(editorContentHtml)}
-      </div>
-  )
-};*/
 export default Post;

@@ -1,23 +1,10 @@
 import React from "react";
 import Post from "./blogPost";
+import { BlogType } from './blog';
 
-interface Paragraph {
-  title: string;
-  text: string[];
-}
-interface Props {
-  posts: {
-    id: string;
-    author: string;
-    authorImg: string;
-    authorBio: string;
-    title: string;
-    shortDescription: string;
-    paragraph: Paragraph[];
-    imgUrl: string;
-    tags: string[];
-    createdAt: string;
-  }[];
+
+type Props = {
+  posts: BlogType[]
 }
 const BlogPosts = (props: Props) => {
   const { posts } = props;
