@@ -36,6 +36,7 @@ const Post = (props: any) => {
 
   const draft = JSON.parse(content)
   const {blocks} = draft;
+
   const title = blocks.filter((b: any) => b.type === 'header-two')
   const p = blocks.filter((b: any) => b.type === 'unstyled')
 

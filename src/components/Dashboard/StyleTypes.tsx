@@ -2,7 +2,8 @@ import React, { Fragment } from "react";
 import {
   EditorState,
   DraftBlockType,
-  DraftInlineStyleType
+  DraftInlineStyleType,
+  AtomicBlockUtils
 } from "draft-js";
 import HeaderStyleDropdown from "./headerStyleDropdown";
 import StyleButton from "./StyleButton";
@@ -24,7 +25,8 @@ const BLOCK_TYPES: BlockTypes = [
   { label: "Blockquote", style: "blockquote", type: "BLOCK_TYPE" },
   { label: "CodeBlock", style: "code-block", type: "BLOCK_TYPE" },
   { label: "Monospace", style: "CODE", type: "INLINE_TYPE" },
-  { label: "Strike", style: "STRIKETHROUGH", type: "INLINE_TYPE"}
+  { label: "Strike", style: "STRIKETHROUGH", type: "INLINE_TYPE"},
+  { label: "Image", style: "", type: "IMAGE"},
 ];
 
 const BLOCK_TYPES_HEADING: BlockTypes = [
@@ -40,17 +42,19 @@ const BLOCK_TYPES_HEADING: BlockTypes = [
 
 interface StyleTypesProps {
   editorState: EditorState;
+  onAddImage: any;
   onToggleBlock: (style: DraftBlockType) => void;
   onToggleInline: (style: DraftBlockType | DraftInlineStyleType) => void;
 }
 const StyleTypes = (props: StyleTypesProps) => {
-  const { editorState, onToggleBlock, onToggleInline } = props;
+  const { editorState, onAddImage, onToggleBlock, onToggleInline } = props;
   const selection = editorState.getSelection();
   const blockType = editorState
     .getCurrentContent()
     .getBlockForKey(selection.getStartKey())
     .getType();
   const currentStyle = editorState.getCurrentInlineStyle();
+
   return (
     <Fragment>
       <HeaderStyleDropdown
@@ -66,7 +70,7 @@ const StyleTypes = (props: StyleTypesProps) => {
               : currentStyle.has(type.style)
           }
           label={type.label}
-          onToggle={type.type === "BLOCK_TYPE" ? onToggleBlock : onToggleInline}
+          onToggle={type.type === "BLOCK_TYPE" ? onToggleBlock : type.type === "IMAGE" ? onAddImage : onToggleInline}
           style={type.style}
           key={type.label}
         />

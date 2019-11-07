@@ -1,7 +1,7 @@
-import React, { Fragment, useContext } from "react";
+import React, { Fragment, useContext, useEffect } from "react";
 import Nav from "./navbar";
 import { DataContext } from "../contexts/dataContext";
-import { convertFromRaw, EditorState, RawDraftContentState } from "draft-js";
+import { convertFromRaw, EditorState, RawDraftContentState, convertToRaw } from "draft-js";
 import renderHTML from 'react-render-html';
 import { stateToHTML } from "draft-js-export-html";
 import { BlogType } from './blog';
@@ -21,11 +21,13 @@ const Post = ({ match }: { match: any }) => {
   if (!post) {
     return <div></div>;
   }
+
   const rawDraft: RawDraftContentState = JSON.parse(post.content);
   
   const content = convertFromRaw(rawDraft);
   const editorState: EditorState = EditorState.createWithContent(content)
   const editorContentHtml = stateToHTML(editorState.getCurrentContent())
+
   return (
     <Fragment>
       <div className="nav__wrapper">

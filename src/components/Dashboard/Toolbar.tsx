@@ -6,12 +6,13 @@ import StyleTypes from "./StyleTypes";
 
 interface ToolbarProps {
   editorState: EditorState;
+  onAddImage: any;
   handleChange: (editorState: EditorState) => void;
   handleSave: (type: string) => any;
 }
 const Toolbar = (props: ToolbarProps) => {
     const[toggle, setToggle] = useState(false);
-  const { editorState, handleChange, handleSave } = props;
+  const { editorState, onAddImage, handleChange, handleSave } = props;
 
   const handleToggle = () => setToggle(!toggle);
 
@@ -28,6 +29,7 @@ const Toolbar = (props: ToolbarProps) => {
     <div className="RichEditor-controls">
       <StyleTypes
         editorState={editorState}
+        onAddImage={onAddImage}
         onToggleBlock={toggleBlockType}
         onToggleInline={toggleInlineStyle}
       />

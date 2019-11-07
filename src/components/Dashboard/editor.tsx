@@ -11,10 +11,12 @@ import {
   getDefaultKeyBinding,
   DraftEditorCommand,
   convertToRaw,
+  AtomicBlockUtils,
 } from "draft-js";
 import { getBlockStyle } from './getBlockStyle';
 import Toolbar from './Toolbar';
 import { DataContext } from "../../contexts/dataContext";
+import { mediaBlockRenderer } from "./mediaBlockRenderer";
 
 const RichEditor = () => {
   const [editorState, setEditorState] = useState<EditorState>(
@@ -72,6 +74,26 @@ const focusEditor = () => {
     return getDefaultKeyBinding(e);
   };
 
+  const onAddImage = (e: Event) => {
+    const urlValue = window.prompt('Paste Image Link');
+    const contentState = editorState.getCurrentContent();
+    const contentStateWithEntitiy = contentState.createEntity(
+      'image',
+      'IMMUTABLE',
+      { src: urlValue }
+    );
+    const entityKey = contentStateWithEntitiy.getLastCreatedEntityKey();
+    const newEditorState = EditorState.set(
+      editorState,
+      { currentContent: contentStateWithEntitiy }
+      );
+      setEditorState(AtomicBlockUtils.insertAtomicBlock(
+        newEditorState,
+        entityKey,
+        ' '
+      ));
+      setTimeout(() => focusEditor(), 0)
+ }
 
 
 
@@ -88,6 +110,7 @@ const focusEditor = () => {
     }
   }
 
+
   return (
     <div className='editor'>
 
@@ -95,6 +118,7 @@ const focusEditor = () => {
     <div className="RichEditor" >
         <Toolbar
            editorState={editorState}
+           onAddImage={onAddImage}
            handleChange={handleChange}
            handleSave={handleSave}
         />
@@ -103,6 +127,7 @@ const focusEditor = () => {
         <Editor
           ref={editor}
           blockStyleFn={getBlockStyle}
+          blockRendererFn={mediaBlockRenderer}
           editorState={editorState}
           handleKeyCommand={handleKeyCommand}
           keyBindingFn={mapKeyToEditorCommand}

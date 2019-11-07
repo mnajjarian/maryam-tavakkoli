@@ -15,7 +15,6 @@ export interface BlogType {
 }
 const Blog = () => {
   const {data: { blogs } } = useContext(DataContext)
-
   const lastPost: BlogType = blogs[0] ? blogs[0] : null
 
   return(
