@@ -12,11 +12,13 @@ import {
   DraftEditorCommand,
   convertToRaw,
   AtomicBlockUtils,
+  ContentState,
 } from "draft-js";
 import { getBlockStyle } from './getBlockStyle';
 import Toolbar from './Toolbar';
 import { DataContext } from "../../contexts/dataContext";
 import { mediaBlockRenderer } from "./mediaBlockRenderer";
+import { Image } from 'cloudinary-react';
 
 const RichEditor = () => {
   const [editorState, setEditorState] = useState<EditorState>(
@@ -24,7 +26,7 @@ const RichEditor = () => {
   );
   const content = editorState.getCurrentContent();
 
-  const [editorContent, setEditorContent] = useState<any>(
+  const [editorContent, setEditorContent] = useState<string>(
     JSON.stringify(convertToRaw(content))
   )
 
@@ -74,8 +76,23 @@ const focusEditor = () => {
     return getDefaultKeyBinding(e);
   };
 
-  const onAddImage = (e: Event) => {
+  const openWidget = () => {
+    (window as any).cloudinary.openUploadWidget(
+      {
+        cloudName: 'dfjemz4f7',
+        uploadPreset: 'no2bkme1',
+      
+      },
+      (error: Error, result: any) => {
+        if (result.event === 'success') {
+          console.log(result)
+        } 
+      }
+    );
+  }
+  const onAddImage = () => {
     const urlValue = window.prompt('Paste Image Link');
+    openWidget();
     const contentState = editorState.getCurrentContent();
     const contentStateWithEntitiy = contentState.createEntity(
       'image',

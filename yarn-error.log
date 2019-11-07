@@ -1,8 +1,8 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/Cellar/yarn/1.17.3/libexec/bin/yarn.js add -D @types/html-to-react
+  /usr/local/bin/node /usr/local/Cellar/yarn/1.17.3/libexec/bin/yarn.js add -D @types/cloudinary-react
 
 PATH: 
-  /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/Library/Apple/bin:/Applications/Wireshark.app/Contents/MacOS:/Applications/Visual Studio Code.app/Contents/Resources/app/bin
+  /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/Wireshark.app/Contents/MacOS
 
 Yarn version: 
   1.17.3
@@ -14,7 +14,7 @@ Platform:
   darwin x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/@types%2fhtml-to-react: Not found
+  Error: https://registry.yarnpkg.com/@types%2fcloudinary-react: Not found
       at Request.params.callback [as _callback] (/usr/local/Cellar/yarn/1.17.3/libexec/lib/cli.js:66830:18)
       at Request.self.callback (/usr/local/Cellar/yarn/1.17.3/libexec/lib/cli.js:140464:22)
       at Request.emit (events.js:198:13)
@@ -36,11 +36,12 @@ npm manifest:
       "@types/node": "12.7.11",
       "@types/react": "16.9.5",
       "@types/react-dom": "16.9.1",
+      "axios": "^0.19.0",
       "classnames": "^2.2.6",
+      "cloudinary-react": "^1.2.1",
       "draft-js": "^0.11.1",
       "draft-js-export-html": "^1.4.1",
       "draft-js-plugins-editor": "^3.0.0",
-      "html-to-react": "^1.4.2",
       "node-sass": "^4.12.0",
       "react": "^16.10.2",
       "react-dom": "^16.10.2",
@@ -72,6 +73,7 @@ npm manifest:
       ]
     },
     "devDependencies": {
+      "@types/axios": "^0.14.0",
       "@types/classnames": "^2.2.9",
       "@types/draft-js": "^0.10.37",
       "@types/react-router": "^5.1.1",
@@ -1450,6 +1452,13 @@ Lockfile:
       "@svgr/plugin-svgo" "^4.3.1"
       loader-utils "^1.2.3"
   
+  "@types/axios@^0.14.0":
+    version "0.14.0"
+    resolved "https://registry.yarnpkg.com/@types/axios/-/axios-0.14.0.tgz#ec2300fbe7d7dddd7eb9d3abf87999964cafce46"
+    integrity sha1-7CMA++fX3d1+udOr+HmZlkyvzkY=
+    dependencies:
+      axios "*"
+  
   "@types/babel__core@^7.1.0":
     version "7.1.1"
     resolved "https://registry.yarnpkg.com/@types/babel__core/-/babel__core-7.1.1.tgz#ce9a9e5d92b7031421e1d0d74ae59f572ba48be6"
@@ -2199,6 +2208,14 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.8.0.tgz#f0e003d9ca9e7f59c7a508945d7b2ef9a04a542f"
     integrity sha512-ReZxvNHIOv88FlT7rxcXIIC0fPt4KZqZbOlivyWtXLt8ESx84zd3kMC6iK5jVeS2qt+g7ftS7ye4fi06X5rtRQ==
   
+  axios@*, axios@^0.19.0:
+    version "0.19.0"
+    resolved "https://registry.yarnpkg.com/axios/-/axios-0.19.0.tgz#8e09bff3d9122e133f7b8101c8fbdd00ed3d2ab8"
+    integrity sha512-1uvKqKQta3KBxIz14F2v06AEHZ/dIoeKfbTRkK1E5oqjDnuEerLmYTgJB5AiQZHJcljpg1TuRzdjDR06qNk0DQ==
+    dependencies:
+      follow-redirects "1.5.10"
+      is-buffer "^2.0.2"
+  
   axobject-query@^2.0.2:
     version "2.0.2"
     resolved "https://registry.yarnpkg.com/axobject-query/-/axobject-query-2.0.2.tgz#ea187abe5b9002b377f925d8bf7d1c561adf38f9"
@@ -2902,6 +2919,19 @@ Lockfile:
       kind-of "^6.0.2"
       shallow-clone "^3.0.0"
   
+  cloudinary-core@^2.7.4:
+    version "2.7.4"
+    resolved "https://registry.yarnpkg.com/cloudinary-core/-/cloudinary-core-2.7.4.tgz#35db9b8a851ca7ef9feace6e98496a8455de6663"
+    integrity sha512-toaZSJVvpY1bQhqhin6atI1DPfloE/wOS9T6lriHsZVvdNyQu+c9AyNznM5/4NquI2oLr4G2gGgeX0tImnFUaQ==
+  
+  cloudinary-react@^1.2.1:
+    version "1.2.1"
+    resolved "https://registry.yarnpkg.com/cloudinary-react/-/cloudinary-react-1.2.1.tgz#5a5b062986eff9b6c16871aa1ba293f75201e37a"
+    integrity sha512-VQewBSHToPC8huKeDf5oaAiKyF/A/l8FsuPeuxAZH19U3lxWmEKx7HiicmsU4LuyZ7fEjdVD/9a8NjhQng2dFQ==
+    dependencies:
+      cloudinary-core "^2.7.4"
+      prop-types "^15.6.2"
+  
   co@^4.6.0:
     version "4.6.0"
     resolved "https://registry.yarnpkg.com/co/-/co-4.6.0.tgz#6ea6bdf3d853ae54ccb8e47bfa0bf3f9031fb184"
@@ -3538,6 +3568,13 @@ Lockfile:
     dependencies:
       ms "2.0.0"
   
+  debug@=3.1.0:
+    version "3.1.0"
+    resolved "https://registry.yarnpkg.com/debug/-/debug-3.1.0.tgz#5bb5a0672628b64149566ba16819e61518c67261"
+    integrity sha512-OX8XqP7/1a9cqkxYw2yXss15f26NKWBpDXQd0/uK/KPqdQhxbPa994hnzjcE2VqQpDslf55723cKPUOGSmMY3g==
+    dependencies:
+      ms "2.0.0"
+  
   debug@^3.2.5, debug@^3.2.6:
     version "3.2.6"
     resolved "https://registry.yarnpkg.com/debug/-/debug-3.2.6.tgz#e83d17de16d8a7efb7717edbe5fb10135eee629b"
@@ -3763,14 +3800,6 @@ Lockfile:
       domelementtype "^1.3.0"
       entities "^1.1.1"
   
-  dom-serializer@^0.2.1:
-    version "0.2.1"
-    resolved "https://registry.yarnpkg.com/dom-serializer/-/dom-serializer-0.2.1.tgz#13650c850daffea35d8b626a4cfc4d3a17643fdb"
-    integrity sha512-sK3ujri04WyjwQXVoK4PU3y8ula1stq10GJZpqHIUgoGZdsGzAGu65BnU3d08aTVSvO7mGPZUc0wTEDL+qGE0Q==
-    dependencies:
-      domelementtype "^2.0.1"
-      entities "^2.0.0"
-  
   domain-browser@^1.1.1:
     version "1.2.0"
     resolved "https://registry.yarnpkg.com/domain-browser/-/domain-browser-1.2.0.tgz#3d31f50191a6749dd1375a7f522e823d42e54eda"
@@ -3780,11 +3809,6 @@ Lockfile:
     version "1.3.1"
     resolved "https://registry.yarnpkg.com/domelementtype/-/domelementtype-1.3.1.tgz#d048c44b37b0d10a7f2a3d5fee3f4333d790481f"
     integrity sha512-BSKB+TSpMpFI/HOxCNr1O8aMOTZ8hT3pM3GQ0w/mWRmkhEDSFJkkyzz4XQsBV44BChwGkrDfMyjVD0eA2aFV3w==
-  
-  domelementtype@^2.0.1:
-    version "2.0.1"
-    resolved "https://registry.yarnpkg.com/domelementtype/-/domelementtype-2.0.1.tgz#1f8bdfe91f5a78063274e803b4bdcedf6e94f94d"
-    integrity sha512-5HOHUDsYZWV8FGWN0Njbr/Rn7f/eWSQi1v7+HsUVwXgn8nWWlL64zKDkS0n8ZmQ3mlWOMuXOnR+7Nx/5tMO5AQ==
   
   domexception@^1.0.1:
     version "1.0.1"
@@ -3799,13 +3823,6 @@ Lockfile:
     integrity sha512-JiK04h0Ht5u/80fdLMCEmV4zkNh2BcoMFBmZ/91WtYZ8qVXSKjiw7fXMgFPnHcSZgOo3XdinHvmnDUeMf5R4wA==
     dependencies:
       domelementtype "1"
-  
-  domhandler@^3.0, domhandler@^3.0.0:
-    version "3.0.0"
-    resolved "https://registry.yarnpkg.com/domhandler/-/domhandler-3.0.0.tgz#51cd13efca31da95bbb0c5bee3a48300e333b3e9"
-    integrity sha512-eKLdI5v9m67kbXQbJSNn1zjh0SDzvzWVWtX+qEI3eMjZw8daH9k8rlj1FZY9memPwjiskQFbe7vHVVJIAqoEhw==
-    dependencies:
-      domelementtype "^2.0.1"
   
   domutils@1.5.1:
     version "1.5.1"
@@ -3822,15 +3839,6 @@ Lockfile:
     dependencies:
       dom-serializer "0"
       domelementtype "1"
-  
-  domutils@^2.0.0:
-    version "2.0.0"
-    resolved "https://registry.yarnpkg.com/domutils/-/domutils-2.0.0.tgz#15b8278e37bfa8468d157478c58c367718133c08"
-    integrity sha512-n5SelJ1axbO636c2yUtOGia/IcJtVtlhQbFiVDBZHKV5ReJO1ViX7sFEemtuyoAnBxk5meNSYgA8V4s0271efg==
-    dependencies:
-      dom-serializer "^0.2.1"
-      domelementtype "^2.0.1"
-      domhandler "^3.0.0"
   
   dot-prop@^4.1.1:
     version "4.2.0"
@@ -3971,11 +3979,6 @@ Lockfile:
     version "1.1.2"
     resolved "https://registry.yarnpkg.com/entities/-/entities-1.1.2.tgz#bdfa735299664dfafd34529ed4f8522a275fea56"
     integrity sha512-f2LZMYl1Fzu7YSBKg+RoROelpOaNrcGmE9AZubeDfrCEia483oW4MI4VyFd5VNHIgQ/7qm1I0wUHK1eJnn2y2w==
-  
-  entities@^2.0.0:
-    version "2.0.0"
-    resolved "https://registry.yarnpkg.com/entities/-/entities-2.0.0.tgz#68d6084cab1b079767540d80e56a39b423e4abf4"
-    integrity sha512-D9f7V0JSRwIxlRI2mjMqufDrRDnx8p+eEOz7aUM9SuvF8gsBzra0/6tbjl1m8eQHrZlYj6PxqE00hZ1SAIKPLw==
   
   errno@^0.1.3, errno@~0.1.7:
     version "0.1.7"
@@ -4628,6 +4631,13 @@ Lockfile:
       inherits "^2.0.3"
       readable-stream "^2.3.6"
   
+  follow-redirects@1.5.10:
+    version "1.5.10"
+    resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.5.10.tgz#7b7a9f9aea2fdff36786a94ff643ed07f4ff5e2a"
+    integrity sha512-0V5l4Cizzvqt5D44aTXbFZz+FtyXV1vrDN6qrelxtfYQKW0KO0W2T/hkE8xvGa/540LkZlkaUjO4ailYTFtHVQ==
+    dependencies:
+      debug "=3.1.0"
+  
   follow-redirects@^1.0.0:
     version "1.7.0"
     resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.7.0.tgz#489ebc198dc0e7f64167bd23b03c4c19b5784c76"
@@ -5164,16 +5174,6 @@ Lockfile:
       relateurl "0.2.x"
       uglify-js "3.4.x"
   
-  html-to-react@^1.4.2:
-    version "1.4.2"
-    resolved "https://registry.yarnpkg.com/html-to-react/-/html-to-react-1.4.2.tgz#7b628ab56cd63a52f2d0b79d0fa838a51f088a57"
-    integrity sha512-TdTfxd95sRCo6QL8admCkE7mvNNrXtGoVr1dyS+7uvc8XCqAymnf/6ckclvnVbQNUo2Nh21VPwtfEHd0khiV7g==
-    dependencies:
-      domhandler "^3.0"
-      htmlparser2 "^4.0"
-      lodash.camelcase "^4.3.0"
-      ramda "^0.26"
-  
   html-webpack-plugin@4.0.0-beta.5:
     version "4.0.0-beta.5"
     resolved "https://registry.yarnpkg.com/html-webpack-plugin/-/html-webpack-plugin-4.0.0-beta.5.tgz#2c53083c1151bfec20479b1f8aaf0039e77b5513"
@@ -5197,16 +5197,6 @@ Lockfile:
       entities "^1.1.1"
       inherits "^2.0.1"
       readable-stream "^3.1.1"
-  
-  htmlparser2@^4.0:
-    version "4.0.0"
-    resolved "https://registry.yarnpkg.com/htmlparser2/-/htmlparser2-4.0.0.tgz#6034658db65b7713a572a9ebf79f650832dceec8"
-    integrity sha512-cChwXn5Vam57fyXajDtPXL1wTYc8JtLbr2TN76FYu05itVVVealxLowe2B3IEznJG4p9HAYn/0tJaRlGuEglFQ==
-    dependencies:
-      domelementtype "^2.0.1"
-      domhandler "^3.0.0"
-      domutils "^2.0.0"
-      entities "^2.0.0"
   
   http-deceiver@^1.2.7:
     version "1.2.7"
@@ -5542,6 +5532,11 @@ Lockfile:
     version "1.1.6"
     resolved "https://registry.yarnpkg.com/is-buffer/-/is-buffer-1.1.6.tgz#efaa2ea9daa0d7ab2ea13a97b2b8ad51fefbe8be"
     integrity sha512-NcdALwpXkTm5Zvvbk7owOUSvVvBKDgKP5/ewfXEznmQFfs4ZRmanOeKBTjRVjka3QFoN6XJ+9F3USqfHqTaU5w==
+  
+  is-buffer@^2.0.2:
+    version "2.0.4"
+    resolved "https://registry.yarnpkg.com/is-buffer/-/is-buffer-2.0.4.tgz#3e572f23c8411a5cfd9557c849e3665e0b290623"
+    integrity sha512-Kq1rokWXOPXWuaMAqZiJW4XxsmD9zGx9q4aePabbn3qCRGedtH7Cm+zV8WETitMfu1wdh+Rvd6w5egwSngUX2A==
   
   is-callable@^1.1.4:
     version "1.1.4"
@@ -6650,11 +6645,6 @@ Lockfile:
     version "3.0.0"
     resolved "https://registry.yarnpkg.com/lodash._reinterpolate/-/lodash._reinterpolate-3.0.0.tgz#0ccf2d89166af03b3663c796538b75ac6e114d9d"
     integrity sha1-DM8tiRZq8Ds2Y8eWU4t1rG4RTZ0=
-  
-  lodash.camelcase@^4.3.0:
-    version "4.3.0"
-    resolved "https://registry.yarnpkg.com/lodash.camelcase/-/lodash.camelcase-4.3.0.tgz#b28aa6288a2b9fc651035c7711f65ab6190331a6"
-    integrity sha1-soqmKIorn8ZRA1x3EfZathkDMaY=
   
   lodash.memoize@^4.1.2:
     version "4.1.2"
@@ -8828,11 +8818,6 @@ Lockfile:
     integrity sha512-Sq4CW4QhwOHE8ucn6J34MqtZCeWFP2aQSmrlroYgqAV1PjStIhJXxYuTgUIfkEk7zTLjmIjLmU5q+fbD1NnOJA==
     dependencies:
       performance-now "^2.1.0"
-  
-  ramda@^0.26:
-    version "0.26.1"
-    resolved "https://registry.yarnpkg.com/ramda/-/ramda-0.26.1.tgz#8d41351eb8111c55353617fc3bbffad8e4d35d06"
-    integrity sha512-hLWjpy7EnsDBb0p+Z3B7rPi3GDeRG5ZtiI33kJhTt+ORCd38AbAIjB/9zRIUoeTbE/AVX5ZkU7m6bznsvrf8eQ==
   
   randombytes@^2.0.0, randombytes@^2.0.1, randombytes@^2.0.5:
     version "2.1.0"
