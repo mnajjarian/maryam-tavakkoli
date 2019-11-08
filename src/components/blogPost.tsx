@@ -33,7 +33,7 @@ const Post = (props: any) => {
     }).format(new Date(date));
 
   const { post, post: { content } } = props;
-
+ 
   const draft = JSON.parse(content)
   const {blocks} = draft;
 

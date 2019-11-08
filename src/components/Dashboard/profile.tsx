@@ -1,12 +1,18 @@
 import React, { useState, FormEvent } from "react";
 import Button from "../Button";
 
+interface InitialState {
+  fullname: string;
+  email: string;
+  bio: string;
+}
+const initialState: InitialState = {
+  fullname: '',
+  email: '',
+  bio: ''
+};
 const Profile = () => {
-    const[state, setState] = useState({
-        fullname: '',
-        email: '',
-        bio: ''
-    })
+    const[state, setState] = useState<InitialState>(initialState)
     const handleChange = (e: FormEvent): void => {
         const{name, value} = e.target as HTMLInputElement
         setState({

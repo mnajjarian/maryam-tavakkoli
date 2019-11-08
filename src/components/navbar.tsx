@@ -3,7 +3,7 @@ import classNames from "classnames";
 import { NavLink } from "react-router-dom";
 
 const Nav = () => {
-  const [toggle, setToggle] = React.useState(false);
+  const [toggle, setToggle] = React.useState<boolean>(false);
 
   useEffect(() => {
     const nav = document.getElementById("nav");

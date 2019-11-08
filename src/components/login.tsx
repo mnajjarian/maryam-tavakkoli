@@ -1,8 +1,14 @@
 import React, { useState, useContext, FormEvent } from 'react';
 import { AuthContext } from '../contexts/authContext';
 
+interface InitialState {
+    email: string;
+    password: string;
+}
+const initialState: InitialState = { email: '', password: '' };
+
 const Login = () => {
-    const[state, setState] = useState({email: '', password: ''});
+    const[state, setState] = useState<InitialState>(initialState);
     const { authService } = useContext(AuthContext);
 
     const handleChange = (e: React.FormEvent): void => {
