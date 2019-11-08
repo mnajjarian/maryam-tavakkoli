@@ -1,18 +1,14 @@
-import React from 'react';
-import RichEditor from './editor';
-import Nav from './nav';
-import Profile from './profile';
+import React, { ReactNode } from "react";
+import Nav from "./nav";
 
-const Dashboard = () => {
-    return(
-    <div className="dashboard" >
-        <Nav />
-        <div className="dashboard__editor">
-        <RichEditor />
-       
-        </div>  
-{/*         <Profile />  */} 
+
+const Dashboard = ({ children }: { children: ReactNode }) => {
+  return (
+    <div className="dashboard">
+      <Nav />
+      {children}
     </div>
-)};
+  );
+};
 
 export default Dashboard;

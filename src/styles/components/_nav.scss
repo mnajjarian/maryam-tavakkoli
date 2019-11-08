@@ -46,8 +46,10 @@
         content: "";
       }
     }
-    &__item {
+    a {
       padding: 4px 16px;
+      text-decoration: none;
+      color: white;
       cursor: pointer;
       &:hover {
         color: #ddd;
