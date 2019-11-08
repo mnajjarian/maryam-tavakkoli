@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import Nav from "./nav";
+import Nav from "./Nav";
 
 
 const Dashboard = ({ children }: { children: ReactNode }) => {

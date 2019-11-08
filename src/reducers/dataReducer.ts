@@ -1,4 +1,4 @@
-import Biography from "../components/bio"
+import Biography from "../components/Bio"
 
 export interface Profile {
     id: string;

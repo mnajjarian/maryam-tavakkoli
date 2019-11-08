@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import classNames from "classnames";
 import { Link, Route } from "react-router-dom";
-import Profile from "./profile";
-import Gallery from "../gallery";
+import Profile from "./Profile";
+import Gallery from "../Gallery";
 
 const Nav = () => {
   const [toggle, setToggle] = useState(false);

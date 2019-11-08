@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
-import Section from "./section";
-import Header from "./header";
-import Footer from "./footer";
+import Section from "./Section";
+import Header from "./Header";
+import Footer from "./Footer";
 
 const bioImage = require("../assets/images/bio-image.jpg");
 

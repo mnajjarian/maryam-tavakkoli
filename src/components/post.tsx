@@ -1,10 +1,10 @@
 import React, { Fragment, useContext, useEffect } from "react";
-import Nav from "./navbar";
+import Nav from "./Navbar";
 import { DataContext } from "../contexts/dataContext";
 import { convertFromRaw, EditorState, RawDraftContentState, convertToRaw } from "draft-js";
 import renderHTML from 'react-render-html';
 import { stateToHTML } from "draft-js-export-html";
-import { BlogType } from './blog';
+import { BlogType } from './Blog';
 
 const Post = ({ match }: { match: any }) => {
   const { data: {blogs } } = useContext(DataContext);

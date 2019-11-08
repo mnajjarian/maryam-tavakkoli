@@ -1,5 +1,5 @@
 import React, { useState, FormEvent } from "react";
-import Button from "../button";
+import Button from "../Button";
 
 const Profile = () => {
     const[state, setState] = useState({

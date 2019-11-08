@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { CloudinaryContext, Image, Transformation } from "cloudinary-react";
 import axios from "axios";
-import Button from "./button";
+import Button from "./Button";
 
 const Gallery = () => {
   const [gallery, setGallery] = useState([]);

@@ -1,17 +1,17 @@
 import React, { useContext, useEffect } from "react";
 import { Switch, Route, Redirect } from "react-router";
-import Biography from "./bio";
-import About from "./about";
-import Blog from "./blog";
-import Post from "./post";
-import Login from "./login";
-import Dashboard from "./Dashboard/dashboard";
+import Biography from "./Bio";
+import About from "./About";
+import Blog from "./Blog";
+import Post from "./Post";
+import Login from "./Login";
+import Dashboard from "./Dashboard/Dashboard";
 import { AuthContext } from "../contexts/authContext";
 import { DataContext } from "../contexts/dataContext";
-import Gallery from "./gallery";
-import Profile from "./Dashboard/profile";
-import RichEditor from "./Dashboard/editor";
-import Nav from "./Dashboard/nav";
+import Gallery from "./Gallery";
+import Profile from "./Dashboard/Profile";
+import RichEditor from "./Dashboard/Editor";
+import Nav from "./Dashboard/Nav";
 
 interface Props {
   component: any;

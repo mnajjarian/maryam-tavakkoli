@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import Nav from "./navbar";
+import Nav from "./Navbar";
 
 const Header = () => {
   return (

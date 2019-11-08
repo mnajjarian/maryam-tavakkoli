@@ -1,7 +1,7 @@
 import React, { Fragment, useContext } from "react";
-import Section from "./section";
-import Header from "./header";
-import Footer from "./footer";
+import Section from "./Section";
+import Header from "./Header";
+import Footer from "./Footer";
 import { DataContext } from "../contexts/dataContext";
 const baseUrl = 'http://localhost:3001/'
 

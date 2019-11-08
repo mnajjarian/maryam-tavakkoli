@@ -1,9 +1,9 @@
 import React, { Fragment, useContext } from "react";
-import BlogHeader from "./blogHeader";
-import BlogPosts from "./blogBody";
+import BlogHeader from "./BlogHeader";
+import BlogPosts from "./BlogBody";
 import posts from "../db.json";
-import Nav from "./navbar";
-import Footer from "./footer";
+import Nav from "./Navbar";
+import Footer from "./Footer";
 import { DataContext } from "../contexts/dataContext";
 import { convertFromRaw, EditorState, RawDraftContentState } from "draft-js";
 

@@ -1,6 +1,6 @@
 import React from "react";
-import Post from "./blogPost";
-import { BlogType } from './blog';
+import Post from "./BlogPost";
+import { BlogType } from './Blog';
 
 
 type Props = {

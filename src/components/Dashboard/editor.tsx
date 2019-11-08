@@ -1,4 +1,4 @@
-import React, { useState, KeyboardEvent, createRef, useContext } from "react";
+import React, { useState, KeyboardEvent, createRef, useContext, useRef, RefObject } from "react";
 import {
   Editor,
   EditorState,
@@ -12,9 +12,10 @@ import {
 import { getBlockStyle } from "./getBlockStyle";
 import Toolbar from "./Toolbar";
 import { DataContext } from "../../contexts/dataContext";
-import { mediaBlockRenderer } from "./mediaBlockRenderer";
+import { mediaBlockRenderer } from "./MediaBlockRenderer";
+import { useOnClickOutside } from '../../custom-hooks/useOnClickOutside';
 import { Image } from "cloudinary-react";
-import Gallery from "../gallery";
+import Gallery from "../Gallery";
 import Modal from '../Modal';
 
 const RichEditor = () => {
@@ -101,7 +102,8 @@ const RichEditor = () => {
       className += " RichEditor-hidePlaceholder";
     }
   }
-
+const ref = useRef<HTMLDivElement>(null);
+useOnClickOutside(ref, () => setIsOpen(false));
   return (
     <div className="editor">
       <div className="RichEditor">
@@ -111,7 +113,6 @@ const RichEditor = () => {
           handleChange={handleChange}
           handleSave={handleSave}
         />
-
         <div className={className} onClick={focusEditor}>
           <Editor
             ref={editor}
@@ -124,9 +125,11 @@ const RichEditor = () => {
             placeholder="Tell a story..."
           />
         </div>
-        <Modal isOpen={isOpen} >
+        <div ref={ref}>
+          <Modal  isOpen={isOpen} >
           <Gallery />
         </Modal>
+        </div>    
       </div>
     </div>
   );

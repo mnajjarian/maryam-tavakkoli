@@ -5,7 +5,7 @@ import {
   DraftInlineStyleType,
   AtomicBlockUtils
 } from "draft-js";
-import HeaderStyleDropdown from "./headerStyleDropdown";
+import HeaderStyleDropdown from "./HeaderStyleDropdown";
 import StyleButton from "./StyleButton";
 
 export interface BlockType {

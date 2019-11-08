@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { EditorState, DraftBlockType, RichUtils } from "draft-js";
 import classNames from 'classnames';
-import Button from '../button';
+import Button from '../Button';
 import StyleTypes from "./StyleTypes";
 
 interface ToolbarProps {

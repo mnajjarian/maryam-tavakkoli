@@ -1,6 +1,6 @@
 import React from "react";
 import { RawDraftContentState, RawDraftContentBlock } from 'draft-js';
-import { BlogType } from './blog';
+import { BlogType } from './Blog';
 
 type Props = {
   post: BlogType
