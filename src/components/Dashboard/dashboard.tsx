@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, useEffect, useContext } from "react";
 import Nav from "./Nav";
 
 
