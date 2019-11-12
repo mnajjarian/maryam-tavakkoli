@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { Switch, Route, Redirect } from "react-router";
+import { Switch, Route, Redirect, withRouter } from "react-router";
 import Biography from "./Bio";
 import About from "./About";
 import Blog from "./Blog";
@@ -12,6 +12,7 @@ import Gallery from "./Gallery";
 import Profile from "./Dashboard/Profile";
 import RichEditor from "./Dashboard/Editor";
 import Nav from "./Dashboard/Nav";
+import { History } from "history";
 
 interface Props {
   component: any;
@@ -21,6 +22,7 @@ const App = () => {
   const {
     authState: { isLoggedIn }
   } = useContext(AuthContext);
+
   const { dataService } = useContext(DataContext);
   const fetchAllPosts = () => dataService.getPosts();
   const fetchProfile = () => dataService.getProfile();
@@ -28,6 +30,7 @@ const App = () => {
     fetchAllPosts();
     fetchProfile();
   }, []);
+
   const PrivateRoutes = ({ component: Comp, path, ...rest }: Props) => (
     <Route
       path={path}
@@ -58,7 +61,7 @@ const App = () => {
             <Dashboard>
               <Route path={`${url}/profile`} component={Profile} exact />
               <Route path={`${url}/gallery`} component={Gallery} exact />
-              <Route path={`${url}/create`} component={RichEditor} />
+              <Route path={`${url}/create`} component={RichEditor} exact />
             </Dashboard>
           )}
         />

@@ -7,7 +7,7 @@ export interface AuthState {
 export const initialAuthState: AuthState = {
     user: localStorage.getItem('user'),
     token: localStorage.getItem('token'),
-    isLoggedIn: localStorage.getItem('token') !== undefined,
+    isLoggedIn: localStorage.getItem('token') !== null,
     error: null
 }
 
@@ -17,6 +17,7 @@ export type AuthAction =
 | { type: 'SIGNUP_ERROR', payload: string}
 | { type: 'SET_ERRORS', payload: string }
 | { type: 'SET_USER', payload: string }
+| { type: 'LOGOUT_USER' }
 
 
 
@@ -25,9 +26,11 @@ export const authReducer = (state: AuthState, action: AuthAction) => {
     switch (action.type) {
         case 'SIGNIN_ERROR':
         case 'SIGNUP_ERROR':
-            return {...state, error: action.payload}
+            return {...state, error: action.payload};
         case 'SIGNIN_SUCCESS':
-            return { ...state, user: action.payload, isLoggedIn: true, error: null }
+            return { ...state, user: action.payload, isLoggedIn: true, error: null };
+        case 'LOGOUT_USER':
+            return {...state, isLoggedIn: false, error: null }
         default:
             return state;
     }

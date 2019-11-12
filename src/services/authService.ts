@@ -13,7 +13,7 @@ export const useAuthService = (state: AuthState, dispatch: Dispatch<AuthAction>)
         dispatch({
             type: 'SIGNIN_SUCCESS',
             payload: res.data.name
-        })
+        });
       })
       .catch((err: Error) => {
           dispatch({
@@ -22,7 +22,15 @@ export const useAuthService = (state: AuthState, dispatch: Dispatch<AuthAction>)
           });
       })
   };
+  const logout = () => {
+    console.log('logout')
+    localStorage.removeItem('token');
+    dispatch({
+      type: 'LOGOUT_USER'
+    })
+  }
   return {
-    signin
+    signin,
+    logout
   };
 };
