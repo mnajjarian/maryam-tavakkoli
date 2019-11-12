@@ -1,5 +1,9 @@
 import React, { useState, useContext, FormEvent } from 'react';
 import { AuthContext } from '../contexts/authContext';
+import { Redirect } from 'react-router';
+import { async } from 'q';
+import { History } from 'history';
+import Dashboard from './Dashboard/Dashboard';
 
 interface InitialState {
     email: string;
@@ -9,20 +13,29 @@ const initialState: InitialState = { email: '', password: '' };
 
 const Login = () => {
     const[state, setState] = useState<InitialState>(initialState);
-    const { authService } = useContext(AuthContext);
+    const { authService, authState: { isLoggedIn } } = useContext(AuthContext);
+
+    const { email, password } = state;
 
     const handleChange = (e: React.FormEvent): void => {
         const {name, value } = e.target as HTMLInputElement;
-        console.log(e.target);
         setState({
             ...state,
             [name]: value
         })
     }
-    const { email, password } = state;
-    const handleSubmit = (e: FormEvent) => {
+    
+    const handleSubmit = async (e: FormEvent) => {
         e.preventDefault()
-        authService.signin(state)
+        try {
+            await authService.signin(state)
+            return <Redirect to="/dashboard" />
+        } catch (error) {
+            alert(error.message)
+        }
+    }
+    if(isLoggedIn) {
+        return <Redirect to="/dashboard" />
     }
     return (
     <div className="login" >
