@@ -1,8 +1,6 @@
 import React, { useState, useContext } from "react";
 import classNames from "classnames";
-import { Link, Route } from "react-router-dom";
-import Profile from "./Profile";
-import Gallery from "../Gallery";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../../contexts/authContext";
 
 const Nav = () => {

@@ -8,6 +8,6 @@ export const customAxios = axios.create({
 
 export const setAuthToken = (token: string) => {
     if(token) {
-        customAxios.defaults.headers.common.Authorization = 'Bearer ${token}'
+        customAxios.defaults.headers.common.Authorization = `Bearer ${token}`
     }
 }

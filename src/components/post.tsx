@@ -1,11 +1,10 @@
-import React, { Fragment, useContext, useEffect } from "react";
+import React, { Fragment, useContext } from "react";
 import Nav from "./Navbar";
 import { DataContext } from "../contexts/dataContext";
 import {
   convertFromRaw,
   EditorState,
-  RawDraftContentState,
-  convertToRaw
+  RawDraftContentState
 } from "draft-js";
 import renderHTML from "react-render-html";
 import { stateToHTML } from "draft-js-export-html";
@@ -36,7 +35,7 @@ const Post = ({ match }: { match: any }) => {
   const editorContentHtml = stateToHTML(editorState.getCurrentContent());
 
   return (
-    <Fragment>
+    <Fragment >
       <div className="nav__wrapper">
         <Nav />
       </div>

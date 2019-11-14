@@ -1,49 +1,64 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { EditorState, DraftBlockType, RichUtils } from "draft-js";
-import classNames from 'classnames';
-import Button from '../Button';
+import classNames from "classnames";
+import { useOnClickOutside } from "../../custom-hooks/useOnClickOutside";
+import Button from "../Button";
 import StyleTypes from "./StyleTypes";
+import Modal from "../Modal";
+import Gallery from "./Gallery";
 
 interface ToolbarProps {
+  onAddImage: (publicId: string) => void;
   editorState: EditorState;
-  onAddImage: any;
   handleChange: (editorState: EditorState) => void;
   handleSave: (type: string) => any;
 }
 const Toolbar = (props: ToolbarProps) => {
-    const[toggle, setToggle] = useState(false);
-  const { editorState, onAddImage, handleChange, handleSave } = props;
+  const [isOpen, setIsOpen] = useState(false);
+  const [toggle, setToggle] = useState(false);
+  const { editorState, handleChange, onAddImage, handleSave } = props;
 
+  const handleCb = (publicId: string) => {
+    onAddImage(publicId);
+    setIsOpen(false);
+  };
   const handleToggle = () => setToggle(!toggle);
-
   const toggleBlockType = (blockType: DraftBlockType) => {
     handleChange(RichUtils.toggleBlockType(editorState, blockType));
   };
 
   const toggleInlineStyle = (style: DraftBlockType) => {
+    if (style === "image") {
+      setIsOpen(!isOpen);
+    }
     handleChange(RichUtils.toggleInlineStyle(editorState, style));
   };
-
+  const ref = useRef<HTMLDivElement>(null);
+  useOnClickOutside(ref, () => setIsOpen(false));
   return (
-    <div className="toolbar">
-    <div className="RichEditor-controls">
-      <StyleTypes
-        editorState={editorState}
-        onAddImage={onAddImage}
-        onToggleBlock={toggleBlockType}
-        onToggleInline={toggleInlineStyle}
-      />
-    </div>
-    <div className="toolbar__toggle" onClick={handleToggle} >
-        <img src={require('../../assets/icons/save.svg')} alt="menu"/>
-    </div>
-    <div className={classNames({
-        toolbar__buttons: true,
-        "toolbar__buttons-hide": !toggle
-    })}>
-    <Button text="Save" handleClick={handleSave('draft')} />
-    <Button text="Publish" handleClick={handleSave('publish')} />
-    </div>
+    <div ref={ref} className="toolbar">
+      <div className="RichEditor-controls">
+        <StyleTypes
+          editorState={editorState}
+          onToggleBlock={toggleBlockType}
+          onToggleInline={toggleInlineStyle}
+        />
+      </div>
+      <div className="toolbar__toggle" onClick={handleToggle}>
+        <img src={require("../../assets/icons/save.svg")} alt="menu" />
+      </div>
+      <div
+        className={classNames({
+          toolbar__buttons: true,
+          "toolbar__buttons-hide": !toggle
+        })}
+      >
+        <Button text="Save" handleClick={handleSave("draft")} />
+        <Button text="Publish" handleClick={handleSave("publish")} />
+      </div>
+      <Modal isOpen={isOpen}>
+        <Gallery cb={handleCb} />
+      </Modal>
     </div>
   );
 };

@@ -1,11 +1,9 @@
 import React, { Fragment, useContext } from "react";
 import BlogHeader from "./BlogHeader";
 import BlogPosts from "./BlogBody";
-import posts from "../db.json";
 import Nav from "./Navbar";
 import Footer from "./Footer";
 import { DataContext } from "../contexts/dataContext";
-import { convertFromRaw, EditorState, RawDraftContentState } from "draft-js";
 
 export interface BlogType {
   id: string;

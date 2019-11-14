@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { Switch, Route, Redirect, withRouter } from "react-router";
+import { Switch, Route, Redirect } from "react-router";
 import Biography from "./Bio";
 import About from "./About";
 import Blog from "./Blog";
@@ -8,11 +8,9 @@ import Login from "./Login";
 import Dashboard from "./Dashboard/Dashboard";
 import { AuthContext } from "../contexts/authContext";
 import { DataContext } from "../contexts/dataContext";
-import Gallery from "./Gallery";
+import Gallery from "./Dashboard/Gallery";
 import Profile from "./Dashboard/Profile";
 import RichEditor from "./Dashboard/Editor";
-import Nav from "./Dashboard/Nav";
-import { History } from "history";
 
 interface Props {
   component: any;
@@ -24,11 +22,14 @@ const App = () => {
   } = useContext(AuthContext);
 
   const { dataService } = useContext(DataContext);
-  const fetchAllPosts = () => dataService.getPosts();
-  const fetchProfile = () => dataService.getProfile();
+
+  const fetchData = () => {
+    dataService.getPosts();
+    dataService.getProfile();
+    dataService.getGallery();
+  };
   useEffect(() => {
-    fetchAllPosts();
-    fetchProfile();
+    fetchData();
   }, []);
 
   const PrivateRoutes = ({ component: Comp, path, ...rest }: Props) => (

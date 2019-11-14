@@ -1,9 +1,6 @@
 import React, { useState, useContext, FormEvent } from 'react';
 import { AuthContext } from '../contexts/authContext';
 import { Redirect } from 'react-router';
-import { async } from 'q';
-import { History } from 'history';
-import Dashboard from './Dashboard/Dashboard';
 
 interface InitialState {
     email: string;

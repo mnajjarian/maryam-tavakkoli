@@ -1,4 +1,4 @@
-import React, { useState, FormEvent, useContext, useEffect } from "react";
+import React, { useState, FormEvent, useContext } from "react";
 import Button from "../Button";
 import { DataContext } from "../../contexts/dataContext";
 
@@ -7,26 +7,18 @@ interface InitialState {
   email: string;
   bio: string;
 }
-const initialState: InitialState = {
-  fullname: "",
-  email: "",
-  bio: ""
-};
+
 const Profile = () => {
-  const [state, setState] = useState<InitialState>(initialState);
   const { data: { profile} } = useContext(DataContext);
 
-  useEffect(() => {
-    if(profile !== null) {
-      setState({
-        ...state,
-        email: '',
-        fullname: profile[0].name,
-        bio: profile[0].biography
-      })
-    }
-  },[])
-  console.log(profile);
+  const initialState: InitialState = {
+    email: '',
+    fullname: profile ? profile[0].name : '',
+    bio: profile ? profile[0].biography : ''
+  };
+
+  const [state, setState] = useState<InitialState>(initialState);
+
   const handleChange = (e: FormEvent): void => {
     const { name, value } = e.target as HTMLInputElement;
     setState({

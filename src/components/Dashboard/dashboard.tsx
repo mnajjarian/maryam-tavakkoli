@@ -1,8 +1,9 @@
-import React, { ReactNode, useEffect, useContext } from "react";
+import React, { ReactNode } from "react";
 import Nav from "./Nav";
 
 
 const Dashboard = ({ children }: { children: ReactNode }) => {
+
   return (
     <div className="dashboard">
       <Nav />

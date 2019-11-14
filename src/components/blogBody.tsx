@@ -12,9 +12,9 @@ const BlogPosts = (props: Props) => {
   return (
     <div className="blog">
       <div className="blog__posts">
-        {posts.map(post => (
-          <Post post={post} key={post.id} />
-        ))}
+        {posts.map(post =>
+          <Post post={post} />
+        )}
       </div>
     </div>
   );

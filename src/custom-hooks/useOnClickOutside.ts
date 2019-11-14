@@ -1,12 +1,7 @@
-import React, { useEffect, Ref, RefObject, RefAttributes, MutableRefObject } from 'react';
+import { useEffect, MutableRefObject } from 'react';
 
-interface Props {
-    ref: MutableRefObject<HTMLElement> ;
-    cb: Function;
-}
 export const useOnClickOutside = (ref: MutableRefObject<HTMLElement | null>,
     cb: Function): void => {
-    //const { ref, cb} = props;
     useEffect(() => {
         const listener = (event: MouseEvent) => {
             if(!ref.current || ref.current.contains(event.target as Node)) {
@@ -16,7 +11,7 @@ export const useOnClickOutside = (ref: MutableRefObject<HTMLElement | null>,
         };
         document.addEventListener('mousedown', listener);
         return () => {
-            document.removeEventListener('mousedown', listener)
+            document.removeEventListener('mousedown', listener);
         }
     }, [ref, cb])
 }

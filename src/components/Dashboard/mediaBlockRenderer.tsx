@@ -1,4 +1,3 @@
-import React from 'react';
 import { ContentBlock } from 'draft-js';
 import Media from './Media';
 
