@@ -7,7 +7,8 @@ interface Props {
 }
 const Modal = (props: Props) => {
   return (
-    <div className={classNames({
+    <div 
+    className={classNames({
         modal: true,
         'modal-isOpen': props.isOpen
     })}>
