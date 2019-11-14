@@ -1,6 +1,7 @@
 import { Dispatch } from 'react';
+import axios from 'axios';
 import { customAxios } from './customAxios';
-import { DataState, Blog, DataAction } from '../reducers/dataReducer';
+import { DataState, DataAction } from '../reducers/dataReducer';
 
 export const useDataService = (state: DataState, dispatch: Dispatch<DataAction>) => {
     const getProfile = () => {
@@ -41,9 +42,20 @@ export const useDataService = (state: DataState, dispatch: Dispatch<DataAction>)
             console.log(err)
         })
     };
+    const getGallery = () => {
+    axios
+      .get("https://res.cloudinary.com/dfjemz4f7/image/list/xmas.json")
+      .then(res => {
+        dispatch({
+            type: 'FETCH_GALLERY',
+            payload: res.data.resources
+        })
+      });
+    }
     return {
         getPosts,
         getProfile,
+        getGallery,
         createNewPost
     };
 };

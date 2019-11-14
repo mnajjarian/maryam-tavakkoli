@@ -1,39 +1,53 @@
-import Biography from "../components/Bio"
 
 export interface Profile {
-    id: string;
-    name: string;
-    biography: string;
+  id: string;
+  name: string;
+  biography: string;
 }
 export interface Blog {
-    id: string;
-    content: string;
-    createdAt: string;
+  id: string;
+  content: string;
+  createdAt: string;
 }
 export interface DataState {
-    blogs: Blog[],
-    profile: Profile | unknown
+  blogs: Blog[];
+  gallery: IGallery[];
+  profile: Profile | unknown;
+}
+export interface IGallery {
+  created_at: string;
+  format: string;
+  height: number;
+  public_id: string;
+  type: string;
+  version: number;
+  width: number;
 }
 export const initialDataState: DataState = {
-    blogs: [],
-    profile: null as unknown,
-}
-export type DataAction = 
-| { type: 'FETCH_PROFILE', payload: any } 
-| { type: 'ADD_POST', payload: Blog } 
-| { type: 'FETCH_POSTS', payload: Blog[] }
-
+  blogs: [],
+  profile: null as unknown,
+  gallery: []
+};
+export type DataAction =
+  | { type: "FETCH_PROFILE"; payload: any }
+  | { type: "ADD_POST"; payload: Blog }
+  | { type: "FETCH_POSTS"; payload: Blog[] }
+  | { type: "FETCH_GALLERY"; payload: IGallery[] }
+  | { type: "ADD_GALLERY"; payload: IGallery };
 
 export const dataReducer = (state: DataState, action: DataAction) => {
-    switch (action.type) {
-        case 'FETCH_PROFILE':
-            return {...state, profile: action.payload };
-        case 'FETCH_POSTS':
-            return {...state, blogs: action.payload }
-        case 'ADD_POST':
-            return {...state, blogs: state.blogs.concat(action.payload)}
-            break;
-        default:
-            return state;
-    }
-}
+  switch (action.type) {
+    case "FETCH_PROFILE":
+      return { ...state, profile: action.payload };
+    case "FETCH_POSTS":
+      return { ...state, blogs: action.payload };
+    case "FETCH_GALLERY":
+      return { ...state, gallery: action.payload };
+    case 'ADD_GALLERY':
+        return {...state, gallery: state.gallery.concat(action.payload) };
+    case "ADD_POST":
+      return { ...state, blogs: state.blogs.concat(action.payload) };
+    default:
+      return state;
+  }
+};
