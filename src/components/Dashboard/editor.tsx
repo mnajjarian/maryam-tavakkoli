@@ -1,4 +1,9 @@
-import React, { useState, KeyboardEvent, createRef, useContext, useRef, RefObject } from "react";
+import React, {
+  useState,
+  KeyboardEvent,
+  createRef,
+  useContext,
+} from "react";
 import {
   Editor,
   EditorState,
@@ -6,20 +11,14 @@ import {
   getDefaultKeyBinding,
   DraftEditorCommand,
   convertToRaw,
-  AtomicBlockUtils,
-  ContentState
+  AtomicBlockUtils
 } from "draft-js";
 import { getBlockStyle } from "./getBlockStyle";
 import Toolbar from "./Toolbar";
 import { DataContext } from "../../contexts/dataContext";
 import { mediaBlockRenderer } from "./MediaBlockRenderer";
-import { useOnClickOutside } from '../../custom-hooks/useOnClickOutside';
-import { Image } from "cloudinary-react";
-import Gallery from "../Gallery";
-import Modal from '../Modal';
 
 const RichEditor = () => {
-  const[isOpen, setIsOpen] = useState(false)
   const [editorState, setEditorState] = useState<EditorState>(
     EditorState.createEmpty()
   );
@@ -69,11 +68,12 @@ const RichEditor = () => {
     return getDefaultKeyBinding(e);
   };
 
-  const openGallery = () => {
-    setIsOpen(!isOpen)
-  }
-  const onAddImage = () => {
-    const urlValue = ''
+/*   const openGallery = () => {
+    console.log('clicked')
+    setIsOpen(!isOpen);
+  } */
+  const onAddImage = (publicId: string) => {
+    const urlValue = `https://res.cloudinary.com/dfjemz4f7/image/upload/${publicId}.jpg`;
     const contentState = editorState.getCurrentContent();
     const contentStateWithEntitiy = contentState.createEntity(
       "image",
@@ -102,14 +102,13 @@ const RichEditor = () => {
       className += " RichEditor-hidePlaceholder";
     }
   }
-const ref = useRef<HTMLDivElement>(null);
-useOnClickOutside(ref, () => setIsOpen(false));
+
   return (
     <div className="editor">
       <div className="RichEditor">
         <Toolbar
+          onAddImage={onAddImage}
           editorState={editorState}
-          onAddImage={openGallery}
           handleChange={handleChange}
           handleSave={handleSave}
         />
@@ -125,11 +124,6 @@ useOnClickOutside(ref, () => setIsOpen(false));
             placeholder="Tell a story..."
           />
         </div>
-        <div ref={ref}>
-          <Modal  isOpen={isOpen} >
-          <Gallery />
-        </Modal>
-        </div>    
       </div>
     </div>
   );
