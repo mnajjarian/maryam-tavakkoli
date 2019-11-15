@@ -8,11 +8,12 @@ type Props = {
 }
 const BlogPosts = (props: Props) => {
   const { posts } = props;
+const sortPosts = posts.sort((a, b) =>  new Date(b.createdAt).getDate() - new Date(a.createdAt).getDate());
 
   return (
     <div className="blog">
       <div className="blog__posts">
-        {posts.map(post =>
+        {sortPosts.map(post =>
           <Post post={post} />
         )}
       </div>
