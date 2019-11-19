@@ -1,0 +1,24 @@
+.author {
+    &__img {
+    width: 120px;
+    height: 120px;
+    margin: 0.25rem auto 1rem;
+    border-radius: 50%;
+  }
+  &__name {
+    text-transform: capitalize;
+  }
+  &__text {
+    text-align: left;
+    font-size: 1.1rem;
+    width: 60%;
+    margin: 0 auto;
+    &:nth-child(3) {
+      margin-bottom: 0.6rem;
+      text-align: center;
+    }
+  }
+}
+
+  
+  
