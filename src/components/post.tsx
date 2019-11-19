@@ -9,10 +9,11 @@ import {
 import renderHTML from "react-render-html";
 import { stateToHTML } from "draft-js-export-html";
 import { BlogType } from "./Blog";
+import Author from "./Author";
 
 const Post = ({ match }: { match: any }) => {
   const {
-    data: { blogs }
+    data, data: { blogs }
   } = useContext(DataContext);
   const {
     params: { id }
@@ -27,7 +28,6 @@ const Post = ({ match }: { match: any }) => {
   if (!post) {
     return <div></div>;
   }
-
   const rawDraft: RawDraftContentState = JSON.parse(post.content);
 
   const content = convertFromRaw(rawDraft);
@@ -60,7 +60,7 @@ const Post = ({ match }: { match: any }) => {
               <p>
                 Written by:
                 <br />
-                <strong className="post__author--name">post.author</strong>
+                <strong className="post__author--name">{post.author}</strong>
               </p>
             </div>
             {/*            <img className="post__img" src={require(`../assets/images/tech-image.jpg`)} alt="post"/> */}
@@ -69,17 +69,7 @@ const Post = ({ match }: { match: any }) => {
           {renderHTML(editorContentHtml)}
           <footer className="post__footer">
             <section className="post__footer__content">
-              <h2>About the author</h2>
-              <img
-                className="post__footer__img"
-                src={require(`../assets/images/bio-image.jpg`)}
-                alt="author"
-              />
-              <p className="post__author--name">
-                <strong>author</strong>
-              </p>
-              <p></p>
-              <p className="post__footer__text">authorBio</p>
+             <Author name={post.author} />
             </section>
             <div className="post__social">
               <span className="post__social__title">Share the blog post</span>

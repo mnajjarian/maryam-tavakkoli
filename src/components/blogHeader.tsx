@@ -1,37 +1,46 @@
 import React from "react";
-import { RawDraftContentState, RawDraftContentBlock } from 'draft-js';
-import { BlogType } from './Blog';
+import { RawDraftContentState, RawDraftContentBlock } from "draft-js";
+import { BlogType } from "./Blog";
 
 type Props = {
-  post: BlogType
-}
+  post: BlogType;
+};
 
 const BlogHeader = (props: Props) => {
-  if(!props.post) {
-    return <div></div>
+  if (!props.post) {
+    return <div></div>;
   }
-  const {post, post: {content} } = props;
+  const {
+    post,
+    post: { content }
+  } = props;
   const draft: RawDraftContentState = JSON.parse(content);
   const { blocks } = draft;
-
-  const title = blocks.filter((b: RawDraftContentBlock ) => b.type === 'header-two')
-  const p = blocks.filter((b: RawDraftContentBlock) => b.type === 'unstyled')
+  const blocksWithText = blocks.filter((b: any) => b.text.length);
+  const title = blocksWithText.filter(
+    (b: RawDraftContentBlock) => b.type === "header-one"
+  )[0];
+  const p = blocksWithText.filter((b: RawDraftContentBlock) => b.type === "unstyled")[0];
+  const imgUrl = draft.entityMap[0].data["src"];
+  console.log(blocksWithText);
 
   return (
     <div className="blog__header">
-              <div className="blog__header__content">
+      <div className="blog__header__content">
         <div className="blog__header__items">
-          <h2>{title[0].text}</h2>
-        <p>{p[0].text.substring(0, 320)}...</p>
-             <span>
+          <h2>{title.text}</h2>
+          <p>{p.text.substring(0, 320)}...</p>
+          <span className="blog__header__date" >
             {new Intl.DateTimeFormat("en-us", {
               year: "numeric",
               month: "short",
               day: "2-digit"
             }).format(new Date(post.createdAt))}
-          </span> 
+          </span>
         </div>
-       {/*  <img src={require(`../${imgUrl}`)} alt="tech" /> */}
+        <div className="blog__header__image" >
+          <img className="blog__header__img" src={imgUrl} alt="tech" />
+        </div>
       </div>
     </div>
   );

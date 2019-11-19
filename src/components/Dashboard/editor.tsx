@@ -17,6 +17,7 @@ import { getBlockStyle } from "./getBlockStyle";
 import Toolbar from "./Toolbar";
 import { DataContext } from "../../contexts/dataContext";
 import { mediaBlockRenderer } from "./MediaBlockRenderer";
+import { AuthContext } from "../../contexts/authContext";
 
 const RichEditor = () => {
   const [editorState, setEditorState] = useState<EditorState>(
@@ -29,6 +30,8 @@ const RichEditor = () => {
   );
 
   const { dataService } = useContext(DataContext);
+  const { authState } = useContext(AuthContext)
+  console.log(authState.user)
 
   let editor = createRef<Editor>();
   const focusEditor = () => {
@@ -42,7 +45,10 @@ const RichEditor = () => {
   };
 
   const handleSave = (type: string) => () => {
-    dataService.createNewPost(editorContent);
+    dataService.createNewPost({
+      content: editorContent, 
+      author: authState.user
+    });
   };
 
   const handleKeyCommand = (

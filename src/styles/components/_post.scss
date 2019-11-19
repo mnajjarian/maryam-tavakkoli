@@ -52,10 +52,11 @@
         }
       }
     }
-    img {
-      width: 350px;
-      height: 100%;
-    }
+  }
+  &__image {
+    border-radius: 4px;
+    width: 350px;
+    height: 230px;
   }
   &__tags {
     display: flex;

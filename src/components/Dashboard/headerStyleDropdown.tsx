@@ -18,7 +18,11 @@ const HeaderStyleDropdown = (props: HeaderStyleDropdownProps) => {
         value={active}
         onChange={handleToggle}
       >
-          <option>Normal</option>
+          <option
+             className="RichEditor-headers-option"
+             key='unstyled'
+             value='unstyled'
+          >Normal</option>
         {headerOptions.map(heading => (
           <option
             className="RichEditor-headers-option"

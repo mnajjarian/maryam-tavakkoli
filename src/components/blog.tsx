@@ -8,18 +8,19 @@ import { DataContext } from "../contexts/dataContext";
 export interface BlogType {
   id: string;
   content: string;
+  author: string;
   createdAt: string;
   updatedAt: string;
 }
 const Blog = () => {
   const {data: { blogs } } = useContext(DataContext)
-  const lastPost: BlogType = blogs[0] ? blogs[0] : null
+  const sortPosts = blogs.sort((a: any, b: any) =>  new Date(b.createdAt).getDate() - new Date(a.createdAt).getDate());
 
   return(
   <Fragment>
     <Nav />
-    <BlogHeader post={lastPost} />
-    <BlogPosts posts={blogs} />
+    <BlogHeader post={sortPosts[0]} />
+    <BlogPosts posts={sortPosts} />
     <Footer />
   </Fragment>
 )};

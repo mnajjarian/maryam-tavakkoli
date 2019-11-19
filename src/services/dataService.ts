@@ -28,10 +28,9 @@ export const useDataService = (state: DataState, dispatch: Dispatch<DataAction>)
             console.log(err)
         })
     };
-    const createNewPost = (blog: string) => {
-        console.log(typeof blog, blog)
+    const createNewPost = (newPost: string) => {
          customAxios
-        .post('/posts', {draft: blog})
+        .post('/posts', newPost)
         .then(res => {
             dispatch({
                 type: 'ADD_POST',
