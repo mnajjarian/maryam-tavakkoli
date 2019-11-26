@@ -1,0 +1,35 @@
+.posts {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  padding-top: 150px;
+  background-color: #fff;
+
+  table {
+    width: 100%;
+  }
+  
+  th,
+  td {
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  th {
+    background-color: #4caf50;
+    color: white;
+  }
+}
+
+tr > td:last-child button {
+    background: red;
+    color: white;
+    &:hover {
+        background: rgb(212, 32, 32);
+    }
+}
