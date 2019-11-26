@@ -31,6 +31,7 @@ export const initialDataState: DataState = {
 export type DataAction =
   | { type: "FETCH_PROFILE"; payload: any }
   | { type: "ADD_POST"; payload: Blog }
+  | { type: "REMOVE_POST"; payload: string }
   | { type: "FETCH_POSTS"; payload: Blog[] }
   | { type: "FETCH_GALLERY"; payload: IGallery[] }
   | { type: "ADD_GALLERY"; payload: IGallery };
@@ -47,6 +48,8 @@ export const dataReducer = (state: DataState, action: DataAction) => {
         return {...state, gallery: state.gallery.concat(action.payload) };
     case "ADD_POST":
       return { ...state, blogs: state.blogs.concat(action.payload) };
+    case 'REMOVE_POST':
+      return { ...state, blogs: state.blogs.filter((blog: any) => blog._id !== action.payload )}
     default:
       return state;
   }

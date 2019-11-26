@@ -41,6 +41,16 @@ export const useDataService = (state: DataState, dispatch: Dispatch<DataAction>)
             console.log(err)
         })
     };
+    const removePost = (blogId: string) => {
+        customAxios
+        .delete(`/posts/${blogId}`)
+        .then(res => {
+            dispatch({
+                type: 'REMOVE_POST',
+                payload: blogId
+            })
+        })
+    };
     const getGallery = () => {
     axios
       .get("https://res.cloudinary.com/dfjemz4f7/image/list/xmas.json")
@@ -55,6 +65,7 @@ export const useDataService = (state: DataState, dispatch: Dispatch<DataAction>)
         getPosts,
         getProfile,
         getGallery,
-        createNewPost
+        createNewPost,
+        removePost
     };
 };
