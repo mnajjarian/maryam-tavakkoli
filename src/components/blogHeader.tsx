@@ -16,13 +16,12 @@ const BlogHeader = (props: Props) => {
   } = props;
   const draft: RawDraftContentState = JSON.parse(content);
   const { blocks } = draft;
-  const blocksWithText = blocks.filter((b: any) => b.text.length);
+  const blocksWithText = blocks.filter((b: RawDraftContentBlock) => b.text.length);
   const title = blocksWithText.filter(
     (b: RawDraftContentBlock) => b.type === "header-one"
   )[0];
   const p = blocksWithText.filter((b: RawDraftContentBlock) => b.type === "unstyled")[0];
   const imgUrl = draft.entityMap[0].data["src"];
-  console.log(blocksWithText);
 
   return (
     <div className="blog__header">

@@ -12,15 +12,6 @@
     margin: 0 auto;
     padding: 0 1rem;
   }
-  &__short {
-    width: 100%;
-    font-size: 1.5rem;
-    font-weight: 700;
-    line-height: 200%;
-  }
-  &__title {
-    word-wrap: break-word;
-  }
 
   &__article {
     padding-top: 80px;
@@ -33,11 +24,7 @@
     }
   }
   }
-  &__paragraph {
-    &__title {
-      margin-bottom: 0;
-    }
-  }
+
   &__footer {
     &__content {
       text-align: center;

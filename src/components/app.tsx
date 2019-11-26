@@ -11,6 +11,7 @@ import { DataContext } from "../contexts/dataContext";
 import Gallery from "./Dashboard/Gallery";
 import Profile from "./Dashboard/Profile";
 import RichEditor from "./Dashboard/Editor";
+import Posts from "./Dashboard/Posts";
 
 interface Props {
   component: any;
@@ -63,6 +64,7 @@ const App = () => {
               <Route path={`${url}/profile`} component={Profile} exact />
               <Route path={`${url}/gallery`} component={Gallery} exact />
               <Route path={`${url}/create`} component={RichEditor} exact />
+              <Route path={`${url}/posts`} component={Posts} exact />
             </Dashboard>
           )}
         />

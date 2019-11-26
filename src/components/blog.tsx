@@ -1,12 +1,12 @@
 import React, { Fragment, useContext } from "react";
 import BlogHeader from "./BlogHeader";
-import BlogPosts from "./BlogBody";
+import BlogBody from "./BlogBody";
 import Nav from "./Navbar";
 import Footer from "./Footer";
 import { DataContext } from "../contexts/dataContext";
 
 export interface BlogType {
-  id: string;
+  _id: string;
   content: string;
   author: string;
   createdAt: string;
@@ -20,7 +20,7 @@ const Blog = () => {
   <Fragment>
     <Nav />
     <BlogHeader post={sortPosts[0]} />
-    <BlogPosts posts={sortPosts} />
+    <BlogBody posts={sortPosts} />
     <Footer />
   </Fragment>
 )};
