@@ -8,6 +8,7 @@ import Modal from "../Modal";
 import Gallery from "./Gallery";
 
 interface ToolbarProps {
+  variant: string;
   onAddImage: (publicId: string) => void;
   editorState: EditorState;
   handleChange: (editorState: EditorState) => void;
@@ -16,7 +17,7 @@ interface ToolbarProps {
 const Toolbar = (props: ToolbarProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [toggle, setToggle] = useState(false);
-  const { editorState, handleChange, onAddImage, handleSave } = props;
+  const { editorState, handleChange, onAddImage, handleSave, variant } = props;
 
   const handleCb = (publicId: string) => {
     onAddImage(publicId);
@@ -53,8 +54,7 @@ const Toolbar = (props: ToolbarProps) => {
           "toolbar__buttons-hide": !toggle
         })}
       >
-        <Button text="Save" handleClick={handleSave("draft")} />
-        <Button text="Publish" handleClick={handleSave("publish")} />
+        <Button text={variant} handleClick={handleSave(variant)} />
       </div>
       <Modal isOpen={isOpen}>
         <Gallery cb={handleCb} />

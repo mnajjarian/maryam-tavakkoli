@@ -23,7 +23,6 @@ export const useAuthService = (state: AuthState, dispatch: Dispatch<AuthAction>)
       })
   };
   const logout = () => {
-    console.log('logout')
     localStorage.removeItem('token');
     dispatch({
       type: 'LOGOUT_USER'

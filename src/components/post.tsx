@@ -5,11 +5,9 @@ import { convertFromRaw, EditorState, RawDraftContentState } from "draft-js";
 import renderHTML from "react-render-html";
 import { stateToHTML } from "draft-js-export-html";
 import { BlogType } from "./Blog";
-import Author from "./Author";
 
 const Post = ({ match }: { match: any }) => {
   const {
-    data,
     data: { blogs }
   } = useContext(DataContext);
   const {

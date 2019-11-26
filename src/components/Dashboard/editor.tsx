@@ -1,9 +1,4 @@
-import React, {
-  useState,
-  KeyboardEvent,
-  createRef,
-  useContext,
-} from "react";
+import React, { useState, KeyboardEvent, createRef, useContext } from "react";
 import {
   Editor,
   EditorState,
@@ -11,7 +6,8 @@ import {
   getDefaultKeyBinding,
   DraftEditorCommand,
   convertToRaw,
-  AtomicBlockUtils
+  AtomicBlockUtils,
+  convertFromRaw
 } from "draft-js";
 import { getBlockStyle } from "./getBlockStyle";
 import Toolbar from "./Toolbar";
@@ -19,20 +15,29 @@ import { DataContext } from "../../contexts/dataContext";
 import { mediaBlockRenderer } from "./MediaBlockRenderer";
 import { AuthContext } from "../../contexts/authContext";
 
-const RichEditor = () => {
-  const [editorState, setEditorState] = useState<EditorState>(
-    EditorState.createEmpty()
-  );
+interface EditorProps {
+  blogId?: any;
+}
+const RichEditor = (props: EditorProps) => {
+  const { data, dataService } = useContext(DataContext);
+  const blogPost = props.blogId
+    ? data.blogs.filter((b: any) => b.id === props.blogId.id)[0]
+    : null;
+  const blogState: EditorState = blogPost
+    ? EditorState.createWithContent(
+        convertFromRaw(JSON.parse(blogPost.content))
+      )
+    : EditorState.createEmpty();
+
+  const [editorState, setEditorState] = useState<EditorState>(blogState);
   const content = editorState.getCurrentContent();
 
   const [editorContent, setEditorContent] = useState<string>(
     JSON.stringify(convertToRaw(content))
   );
 
-  const { dataService } = useContext(DataContext);
-  const { authState } = useContext(AuthContext)
-  console.log(authState.user)
-
+  const { authState } = useContext(AuthContext);
+  console.log(blogPost);
   let editor = createRef<Editor>();
   const focusEditor = () => {
     if (editor.current) {
@@ -45,10 +50,14 @@ const RichEditor = () => {
   };
 
   const handleSave = (type: string) => () => {
-    dataService.createNewPost({
-      content: editorContent, 
-      author: authState.user
-    });
+    if(type === 'Publish') {
+      dataService.createNewPost({
+        content: editorContent,
+        author: authState.user
+      });
+    } else {
+      dataService.updatePost(props.blogId.id, editorContent);
+    }
   };
 
   const handleKeyCommand = (
@@ -74,7 +83,7 @@ const RichEditor = () => {
     return getDefaultKeyBinding(e);
   };
 
-/*   const openGallery = () => {
+  /*   const openGallery = () => {
     console.log('clicked')
     setIsOpen(!isOpen);
   } */
@@ -113,6 +122,7 @@ const RichEditor = () => {
     <div className="editor">
       <div className="RichEditor">
         <Toolbar
+          variant={props.blogId ? 'Save' : 'Publish'}
           onAddImage={onAddImage}
           editorState={editorState}
           handleChange={handleChange}

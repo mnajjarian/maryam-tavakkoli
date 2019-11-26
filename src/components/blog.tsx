@@ -6,7 +6,7 @@ import Footer from "./Footer";
 import { DataContext } from "../contexts/dataContext";
 
 export interface BlogType {
-  _id: string;
+  id: string;
   content: string;
   author: string;
   createdAt: string;

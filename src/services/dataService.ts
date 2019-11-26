@@ -19,7 +19,7 @@ export const useDataService = (state: DataState, dispatch: Dispatch<DataAction>)
     const getPosts = () => {
         customAxios.get('/posts')
         .then(res => {
-            dispatch({
+             dispatch({
                 type: 'FETCH_POSTS',
                 payload: res.data
             })
@@ -28,7 +28,7 @@ export const useDataService = (state: DataState, dispatch: Dispatch<DataAction>)
             console.log(err)
         })
     };
-    const createNewPost = (newPost: string) => {
+    const createNewPost = (newPost: {author: string, content: string }) => {
          customAxios
         .post('/posts', newPost)
         .then(res => {
@@ -39,6 +39,12 @@ export const useDataService = (state: DataState, dispatch: Dispatch<DataAction>)
         })
         .catch(err => {
             console.log(err)
+        })
+    };
+    const updatePost = (blogId: string, content: string) => {
+        customAxios.put(`/posts/${blogId}`, { content: content })
+        .then(res => {
+            console.log(res.data)
         })
     };
     const removePost = (blogId: string) => {
@@ -66,6 +72,7 @@ export const useDataService = (state: DataState, dispatch: Dispatch<DataAction>)
         getProfile,
         getGallery,
         createNewPost,
+        updatePost,
         removePost
     };
 };

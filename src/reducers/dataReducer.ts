@@ -8,6 +8,7 @@ export interface Blog {
   id: string;
   content: string;
   createdAt: string;
+  updatedAt: string;
 }
 export interface DataState {
   blogs: Blog[];
@@ -49,7 +50,7 @@ export const dataReducer = (state: DataState, action: DataAction) => {
     case "ADD_POST":
       return { ...state, blogs: state.blogs.concat(action.payload) };
     case 'REMOVE_POST':
-      return { ...state, blogs: state.blogs.filter((blog: any) => blog._id !== action.payload )}
+      return { ...state, blogs: state.blogs.filter((blog: any) => blog.id !== action.payload )}
     default:
       return state;
   }

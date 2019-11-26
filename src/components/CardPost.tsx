@@ -1,31 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { RawDraftContentBlock, RawDraftContentState } from "draft-js";
+import { BlogType } from "./Blog";
 
 const timeIcon = require("../assets/icons/time-3.svg");
 const iconUser = require("../assets/icons/user.svg");
 const iconBubble = require("../assets/icons/bubble.svg");
 
-type Paragraph = {
-  title: string;
-  text: string[];
-};
 
-type PostProps = {
-  post: {
-    id: string;
-    author: string;
-    authorImg: string;
-    authorBio: string;
-    title: string;
-    shortDescription: string;
-    paragraph: Paragraph[];
-    imgUrl: string;
-    tags: string[];
-    createdAt: string;
-  };
+
+interface PostProps {
+  post: BlogType;
 };
-const CardPost = (props: any) => {
+const CardPost = (props: PostProps) => {
   const formatDate = (date: string) =>
     new Intl.DateTimeFormat("en-us", {
       year: "numeric",
@@ -40,10 +27,18 @@ const CardPost = (props: any) => {
 
   const draft: RawDraftContentState = JSON.parse(content);
   const { blocks } = draft;
-  const blocksWithText = blocks.filter((b: RawDraftContentBlock) => b.text.length);
-  const title = blocksWithText.filter((b: RawDraftContentBlock) => b.type === "header-one")[0];
-  const p = blocksWithText.filter((b: RawDraftContentBlock) => b.type === "unstyled")[0];
-  const imgUrl: string = draft.entityMap[0] ? draft.entityMap[0].data["src"] : null;
+  const blocksWithText = blocks.filter(
+    (b: RawDraftContentBlock) => b.text.length
+  );
+  const title = blocksWithText.filter(
+    (b: RawDraftContentBlock) => b.type === "header-one"
+  )[0];
+  const p = blocksWithText.filter(
+    (b: RawDraftContentBlock) => b.type === "unstyled"
+  )[0];
+  const imgUrl: string = draft.entityMap[0]
+    ? draft.entityMap[0].data["src"]
+    : null;
 
   return (
     <div className="card__post">
@@ -80,7 +75,7 @@ const CardPost = (props: any) => {
                 <img
                   className="card__post__image"
                   src={imgUrl}
-                  alt={post.title}
+                  alt={title.text}
                 />
               </div>
             )}

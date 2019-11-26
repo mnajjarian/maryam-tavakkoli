@@ -2,7 +2,7 @@ import React from 'react';
 
 interface ButtonProps {
     text: string;
-    handleClick: () => void;
+    handleClick?: () => void;
 }
 const Button = (props: ButtonProps) => {
     const { text, handleClick } = props;

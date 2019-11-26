@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { Switch, Route, Redirect } from "react-router";
+import { Switch, Route, Redirect, match } from "react-router";
 import Biography from "./Bio";
 import About from "./About";
 import Blog from "./Blog";
@@ -64,6 +64,13 @@ const App = () => {
               <Route path={`${url}/profile`} component={Profile} exact />
               <Route path={`${url}/gallery`} component={Gallery} exact />
               <Route path={`${url}/create`} component={RichEditor} exact />
+              <Route
+                path={`${url}/edit/:id`}
+                component={({ match }: { match: match }) => (
+                  <RichEditor blogId={match.params} />
+                )}
+                exact
+              />
               <Route path={`${url}/posts`} component={Posts} exact />
             </Dashboard>
           )}

@@ -1,12 +1,9 @@
 import React, { useContext } from "react";
 import { DataContext } from "../../contexts/dataContext";
-import {
-  RawDraftContentState,
-  convertFromRaw,
-  RawDraftContentBlock
-} from "draft-js";
+import { RawDraftContentState, RawDraftContentBlock } from "draft-js";
 import Button from "../Button";
 import { BlogType } from "../Blog";
+import { Redirect } from "react-router";
 
 const Posts = () => {
   const { data: { blogs }, dataService } = useContext(DataContext);
@@ -20,14 +17,9 @@ const Posts = () => {
     )[0];
     return title.text;
   };
-
-  const handleClick = (variant: string, blogId: string) => () => {
-      if(variant === 'edit') {
-          console.log('edit', blogId)
-      } else {
+  const handleClick = (blogId: string) => () => {
         console.log('delete', blogId)
         dataService.removePost(blogId)
-      }
   }
   return (
     <div className="posts">
@@ -45,16 +37,16 @@ const Posts = () => {
           </thead>
           <tbody>
             {blogs.map((blog: BlogType, index: number) => (
-              <tr key={blog._id}>
+              <tr key={blog.id}>
                 <td>{index + 1}</td>
                 <td>{getContent(blog.content)}</td>
                 <td>{new Date(blog.createdAt).toISOString().slice(0, 10)}</td>
                 <td>{new Date(blog.updatedAt).toISOString().slice(0, 10)}</td>
                 <td>
-                  <Button text="Edit" handleClick={handleClick('edit', blog._id)} />
+                  <a href={`/dashboard/edit/${blog.id}`}><Button text="Edit"  /></a> 
                 </td>
                 <td>
-                  <Button text="Delete" handleClick={handleClick('delete', blog._id)} />
+                  <Button text="Delete" handleClick={handleClick(blog.id)} />
                 </td>
               </tr>
             ))}

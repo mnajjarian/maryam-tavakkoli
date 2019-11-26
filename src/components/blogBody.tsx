@@ -13,7 +13,7 @@ const BlogBody = (props: Props) => {
     <div className="blog">
       <div className="blog__posts">
         {posts.map(post =>
-          <CardPost post={post} />
+          <CardPost key={post.id} post={post} />
         )}
       </div>
     </div>
