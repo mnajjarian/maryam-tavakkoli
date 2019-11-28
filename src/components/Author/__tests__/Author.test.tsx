@@ -1,19 +1,8 @@
-import React from 'react';
-import Author from '..';
-import { DataProvider } from '../../../contexts/dataContext';
-import { render } from '@testing-library/react';
+import React from "react";
+import Author from "..";
+import { render } from "test-utils";
 
-const profile = {
-    id: '3',
-    name: "Maryam Tavakkoli",
-    image: "/maryam.jpg",
-    biography: "My name is..."
-  };
-test('renders ', async () => {
-    const component = render(
-        <DataProvider value={{ data: profile }} >
-            <Author/>
-        </DataProvider>
-    );
-    expect(component.container).toMatchSnapshot();
+test("renders Author without crashing ", async () => {
+  const component = render(<Author />);
+  expect(component.container).toMatchSnapshot();
 });

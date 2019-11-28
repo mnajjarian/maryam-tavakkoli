@@ -1,18 +1,9 @@
 import React from "react";
 import Biography from "..";
-import { DataContext } from "../../../contexts/dataContext";
-import { render } from "@testing-library/react";
+import { render, rerender } from "test-utils";
+import { async } from "q";
 
-  const profile = {
-    name: "Maryam Tavakkoli",
-    image: "/maryam.jpg",
-    biography: "My name is..."
-  };
-test("renders without crashing", () => {
-  const component = render(
-    <DataContext.Provider value={{ data: profile }}>
-      <Biography />
-    </DataContext.Provider>
-  );
+test("renders Biography without crashing", async () => {
+  const component = render(<Biography />);
   expect(component.container).toMatchSnapshot();
 });
