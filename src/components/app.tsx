@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { Switch, Route, Redirect, match } from "react-router";
-import Biography from "./Bio";
+import Biography from "./Biography";
 import About from "./About";
 import Blog from "./Blog";
 import Post from "./Post";

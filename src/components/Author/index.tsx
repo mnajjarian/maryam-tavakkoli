@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { DataContext } from "../contexts/dataContext";
+import { DataContext } from "../../contexts/dataContext";
 
 interface Props {
   name: String;
@@ -15,7 +15,7 @@ const Author = (props: Props) => {
 
   return (
     <>
-      <h2>About the author</h2>
+      <h2 className="author__title" >About the author</h2>
       <img
         className="author__img"
         src={require(`../assets/images/bio-image.jpg`)}
