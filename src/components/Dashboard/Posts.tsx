@@ -6,7 +6,10 @@ import { BlogType } from "../Blog";
 import { Redirect } from "react-router";
 
 const Posts = () => {
-  const { data: { blogs }, dataService } = useContext(DataContext);
+  const {
+    data: { blogs },
+    dataService
+  } = useContext(DataContext);
   if (!blogs.length) {
     return <div></div>;
   }
@@ -18,9 +21,9 @@ const Posts = () => {
     return title.text;
   };
   const handleClick = (blogId: string) => () => {
-        console.log('delete', blogId)
-        dataService.removePost(blogId)
-  }
+    console.log("delete", blogId);
+    dataService.removePost(blogId);
+  };
   return (
     <div className="posts">
       <div className="posts-table">
@@ -39,11 +42,21 @@ const Posts = () => {
             {blogs.map((blog: BlogType, index: number) => (
               <tr key={blog.id}>
                 <td>{index + 1}</td>
-                <td>{getContent(blog.content)}</td>
+                <td>
+                  <a
+                    href={`/blog/${getContent(blog.content)
+                      .split(" ")
+                      .join("-")}`}
+                  >
+                    {getContent(blog.content)}
+                  </a>
+                </td>
                 <td>{new Date(blog.createdAt).toISOString().slice(0, 10)}</td>
                 <td>{new Date(blog.updatedAt).toISOString().slice(0, 10)}</td>
                 <td>
-                  <a href={`/dashboard/edit/${blog.id}`}><Button text="Edit"  /></a> 
+                  <a href={`/dashboard/edit/${blog.id}`}>
+                    <Button text="Edit" />
+                  </a>
                 </td>
                 <td>
                   <Button text="Delete" handleClick={handleClick(blog.id)} />
