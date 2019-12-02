@@ -1,7 +1,8 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useRef, RefObject } from "react";
 import classNames from "classnames";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../contexts/authContext";
+import { useOnClickOutside } from "../../custom-hooks/useOnClickOutside";
 
 const Nav = () => {
   const [toggle, setToggle] = useState(false);
@@ -9,8 +10,9 @@ const Nav = () => {
   const handleToggle = () => setToggle(!toggle);
   const handleLogout = () => {
     authService.logout();
-    
   };
+  let ref = useRef<HTMLDivElement>(null);
+  useOnClickOutside(ref, () => setToggle(false));
   return (
     <div className="nav">
       <ul className="nav__list">
@@ -26,7 +28,7 @@ const Nav = () => {
         <div className="nav__list__group">
           <Link to="/dashboard/create">Create new</Link>
         </div>
-        <div className="nav__icon" onClick={handleToggle}>
+        <div ref={ref} className="nav__icon" onClick={handleToggle}>
           <img
             className="nav__icon__image"
             src={require(`../../assets/images/bio-image.jpg`)}
@@ -38,7 +40,9 @@ const Nav = () => {
               "nav__menu-hide": !toggle
             })}
           >
-            <li className="nav__menu__item" onClick={handleLogout} >Logout</li>
+            <li className="nav__menu__item" onClick={handleLogout}>
+              Logout
+            </li>
           </ul>
         </div>
       </ul>
