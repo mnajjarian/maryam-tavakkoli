@@ -12,8 +12,14 @@
   
   th,
   td {
-    text-align: left;
+    text-align: center;
     padding: 8px;
+    a {
+      text-decoration: none;
+      &:hover {
+        color: #aaa;
+      }
+    }
   }
   
   tr:nth-child(even) {
