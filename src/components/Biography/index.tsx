@@ -3,8 +3,8 @@ import Section from "../Section";
 import Header from "../Header";
 import Footer from "../Footer";
 import { DataContext } from "../../contexts/dataContext";
-const baseUrl = 'http://localhost:3001/'
-
+import { AuthContext } from "../../contexts/authContext";
+const baseUrl = "http://localhost:3001/";
 
 interface Profile {
   name: string;
@@ -12,27 +12,33 @@ interface Profile {
   biography: string;
 }
 const Biography = () => {
-  const { data: { profile } } = useContext(DataContext);
+  const {
+    data: { users }
+  } = useContext(DataContext);
+  const { authState } = useContext(AuthContext);
 
-  if(!profile) {
-    return <div></div>
+  if (!users.length || !authState) {
+    return <div></div>;
   }
-  const { name, image, biography }: Profile = profile[0];
-  return(
-  <Fragment>
-    <Header />
-    <Section
-      imgUrl={baseUrl+image}
-      title={name}
-      href="/about"
-      btnText="read more"
-      flexDirect="row"
-      borderRadius="50%"
-      text={biography}
-    />
-    <Footer/>
-  </Fragment>
-)
+  const user = users.filter((user: any) => user._id === authState.id)[0];
+  const { firstName, lastName, email, bio, imageUrl } = user;
+  const fullname = firstName + " " + user.lastName;
+
+  return (
+    <Fragment>
+      <Header />
+      <Section
+        imgUrl={imageUrl}
+        title={fullname}
+        href="/about"
+        btnText="read more"
+        flexDirect="row"
+        borderRadius="50%"
+        text={bio}
+      />
+      <Footer />
+    </Fragment>
+  );
 };
 
 export default Biography;

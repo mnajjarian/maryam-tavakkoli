@@ -1,4 +1,4 @@
-import React, { useState, useContext, useRef, RefObject } from "react";
+import React, { useState, useContext, useRef } from "react";
 import classNames from "classnames";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../contexts/authContext";
@@ -40,6 +40,9 @@ const Nav = () => {
               "nav__menu-hide": !toggle
             })}
           >
+            <li className="nav__menu__item" onClick={handleLogout}>
+              Avatar
+            </li>
             <li className="nav__menu__item" onClick={handleLogout}>
               Logout
             </li>

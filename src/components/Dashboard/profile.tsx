@@ -1,23 +1,37 @@
 import React, { useState, FormEvent, useContext } from "react";
 import Button from "../Button";
 import { DataContext } from "../../contexts/dataContext";
+import { AuthContext } from "../../contexts/authContext";
 
 interface InitialState {
   fullname: string;
   email: string;
+  imageUrl?: string;
   bio: string;
 }
 
 const Profile = () => {
-  const { data: { profile} } = useContext(DataContext);
+  const {
+    data: { users },
+    dataDispatch,
+    dataService
+  } = useContext(DataContext);
+  const { authState } = useContext(AuthContext);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const user = users.filter((user: any) => user._id === authState.id)[0];
 
   const initialState: InitialState = {
-    email: '',
-    fullname: profile ? profile[0].name : '',
-    bio: profile ? profile[0].biography : ''
+    email: user ? user.email : "",
+    fullname: user ? user.firstName + " " + user.lastName : "",
+    bio: user ? user.bio : "",
+    imageUrl: user ? user.imageUrl : ""
   };
-
   const [state, setState] = useState<InitialState>(initialState);
+
+  if (!users.length || !authState) {
+    return <div></div>;
+  }
 
   const handleChange = (e: FormEvent): void => {
     const { name, value } = e.target as HTMLInputElement;
@@ -26,15 +40,51 @@ const Profile = () => {
       [name]: value
     });
   };
-  const handleSubmit = () => {};
-  const { fullname, email, bio } = state;
+  const handleAvatar = () => setIsOpen(!isOpen);
+ 
+  const { fullname, email, bio, imageUrl } = state;
+  const imageId = imageUrl ? imageUrl.split('/') : '';
+  const publicId = imageId[imageId.length - 1].split('.')[0]
+  console.log(publicId)
+  const openWidget = () => {
+    (window as any).cloudinary.openUploadWidget(
+      {
+        cloudName: "dfjemz4f7",
+        uploadPreset: "no2bkme1",
+        tags: ["profile"]
+      },
+      (error: Error, result: any) => {
+        if (result.event === "success") {
+          dataDispatch({
+            type: "UPDATE_USER",
+            payload: { userId: user._id, obj: { imageUrl: result.info.url } }
+          })
+          dataService.updateUser(user._id, {
+            imageUrl: result.info.url
+          }, publicId);
+        }
+      }
+    );
+  };
+
+  const handleSubmit = () => {
+    dataService.updateUser(user._id, state);
+  };
+
   return (
     <div className="profile">
       <div className="profile__content">
-        <div className="profile__photo" >
-          <img className="profile__img" src={require(`../../assets/images/bio-image.jpg`)} height="200px" alt="avatar"/>
+        <div className="profile__photo">
+          <img
+            className="profile__img"
+            src={
+              imageUrl ? imageUrl : require(`../../assets/images/avatar.png`)
+            }
+            height="200px"
+            alt="avatar"
+          />
           <div className="profile__photo__overlay">
-            <button className="profile__photo__edit" >
+            <button className="profile__photo__edit" onClick={openWidget}>
               Change
             </button>
           </div>
@@ -73,7 +123,7 @@ const Profile = () => {
             <textarea
               className="profile__form__textarea"
               cols={12}
-              rows={8}
+              rows={5}
               name="bio"
               value={bio}
               onChange={handleChange}
@@ -81,7 +131,7 @@ const Profile = () => {
             ></textarea>
           </div>
           <div className="profile__form__button">
-            <Button text="Save" handleClick={() => {}} />
+            <Button text="Save" />
           </div>
         </form>
       </div>

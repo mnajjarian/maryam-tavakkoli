@@ -4,18 +4,6 @@ import { customAxios } from './customAxios';
 import { DataState, DataAction } from '../reducers/dataReducer';
 
 export const useDataService = (state: DataState, dispatch: Dispatch<DataAction>) => {
-    const getProfile = () => {
-        customAxios.get('/profile')
-        .then(res => {
-            dispatch({
-                type: 'FETCH_PROFILE',
-                payload: res.data
-            })
-        })
-        .catch(err => {
-            console.log(err)
-        })
-    }
     const getPosts = () => {
         customAxios.get('/posts')
         .then(res => {
@@ -47,6 +35,24 @@ export const useDataService = (state: DataState, dispatch: Dispatch<DataAction>)
             console.log(res.data)
         })
     };
+    const getUsers = () => {
+        customAxios.get('users')
+        .then(res => {
+            dispatch({
+                type: 'FETCH_USERS',
+                payload: res.data
+            })
+        })
+    }
+    const updateUser = (objId: string, obj: any, publicId: string) => {
+        customAxios.put(`/users/${objId}`, {obj: obj, publicId: publicId})
+        .then(res => {
+            dispatch({
+                type: 'UPDATE_USER',
+                payload: res.data
+            })
+        })
+    }
     const removePost = (blogId: string) => {
         customAxios
         .delete(`/posts/${blogId}`)
@@ -69,10 +75,11 @@ export const useDataService = (state: DataState, dispatch: Dispatch<DataAction>)
     }
     return {
         getPosts,
-        getProfile,
         getGallery,
         createNewPost,
         updatePost,
-        removePost
+        removePost,
+        getUsers,
+        updateUser
     };
 };

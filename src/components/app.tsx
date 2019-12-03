@@ -26,7 +26,7 @@ const App = () => {
 
   const fetchData = () => {
     dataService.getPosts();
-    dataService.getProfile();
+    dataService.getUsers();
     dataService.getGallery();
   };
   useEffect(() => {

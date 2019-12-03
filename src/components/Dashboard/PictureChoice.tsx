@@ -8,7 +8,6 @@ interface PicProps {
   
   export const Picture = (props: PicProps) => {
     const { imgUrl, publicId, handleClick } = props;
-
     return(
       <div
       key={publicId}

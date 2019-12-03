@@ -1,8 +1,8 @@
-
-export interface Profile {
+export interface User {
   id: string;
   name: string;
-  biography: string;
+  bio: string;
+  image: string;
 }
 export interface Blog {
   id: string;
@@ -13,7 +13,7 @@ export interface Blog {
 export interface DataState {
   blogs: Blog[];
   gallery: IGallery[];
-  profile: Profile | unknown;
+  users: User[];
 }
 export interface IGallery {
   created_at: string;
@@ -26,25 +26,33 @@ export interface IGallery {
 }
 export const initialDataState: DataState = {
   blogs: [],
-  profile: null as unknown,
+  users: [],
   gallery: []
 };
 export type DataAction =
-  | { type: "FETCH_PROFILE"; payload: any }
+  | { type: "FETCH_USERS"; payload: User[] }
+  | { type: "UPDATE_USER"; payload: any }
   | { type: "ADD_POST"; payload: Blog }
   | { type: "REMOVE_POST"; payload: string }
   | { type: "FETCH_POSTS"; payload: Blog[] }
   | { type: "FETCH_GALLERY"; payload: IGallery[] }
-  | { type: "ADD_GALLERY"; payload: IGallery };
+  | { type: "ADD_GALLERY"; payload: IGallery }
+  | { type: 'SET_AVATAR'; payload: string };
 
 export const dataReducer = (state: DataState, action: DataAction) => {
+  console.log(action)
   switch (action.type) {
-    case "FETCH_PROFILE":
-      return { ...state, profile: action.payload };
+    case "FETCH_USERS":
+      return { ...state, users: action.payload };
+    case "UPDATE_USER":
+      const user = state.users.filter((user: any) => user.id === action.payload.userId)[0]
+      return {...state,  users: state.users.map((user: any) => user.id !== action.payload.userId ? user : action.payload)};
     case "FETCH_POSTS":
       return { ...state, blogs: action.payload };
     case "FETCH_GALLERY":
       return { ...state, gallery: action.payload };
+    case "SET_AVATAR":
+      return {...state };
     case 'ADD_GALLERY':
         return {...state, gallery: state.gallery.concat(action.payload) };
     case "ADD_POST":
