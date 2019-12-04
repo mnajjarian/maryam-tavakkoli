@@ -45,12 +45,27 @@ export const useDataService = (state: DataState, dispatch: Dispatch<DataAction>)
         })
     }
     const updateUser = (objId: string, obj: any, publicId: string) => {
-        customAxios.put(`/users/${objId}`, {obj: obj, publicId: publicId})
+        customAxios.put(`/users/${objId}`, { obj: obj, publicId: publicId } )
         .then(res => {
             dispatch({
                 type: 'UPDATE_USER',
                 payload: res.data
             })
+        })
+    }
+    const removeImage = (publicId: string) => {
+        customAxios.delete(`/assets/${publicId}`)
+        .then(res => {
+            dispatch({
+                type: 'REMOVE_IMAGE',
+                payload: publicId
+            })
+        })
+    }
+    const removeAssets = (publicIds: string[]) => {
+        customAxios.post('/assets', publicIds)
+        .then(res => {
+            console.log(res.data)
         })
     }
     const removePost = (blogId: string) => {
@@ -80,6 +95,8 @@ export const useDataService = (state: DataState, dispatch: Dispatch<DataAction>)
         updatePost,
         removePost,
         getUsers,
-        updateUser
+        updateUser,
+        removeAssets,
+        removeImage
     };
 };

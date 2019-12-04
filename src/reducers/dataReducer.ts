@@ -2,7 +2,7 @@ export interface User {
   id: string;
   name: string;
   bio: string;
-  image: string;
+  imageUrl: string;
 }
 export interface Blog {
   id: string;
@@ -37,7 +37,8 @@ export type DataAction =
   | { type: "FETCH_POSTS"; payload: Blog[] }
   | { type: "FETCH_GALLERY"; payload: IGallery[] }
   | { type: "ADD_GALLERY"; payload: IGallery }
-  | { type: 'SET_AVATAR'; payload: string };
+  | { type: 'SET_AVATAR'; payload: string }
+  | { type: 'REMOVE_IMAGE'; payload: string }
 
 export const dataReducer = (state: DataState, action: DataAction) => {
   console.log(action)
@@ -45,8 +46,8 @@ export const dataReducer = (state: DataState, action: DataAction) => {
     case "FETCH_USERS":
       return { ...state, users: action.payload };
     case "UPDATE_USER":
-      const user = state.users.filter((user: any) => user.id === action.payload.userId)[0]
-      return {...state,  users: state.users.map((user: any) => user.id !== action.payload.userId ? user : action.payload)};
+      const user = state.users.filter((user: User) => user.id === action.payload.userId)[0]
+      return {...state,  users: state.users.map((user: User) => user.id !== action.payload.userId ? user : action.payload)};
     case "FETCH_POSTS":
       return { ...state, blogs: action.payload };
     case "FETCH_GALLERY":
@@ -58,7 +59,9 @@ export const dataReducer = (state: DataState, action: DataAction) => {
     case "ADD_POST":
       return { ...state, blogs: state.blogs.concat(action.payload) };
     case 'REMOVE_POST':
-      return { ...state, blogs: state.blogs.filter((blog: any) => blog.id !== action.payload )}
+      return { ...state, blogs: state.blogs.filter((blog: Blog) => blog.id !== action.payload )};
+    case 'REMOVE_IMAGE':
+      return {...state, gallery: state.gallery.filter((img: IGallery) => img.public_id !== action.payload)}
     default:
       return state;
   }

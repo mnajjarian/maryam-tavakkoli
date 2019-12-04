@@ -57,7 +57,7 @@ const Toolbar = (props: ToolbarProps) => {
         <Button text={variant} handleClick={handleSave(variant)} />
       </div>
       <Modal isOpen={isOpen} handleClose={() => setIsOpen(false)}>
-        <Gallery cb={handleCb} />
+        <Gallery withCb={true} cb={handleCb} />
       </Modal>
     </div>
   );

@@ -4,7 +4,6 @@ import Header from "../Header";
 import Footer from "../Footer";
 import { DataContext } from "../../contexts/dataContext";
 import { AuthContext } from "../../contexts/authContext";
-const baseUrl = "http://localhost:3001/";
 
 interface Profile {
   name: string;
