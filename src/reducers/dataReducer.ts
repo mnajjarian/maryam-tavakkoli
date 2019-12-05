@@ -37,29 +37,48 @@ export type DataAction =
   | { type: "FETCH_POSTS"; payload: Blog[] }
   | { type: "FETCH_GALLERY"; payload: IGallery[] }
   | { type: "ADD_GALLERY"; payload: IGallery }
-  | { type: 'SET_AVATAR'; payload: string }
-  | { type: 'REMOVE_IMAGE'; payload: string }
+  | { type: "SET_AVATAR"; payload: string }
+  | { type: "REMOVE_IMAGE"; payload: string };
+
+const sortByDate = (obj: any) =>
+  obj.sort(
+    (a: any, b: any) =>
+      Number(new Date(b.createdAt)) - Number(new Date(a.createdAt))
+  );
 
 export const dataReducer = (state: DataState, action: DataAction) => {
   switch (action.type) {
     case "FETCH_USERS":
       return { ...state, users: action.payload };
     case "UPDATE_USER":
-      return {...state,  users: state.users.map((user: User) => user.id !== action.payload.userId ? user : action.payload)};
+      return {
+        ...state,
+        users: state.users.map((user: User) =>
+          user.id !== action.payload.userId ? user : action.payload
+        )
+      };
     case "FETCH_POSTS":
-      return { ...state, blogs: action.payload };
+      return { ...state, blogs: sortByDate(action.payload) };
     case "FETCH_GALLERY":
       return { ...state, gallery: action.payload };
     case "SET_AVATAR":
-      return {...state };
-    case 'ADD_GALLERY':
-        return {...state, gallery: state.gallery.concat(action.payload) };
+      return { ...state };
+    case "ADD_GALLERY":
+      return { ...state, gallery: state.gallery.concat(action.payload) };
     case "ADD_POST":
       return { ...state, blogs: state.blogs.concat(action.payload) };
-    case 'REMOVE_POST':
-      return { ...state, blogs: state.blogs.filter((blog: Blog) => blog.id !== action.payload )};
-    case 'REMOVE_IMAGE':
-      return {...state, gallery: state.gallery.filter((img: IGallery) => img.public_id !== action.payload)}
+    case "REMOVE_POST":
+      return {
+        ...state,
+        blogs: state.blogs.filter((blog: Blog) => blog.id !== action.payload)
+      };
+    case "REMOVE_IMAGE":
+      return {
+        ...state,
+        gallery: state.gallery.filter(
+          (img: IGallery) => img.public_id !== action.payload
+        )
+      };
     default:
       return state;
   }

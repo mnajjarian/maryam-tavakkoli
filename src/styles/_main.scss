@@ -1,7 +1,7 @@
 @import "./base/reset";
 @import "./abstracts/variables";
 @import "./layout/header";
-@import "./layout/blog-header";
+@import "./layout/jumbotron";
 @import "./layout/footer";
 @import "./layout/navbar";
 @import "./layout/section";
@@ -21,3 +21,4 @@
 @import "./components/picture";
 @import "./components/author";
 @import "./components/posts";
+@import "./components/block-post";

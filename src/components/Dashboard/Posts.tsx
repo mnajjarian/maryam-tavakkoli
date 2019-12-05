@@ -3,6 +3,7 @@ import { DataContext } from "../../contexts/dataContext";
 import { RawDraftContentState, RawDraftContentBlock } from "draft-js";
 import Button from "../Button";
 import { BlogType } from "../Blog";
+import { extractFromDraft } from "../Jumbotron";
 
 const Posts = () => {
   const {
@@ -12,13 +13,7 @@ const Posts = () => {
   if (!blogs.length) {
     return <div></div>;
   }
-  const getContent = (editorContent: string) => {
-    const rawDraft: RawDraftContentState = JSON.parse(editorContent);
-    const title: RawDraftContentBlock = rawDraft.blocks.filter(
-      (b: any) => b.type === "header-one"
-    )[0];
-    return title.text;
-  };
+
   const handleClick = (blogId: string) => () => {
     console.log("delete", blogId);
     dataService.removePost(blogId);
@@ -43,11 +38,11 @@ const Posts = () => {
                 <td>{index + 1}</td>
                 <td>
                   <a
-                    href={`/blog/${getContent(blog.content)
-                      .split(" ")
+                    href={`/blog/${extractFromDraft(blog.content)
+                      .title.split(" ")
                       .join("-")}`}
                   >
-                    {getContent(blog.content)}
+                    {extractFromDraft(blog.content).title}
                   </a>
                 </td>
                 <td>{new Date(blog.createdAt).toISOString().slice(0, 10)}</td>

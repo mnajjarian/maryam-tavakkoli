@@ -8,6 +8,7 @@
 
   table {
     width: 100%;
+    color: #333;
   }
   
   th,
@@ -16,7 +17,11 @@
     padding: 8px;
     a {
       text-decoration: none;
-      &:hover {
+      color: #000;
+      &:visited {
+        color: #000;
+      }
+      &:active, &:hover {
         color: #aaa;
       }
     }

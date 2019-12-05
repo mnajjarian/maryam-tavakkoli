@@ -75,30 +75,6 @@ const Post = ({ match }: { match: any }) => {
                 />
                 <p className="related__posts--text">{title}</p>
               </li>
-              <li className="related__posts__items">
-                <img
-                  className="related__posts--img"
-                  src={require(`../assets/images/tech-image.jpg`)}
-                  alt="related post"
-                />
-                <p className="related__posts--text">{title}</p>
-              </li>
-              <li className="related__posts__items">
-                <img
-                  className="related__posts--img"
-                  src={require(`../assets/images/tech-image.jpg`)}
-                  alt="related post"
-                />
-                <p className="related__posts--text">{title}</p>
-              </li>
-              <li className="related__posts__items">
-                <img
-                  className="related__posts--img"
-                  src={require(`../assets/images/tech-image.jpg`)}
-                  alt="related post"
-                />
-                <p className="related__posts--text">{title}</p>
-              </li>
             </ul>
           </div>
         </div>

@@ -1,5 +1,5 @@
 import React, { Fragment, useContext } from "react";
-import BlogHeader from "./BlogHeader";
+import BlogHeader from "./Jumbotron";
 import BlogBody from "./BlogBody";
 import Nav from "./Navbar";
 import Footer from "./Footer";
@@ -12,17 +12,20 @@ export interface BlogType {
   createdAt: string;
   updatedAt: string;
 }
-const Blog = () => {
-  const {data: { blogs } } = useContext(DataContext)
-  const sortPosts = blogs.sort((a: any, b: any) =>  new Date(b.createdAt).getDate() - new Date(a.createdAt).getDate());
 
-  return(
-  <Fragment>
-    <Nav />
-    <BlogHeader post={sortPosts[0]} />
-    <BlogBody posts={sortPosts} />
-    <Footer />
-  </Fragment>
-)};
+const Blog = () => {
+  const {
+    data: { blogs }
+  } = useContext(DataContext);
+
+  return (
+    <Fragment>
+      <Nav />
+      <BlogHeader posts={blogs} />
+      <BlogBody posts={blogs} />
+      <Footer />
+    </Fragment>
+  );
+};
 
 export default Blog;
