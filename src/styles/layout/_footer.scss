@@ -1,73 +1,87 @@
 @import "../abstracts/variables";
 
 .footer {
-  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
-  section {
+  height: 100%;
+  background: #000046;
+  background: -webkit-linear-gradient(to right, #1cb5e0, #000046);
+  background: linear-gradient(to right, #1cb5e0, #000046);
+  &__section {
+    width: 100%;
+    height: 100%;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: #000046;
-    background: -webkit-linear-gradient(to right, #1cb5e0, #000046);
-    background: linear-gradient(to right, #1cb5e0, #000046);
-    h2 {
+
+    &-h2 {
       font-size: 2rem;
       letter-spacing: 10px;
       text-shadow: 3px 6px 3px rgba(0, 0, 0, 0.1);
       font-variant: small-caps;
     }
-    ul {
+    &__list {
       display: flex;
       justify-content: center;
       align-items: center;
       list-style-type: none;
       margin: 0;
       padding: 0;
-      li {
-        padding: 0 10px;
-        animation: bounce 1s ease infinite alternate;
-        a {
-          text-decoration: none;
-          color: $light-french;
-          word-spacing: 0;
-
-          & > div {
-            width: 50px;
-            height: 50px;
-            background-color: white;
-            background-position: center;
-            background-repeat: no-repeat;
-            &:hover {
-              background-color: $light-french;
-            }
-          }
-          .linkedin {
-            -webkit-mask: url("../../assets/icons/linkedin.svg") no-repeat
-              center;
-            mask: url("../../assets/icons/linkedin.svg") no-repeat center;
-          }
-
-          .facebook {
-            -webkit-mask: url("../../assets/icons/facebook.svg") no-repeat
-              center;
-            mask: url("../../assets/icons/facebook.svg");
-          }
-        }
+    }
+    &__items {
+      padding: 0 10px;
+      animation: bounce 1s ease infinite alternate;
+    }
+    &__link {
+      text-decoration: none;
+      color: $light-french;
+      word-spacing: 0;
+    }
+    &__linkedin {
+      width: 50px;
+      height: 50px;
+      -webkit-mask: url("../../assets/icons/linkedin.svg") no-repeat center;
+      mask: url("../../assets/icons/linkedin.svg") no-repeat center;
+      background-color: white;
+      background-position: center;
+      background-repeat: no-repeat;
+      &:hover {
+        background-color: $light-french;
       }
     }
-    span {
-      font-size: 0.7rem;
-      text-transform: capitalize;
-      align-self: flex-end;
-      margin: 27px;
-      color: white;
-      word-spacing: 3px;
-      a {
-        text-decoration: none;
-        color: $light-french;
-        word-spacing: 0;
+
+    &__facebook {
+      width: 50px;
+      height: 50px;
+      -webkit-mask: url("../../assets/icons/facebook.svg") no-repeat center;
+      mask: url("../../assets/icons/facebook.svg");
+      background-color: white;
+      background-position: center;
+      background-repeat: no-repeat;
+      &:hover {
+        background-color: $light-french;
       }
+    }
+  }
+  &__subtitle {
+    font-size: 0.7rem;
+    text-transform: capitalize;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    align-self: flex-end;
+    margin: 0 8px 8px 0;
+    width: 100%;
+    height: 100%;
+    color: white;
+    word-spacing: 3px;
+    &__link {
+      margin-left: 4px;
+      text-decoration: none;
+      color: $light-french;
+      word-spacing: 0;
     }
   }
 }

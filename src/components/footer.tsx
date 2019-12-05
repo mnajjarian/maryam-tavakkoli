@@ -2,35 +2,42 @@ import React from "react";
 
 const Footer = () => (
   <div className="footer">
-    <section>
-      <h2>Contact</h2>
-      <ul>
-        <li>
+    <section className="footer__section">
+      <h2 className="footer__section-h2">Contact</h2>
+      <ul className="footer__section__list">
+        <li className="footer__section__items">
           <a
+            className="footer__section__link"
             href="https://www.linkedin.com/in/maryam-tavakoli/"
             rel="noopener noreferrer"
             target="_blank"
           >
-            <div className="linkedin"></div>
+            <div className="footer__section__linkedin"></div>
           </a>
         </li>
-        <li>
+        <li className="footer__section__items">
           <a
+            className="footer__section__link"
             href="https://www.facebook.com/maryam.tavakkoli.39566"
             rel="noopener noreferrer"
             target="_blank"
           >
-            <div className="facebook"></div>
+            <div className="footer__section__facebook"></div>
           </a>
         </li>
       </ul>
-      <span>
-        site by{" "}
-        <a href="https://github.com/mnajjarian" rel="noopener noreferrer" target="_blank">
-          mahdi najjarian
-        </a>
-      </span>
     </section>
+    <div className="footer__subtitle">
+      site by{" "}
+      <a
+        className="footer__subtitle__link"
+        href="https://github.com/mnajjarian"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        mahdi najjarian
+      </a>
+    </div>
   </div>
 );
 
