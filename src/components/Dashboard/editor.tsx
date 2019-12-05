@@ -37,7 +37,7 @@ const RichEditor = (props: EditorProps) => {
   );
 
   const { authState } = useContext(AuthContext);
-  console.log(blogPost);
+  
   let editor = createRef<Editor>();
   const focusEditor = () => {
     if (editor.current) {
@@ -83,10 +83,6 @@ const RichEditor = (props: EditorProps) => {
     return getDefaultKeyBinding(e);
   };
 
-  /*   const openGallery = () => {
-    console.log('clicked')
-    setIsOpen(!isOpen);
-  } */
   const onAddImage = (publicId: string) => {
     const urlValue = `https://res.cloudinary.com/dfjemz4f7/image/upload/${publicId}.jpg`;
     const contentState = editorState.getCurrentContent();

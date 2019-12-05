@@ -16,12 +16,17 @@ const BlogHeader = (props: Props) => {
   } = props;
   const draft: RawDraftContentState = JSON.parse(content);
   const { blocks } = draft;
-  const blocksWithText = blocks.filter((b: RawDraftContentBlock) => b.text.length);
+  const blocksWithText = blocks.filter(
+    (b: RawDraftContentBlock) => b.text.length
+  );
   const title = blocksWithText.filter(
     (b: RawDraftContentBlock) => b.type === "header-one"
   )[0];
-  const p = blocksWithText.filter((b: RawDraftContentBlock) => b.type === "unstyled")[0];
-  const imgUrl = draft.entityMap[0].data["src"];
+  const p = blocksWithText.filter(
+    (b: RawDraftContentBlock) => b.type === "unstyled"
+  )[0];
+  
+  const imgUrl = draft.entityMap[0] ? draft.entityMap[0].data["src"] : null;
 
   return (
     <div className="blog__header">
@@ -29,7 +34,7 @@ const BlogHeader = (props: Props) => {
         <div className="blog__header__items">
           <h2>{title.text}</h2>
           <p>{p.text.substring(0, 320)}...</p>
-          <span className="blog__header__date" >
+          <span className="blog__header__date">
             {new Intl.DateTimeFormat("en-us", {
               year: "numeric",
               month: "short",
@@ -37,9 +42,11 @@ const BlogHeader = (props: Props) => {
             }).format(new Date(post.createdAt))}
           </span>
         </div>
-        <div className="blog__header__image" >
-          <img className="blog__header__img" src={imgUrl} alt="tech" />
-        </div>
+        {imgUrl && (
+          <div className="blog__header__image">
+            <img className="blog__header__img" src={imgUrl} alt="tech" />
+          </div>
+        )}
       </div>
     </div>
   );

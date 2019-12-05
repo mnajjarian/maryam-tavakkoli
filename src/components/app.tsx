@@ -59,7 +59,7 @@ const App = () => {
         />
         <PrivateRoutes
           path="/dashboard"
-          component={({ match: { url } }: { match: any }) => (
+          component={({ match: { url } }: { match: match }) => (
             <Dashboard>
               <Route path={`${url}/profile`} component={Profile} exact />
               <Route path={`${url}/gallery`} component={Gallery} exact />

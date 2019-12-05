@@ -17,7 +17,7 @@ const Profile = () => {
     dataService
   } = useContext(DataContext);
   const { authState } = useContext(AuthContext);
-  const [isOpen, setIsOpen] = useState(false);
+  //const [isOpen, setIsOpen] = useState(false);
 
   const user = users.filter((user: any) => user._id === authState.id)[0];
 
@@ -40,12 +40,12 @@ const Profile = () => {
       [name]: value
     });
   };
-  const handleAvatar = () => setIsOpen(!isOpen);
+  //const handleAvatar = () => setIsOpen(!isOpen);
  
   const { fullname, email, bio, imageUrl } = state;
   const imageId = imageUrl ? imageUrl.split('/') : '';
   const publicId = imageId[imageId.length - 1].split('.')[0]
-  console.log(publicId)
+
   const openWidget = () => {
     (window as any).cloudinary.openUploadWidget(
       {
@@ -118,12 +118,12 @@ const Profile = () => {
           </div>
           <div className="profile__form__group">
             <label className="profile__form__label" htmlFor="bio">
-              Biography
+              About
             </label>
             <textarea
               className="profile__form__textarea"
               cols={12}
-              rows={5}
+              rows={10}
               name="bio"
               value={bio}
               onChange={handleChange}

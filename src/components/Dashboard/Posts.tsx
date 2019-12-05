@@ -3,7 +3,6 @@ import { DataContext } from "../../contexts/dataContext";
 import { RawDraftContentState, RawDraftContentBlock } from "draft-js";
 import Button from "../Button";
 import { BlogType } from "../Blog";
-import { Redirect } from "react-router";
 
 const Posts = () => {
   const {
@@ -34,8 +33,8 @@ const Posts = () => {
               <th>Title</th>
               <th>Created</th>
               <th>Updated</th>
-              <th></th>
-              <th></th>
+              <th>Edit</th>
+              <th>Delete</th>
             </tr>
           </thead>
           <tbody>

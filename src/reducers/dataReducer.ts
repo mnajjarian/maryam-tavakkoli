@@ -41,12 +41,10 @@ export type DataAction =
   | { type: 'REMOVE_IMAGE'; payload: string }
 
 export const dataReducer = (state: DataState, action: DataAction) => {
-  console.log(action)
   switch (action.type) {
     case "FETCH_USERS":
       return { ...state, users: action.payload };
     case "UPDATE_USER":
-      const user = state.users.filter((user: User) => user.id === action.payload.userId)[0]
       return {...state,  users: state.users.map((user: User) => user.id !== action.payload.userId ? user : action.payload)};
     case "FETCH_POSTS":
       return { ...state, blogs: action.payload };

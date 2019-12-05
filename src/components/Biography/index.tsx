@@ -20,8 +20,8 @@ const Biography = () => {
     return <div></div>;
   }
   const user = users.filter((user: any) => user._id === authState.id)[0];
-  const { firstName, lastName, email, bio, imageUrl } = user;
-  const fullname = firstName + " " + user.lastName;
+  const { firstName, lastName, bio, imageUrl } = user;
+  const fullname = firstName + " " + lastName;
 
   return (
     <Fragment>
