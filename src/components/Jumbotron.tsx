@@ -31,7 +31,7 @@ export const extractFromDraft = (content: string) => {
     url: imgUrl
   };
 };
-const BlogHeader = (props: Props) => {
+const Jumbotron = (props: Props) => {
   if (!props.posts[0]) {
     return <div></div>;
   }
@@ -68,4 +68,4 @@ const BlogHeader = (props: Props) => {
   );
 };
 
-export default BlogHeader;
+export default Jumbotron;

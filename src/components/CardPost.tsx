@@ -12,14 +12,13 @@ const iconBubble = require("../assets/icons/bubble.svg");
 interface PostProps {
   post: BlogType;
 };
+export const formatDate = (date: string) =>
+new Intl.DateTimeFormat("en-us", {
+  year: "numeric",
+  month: "short",
+  day: "2-digit"
+}).format(new Date(date));
 const CardPost = (props: PostProps) => {
-  const formatDate = (date: string) =>
-    new Intl.DateTimeFormat("en-us", {
-      year: "numeric",
-      month: "short",
-      day: "2-digit"
-    }).format(new Date(date));
-
   const {
     post,
     post: { content }
@@ -60,7 +59,7 @@ const CardPost = (props: PostProps) => {
             </span>
             <span className="card__post__icon">
               <img src={iconBubble} alt="comment icon" />
-              <strong>3 Comments</strong>
+              <strong>{post.comments.length === 0 ? 'No' : post.comments.length} Comments</strong>
             </span>
           </div>
           <div className="card__post__items">

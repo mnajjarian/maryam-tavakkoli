@@ -1,5 +1,20 @@
 .comment {
+  &__card {
+    display: flex;
+    padding: 16px 8px;
     width: 60%;
-    border: 1px solid black;
+    background-color: white;
     border-radius: 4px;
+  }
+  &__body {
+      display: flex;
+      flex-direction: column;
+  }
+  &__title {
+      display: flex;
+      justify-content: space-between;
+  }
+  &__text {
+      padding: 8px 4px;
+  }
 }

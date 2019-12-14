@@ -5,6 +5,7 @@ import { convertFromRaw, EditorState, RawDraftContentState } from "draft-js";
 import renderHTML from "react-render-html";
 import { stateToHTML } from "draft-js-export-html";
 import { BlogType } from "./Blog";
+import Comment from "./Comment";
 
 const Post = ({ match }: { match: any }) => {
   const {
@@ -53,7 +54,7 @@ const Post = ({ match }: { match: any }) => {
           {renderHTML(editorContentHtml)}
           <footer className="post__footer">
             <div className="post__social">
-              <span className="post__social__title">Share the blog post</span>
+             {/*  <span className="post__social__title">Share the blog post</span> */}
               <div className="post__social__buttons">
                 <div className="post__social__facebook"></div>
                 <div className="post__social__linkedin"></div>
@@ -61,7 +62,11 @@ const Post = ({ match }: { match: any }) => {
               </div>
             </div>
           </footer>
+          {post.comments.length > 0 &&
+        <Comment comments={post.comments} />
+        }
         </article>
+        
         <div className="related__posts">
           <h2 className="related__posts__title">Related blog posts</h2>
           <span className="related__posts--line"></span>

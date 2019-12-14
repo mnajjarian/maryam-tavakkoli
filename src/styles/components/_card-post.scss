@@ -2,7 +2,7 @@
 
 .card__post {
   &:not(:last-of-type) {
-    border-bottom: 1px solid #ffbb73;
+    border-bottom: 1px solid purple;
   }
   &__content {
     h2 {
@@ -55,8 +55,9 @@
   }
   &__image {
     border-radius: 4px;
+    margin-left: 5px;
     width: 350px;
-    height: 230px;
+    height: 200px;
   }
   &__tags {
     display: flex;
