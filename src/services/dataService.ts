@@ -3,6 +3,12 @@ import axios from 'axios';
 import { customAxios } from './customAxios';
 import { DataState, DataAction } from '../reducers/dataReducer';
 
+export interface CommentState { 
+    commenter?: string, 
+    email?: string, 
+    comment: string 
+}
+
 export const useDataService = (state: DataState, dispatch: Dispatch<DataAction>) => {
     const getPosts = () => {
         customAxios.get('/posts')
@@ -78,6 +84,19 @@ export const useDataService = (state: DataState, dispatch: Dispatch<DataAction>)
             })
         })
     };
+    const addComment = (comment: CommentState) => {
+        customAxios
+        .post('/comments', comment)
+        .then(res => {
+            dispatch({
+                type: 'ADD_COMMENT',
+                payload: res.data
+            })
+        })
+        .catch((err: Error) => {
+            console.log(err)
+        })
+    }
     const getGallery = () => {
     axios
       .get("https://res.cloudinary.com/dfjemz4f7/image/list/xmas.json")
@@ -97,6 +116,7 @@ export const useDataService = (state: DataState, dispatch: Dispatch<DataAction>)
         getUsers,
         updateUser,
         removeAssets,
-        removeImage
+        removeImage,
+        addComment
     };
 };
