@@ -62,12 +62,12 @@ const Post = ({ match }: { match: any }) => {
               </div>
             </div>
           </footer>
-          {post.comments.length > 0 &&
-        <Comment comments={post.comments} />
-        }
+         {/*  {post.comments.length > 0 && */}
+        <Comment comments={post.comments} postId={post.id} />
+       {/*  } */}
         </article>
         
-        <div className="related__posts">
+{/*         <div className="related__posts">
           <h2 className="related__posts__title">Related blog posts</h2>
           <span className="related__posts--line"></span>
           <div className="related__posts__card">
@@ -82,7 +82,7 @@ const Post = ({ match }: { match: any }) => {
               </li>
             </ul>
           </div>
-        </div>
+        </div> */}
       </main>
     </Fragment>
   );

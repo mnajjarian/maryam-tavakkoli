@@ -3,15 +3,15 @@ import Button from "./Button";
 import { DataContext } from "../contexts/dataContext";
 
 interface CommentForm {
-    closeForm: () => void;
-    postId: string;
+  closeForm: () => void;
+  postId: string;
 }
 
 interface State {
-    commenter: string;
-    email: string;
-    comment: string;
-    post: string;
+  commenter: string;
+  email: string;
+  comment: string;
+  post: string;
 }
 
 const AddComment = (props: CommentForm) => {
@@ -41,37 +41,37 @@ const AddComment = (props: CommentForm) => {
   const { closeForm } = props;
   const { commenter, email, comment } = state;
   return (
-    <form className="comment__form" onSubmit={handleSubmit}>
-      <div className="comment__form__group">
-        <label className="comment__form__label" htmlFor="commentor">
+    <form className="form" onSubmit={handleSubmit}>
+      <div className="form__group">
+        <label className="form__label" htmlFor="commentor">
           Name
         </label>
         <input
-          className="comment__form__input"
+          className="form__input"
           type="text"
           name="commenter"
           value={commenter}
           onChange={handleChange}
         />
       </div>
-      <div className="comment__form__group">
-        <label className="comment__form__label" htmlFor="email">
+      <div className="form__group">
+        <label className="form__label" htmlFor="email">
           Email
         </label>
         <input
-          className="comment__form__input"
+          className="form__input"
           type="email"
           name="email"
           value={email}
           onChange={handleChange}
         />
       </div>
-      <div className="comment__form__group">
-        <label className="comment__form__label" htmlFor="comment">
+      <div className="form__group">
+        <label className="form__label" htmlFor="comment">
           Comment
         </label>
         <textarea
-          className="comment__form__textarea"
+          className="form__textarea"
           name="comment"
           value={comment}
           onChange={handleChange}
@@ -79,7 +79,7 @@ const AddComment = (props: CommentForm) => {
           cols={14}
         />
       </div>
-      <div className="comment__form__button">
+      <div className="form__button">
         <Button text="Cancel" handleClick={closeForm} />
         <Button text="ADD" />
       </div>

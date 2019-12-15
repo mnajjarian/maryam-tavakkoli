@@ -1,8 +1,7 @@
 import React from "react";
 import {
   RawDraftContentState,
-  RawDraftContentBlock,
-  ContentBlock
+  RawDraftContentBlock
 } from "draft-js";
 import { BlogType } from "./Blog";
 import PostBlock from "./PostBlock";

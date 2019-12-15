@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { DataContext } from "../../contexts/dataContext";
-import { RawDraftContentState, RawDraftContentBlock } from "draft-js";
 import Button from "../Button";
 import { BlogType } from "../Blog";
 import { extractFromDraft } from "../Jumbotron";

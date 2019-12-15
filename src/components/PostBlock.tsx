@@ -29,6 +29,7 @@ const PostBlock = (props: Props) => {
                 <a
                   className="block__link"
                   target="_blank"
+                  rel="noopener noreferrer"
                   href={`/blog/${extractFromDraft(p.content)
                     .title.split(" ")
                     .join("-")}`}
