@@ -1,3 +1,5 @@
+import { IComment } from "../components/Blog";
+
 export interface User {
   id: string;
   name: string;
@@ -9,6 +11,7 @@ export interface Blog {
   content: string;
   createdAt: string;
   updatedAt: string;
+  comments: IComment[];
 }
 export interface DataState {
   blogs: Blog[];
@@ -29,6 +32,7 @@ export const initialDataState: DataState = {
   users: [],
   gallery: []
 };
+
 export type DataAction =
   | { type: "FETCH_USERS"; payload: User[] }
   | { type: "UPDATE_USER"; payload: any }
@@ -38,7 +42,8 @@ export type DataAction =
   | { type: "FETCH_GALLERY"; payload: IGallery[] }
   | { type: "ADD_GALLERY"; payload: IGallery }
   | { type: "SET_AVATAR"; payload: string }
-  | { type: "REMOVE_IMAGE"; payload: string };
+  | { type: "REMOVE_IMAGE"; payload: string }
+  | { type: "ADD_COMMENT"; payload: IComment };
 
 const sortByDate = (obj: any) =>
   obj.sort(
@@ -79,6 +84,10 @@ export const dataReducer = (state: DataState, action: DataAction) => {
           (img: IGallery) => img.public_id !== action.payload
         )
       };
+    case 'ADD_COMMENT':
+      const post = state.blogs.filter((b: Blog) => b.id === action.payload.post)[0];
+      post.comments = post.comments.concat(action.payload)
+      return {...state, blogs: state.blogs.map((blog: Blog) => blog.id === action.payload.id ? post : blog)}
     default:
       return state;
   }
