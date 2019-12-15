@@ -14,7 +14,7 @@ const Login = () => {
 
     const { email, password } = state;
 
-    const handleChange = (e: React.FormEvent): void => {
+    const handleChange = (e: FormEvent): void => {
         const {name, value } = e.target as HTMLInputElement;
         setState({
             ...state,
