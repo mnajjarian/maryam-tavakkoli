@@ -1,0 +1,41 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    
+    &__group {
+        display: flex;
+        width: 100%;
+        margin-bottom: 8px;
+    }
+    &__label {
+        padding: 8px 4px 0 0;
+    }
+    &__input {
+        width: 100%;
+        border: none;
+        border-radius: 4px;
+        padding: 12px 4px;
+        font-size: 1rem;
+        outline: none;
+        &::placeholder {
+          padding-left: 2px;
+      }
+    }
+    &__textarea {
+        border: none;
+        outline: none;
+        border-radius: 4px;
+        padding: 12px 4px;
+        font-size: 1rem;
+        width: 100%;
+        &::placeholder {
+          padding-left: 2px;
+      }
+    }
+    &__button {
+        display: flex;
+        justify-content: flex-end;
+        width: 100%;
+    }
+}
