@@ -9,8 +9,11 @@
         margin-bottom: 8px;
     }
     &__label {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
         padding: 8px 4px 0 0;
-    }
+     }
     &__input {
         width: 100%;
         border: none;
@@ -28,6 +31,7 @@
         border-radius: 4px;
         padding: 12px 4px;
         font-size: 1rem;
+        line-height: 2;
         width: 100%;
         &::placeholder {
           padding-left: 2px;

@@ -96,7 +96,20 @@ export const useDataService = (state: DataState, dispatch: Dispatch<DataAction>)
         .catch((err: Error) => {
             console.log(err)
         })
-    }
+    };
+    const removeComment = (commentId: string) => {
+        customAxios
+        .delete(`/comments/${commentId}`)
+        .then(res => {
+            dispatch({
+                type: 'REMOVE_COMMENT',
+                payload: res.data
+            });
+        })
+        .catch((err: Error) => {
+            console.log(err)
+        })
+    };
     const getGallery = () => {
     axios
       .get("https://res.cloudinary.com/dfjemz4f7/image/list/xmas.json")
@@ -117,6 +130,7 @@ export const useDataService = (state: DataState, dispatch: Dispatch<DataAction>)
         updateUser,
         removeAssets,
         removeImage,
-        addComment
+        addComment,
+        removeComment
     };
 };

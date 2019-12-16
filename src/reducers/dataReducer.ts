@@ -43,7 +43,8 @@ export type DataAction =
   | { type: "ADD_GALLERY"; payload: IGallery }
   | { type: "SET_AVATAR"; payload: string }
   | { type: "REMOVE_IMAGE"; payload: string }
-  | { type: "ADD_COMMENT"; payload: IComment };
+  | { type: "ADD_COMMENT"; payload: IComment }
+  | { type: "REMOVE_COMMENT"; payload: IComment };
 
 const sortByDate = (obj: any) =>
   obj.sort(
@@ -87,7 +88,11 @@ export const dataReducer = (state: DataState, action: DataAction) => {
     case 'ADD_COMMENT':
       const post = state.blogs.filter((b: Blog) => b.id === action.payload.post)[0];
       post.comments = post.comments.concat(action.payload)
-      return {...state, blogs: state.blogs.map((blog: Blog) => blog.id === action.payload.id ? post : blog)}
+      return {...state, blogs: state.blogs.map((blog: Blog) => blog.id === action.payload._id ? post : blog)};
+    case 'REMOVE_COMMENT':
+      const postBlog = state.blogs.filter((b: Blog) => b.id === action.payload.post)[0];
+      postBlog.comments = postBlog.comments.filter((comment: IComment) => comment._id !== action.payload._id);
+      return {...state, blogs: state.blogs.map((blog: Blog) => blog.id === action.payload.post ? postBlog : blog)};
     default:
       return state;
   }

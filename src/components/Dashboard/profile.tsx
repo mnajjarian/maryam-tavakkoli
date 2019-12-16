@@ -89,13 +89,13 @@ const Profile = () => {
             </button>
           </div>
         </div>
-        <form className="profile__form" onSubmit={handleSubmit}>
-          <div className="profile__form__group">
-            <label className="profile__form__label" htmlFor="fullname">
+        <form className="form" onSubmit={handleSubmit}>
+          <div className="form__group">
+            <label className="form__label" htmlFor="fullname">
               Name
             </label>
             <input
-              className="profile__form__input"
+              className="form__input"
               type="text"
               name="fullname"
               value={fullname}
@@ -103,12 +103,12 @@ const Profile = () => {
               placeholder="First name and Last Name"
             />
           </div>
-          <div className="profile__form__group">
-            <label className="profile__form__label" htmlFor="email">
+          <div className="form__group">
+            <label className="form__label" htmlFor="email">
               Email
             </label>
             <input
-              className="profile__form__input"
+              className="form__input"
               type="text"
               name="email"
               value={email}
@@ -116,21 +116,21 @@ const Profile = () => {
               placeholder="Email"
             />
           </div>
-          <div className="profile__form__group">
-            <label className="profile__form__label" htmlFor="bio">
+          <div className="form__group">
+            <label className="form__label" htmlFor="bio">
               About
             </label>
             <textarea
-              className="profile__form__textarea"
+              className="form__textarea"
               cols={12}
-              rows={10}
+              rows={9}
               name="bio"
               value={bio}
               onChange={handleChange}
               placeholder="Biography"
             ></textarea>
           </div>
-          <div className="profile__form__button">
+          <div className="form__button">
             <Button text="Save" />
           </div>
         </form>

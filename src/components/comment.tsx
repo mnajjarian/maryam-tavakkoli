@@ -29,7 +29,7 @@ const Comment = (props: Props) => {
       {props.comments.length > 0 &&
         props.comments.map((comment: IComment) => (
           <div className="comment__card">
-            <div className="comment__body" key={comment.id}>
+            <div className="comment__body" key={comment._id}>
               <div className="comment__title">
                 <strong>{comment.commenter}</strong>
                 <div>

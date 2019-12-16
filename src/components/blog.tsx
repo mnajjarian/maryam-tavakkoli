@@ -6,7 +6,7 @@ import Footer from "./Footer";
 import { DataContext } from "../contexts/dataContext";
 
 export interface IComment {
-  id: string;
+  _id: string;
   comment: string;
   post: string;
   commenter: string;
