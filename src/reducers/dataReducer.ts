@@ -30,6 +30,12 @@ export interface IGallery {
   version: number;
   width: number;
 }
+export interface UserUpdateImage {
+  obj: {
+    imageUrl: string;
+  };
+  userId: string;
+}
 export const initialDataState: DataState = {
   blogs: [],
   users: [],
@@ -39,6 +45,7 @@ export const initialDataState: DataState = {
 export type DataAction =
   | { type: "FETCH_USERS"; payload: User[] }
   | { type: "UPDATE_USER"; payload: any }
+  | { type: "UPDATE_USER_IMAGE"; payload: UserUpdateImage }
   | { type: "ADD_POST"; payload: Blog }
   | { type: "REMOVE_POST"; payload: string }
   | { type: "FETCH_POSTS"; payload: Blog[] }
@@ -56,6 +63,7 @@ const sortByDate = (obj: any) =>
   );
 
 export const dataReducer = (state: DataState, action: DataAction) => {
+  console.log(action);
   switch (action.type) {
     case "FETCH_USERS":
       return { ...state, users: action.payload };
@@ -64,6 +72,17 @@ export const dataReducer = (state: DataState, action: DataAction) => {
         ...state,
         users: state.users.map((user: User) =>
           user._id !== action.payload.userId ? user : action.payload
+        )
+      };
+    case "UPDATE_USER_IMAGE":
+      let userToUpdate = state.users.filter(
+        (user: User) => user._id === action.payload.userId
+      )[0];
+      userToUpdate.imageUrl = action.payload.obj.imageUrl;
+      return {
+        ...state,
+        users: state.users.map((user: User) =>
+          user._id !== action.payload.userId ? user : userToUpdate
         )
       };
     case "FETCH_POSTS":
@@ -88,14 +107,30 @@ export const dataReducer = (state: DataState, action: DataAction) => {
           (img: IGallery) => img.public_id !== action.payload
         )
       };
-    case 'ADD_COMMENT':
-      const post = state.blogs.filter((b: Blog) => b.id === action.payload.post)[0];
-      post.comments = post.comments.concat(action.payload)
-      return {...state, blogs: state.blogs.map((blog: Blog) => blog.id === action.payload._id ? post : blog)};
-    case 'REMOVE_COMMENT':
-      const postBlog = state.blogs.filter((b: Blog) => b.id === action.payload.post)[0];
-      postBlog.comments = postBlog.comments.filter((comment: IComment) => comment._id !== action.payload._id);
-      return {...state, blogs: state.blogs.map((blog: Blog) => blog.id === action.payload.post ? postBlog : blog)};
+    case "ADD_COMMENT":
+      const post = state.blogs.filter(
+        (b: Blog) => b.id === action.payload.post
+      )[0];
+      post.comments = post.comments.concat(action.payload);
+      return {
+        ...state,
+        blogs: state.blogs.map((blog: Blog) =>
+          blog.id === action.payload._id ? post : blog
+        )
+      };
+    case "REMOVE_COMMENT":
+      const postBlog = state.blogs.filter(
+        (b: Blog) => b.id === action.payload.post
+      )[0];
+      postBlog.comments = postBlog.comments.filter(
+        (comment: IComment) => comment._id !== action.payload._id
+      );
+      return {
+        ...state,
+        blogs: state.blogs.map((blog: Blog) =>
+          blog.id === action.payload.post ? postBlog : blog
+        )
+      };
     default:
       return state;
   }

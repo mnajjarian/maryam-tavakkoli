@@ -40,12 +40,11 @@ const Profile = () => {
       [name]: value
     });
   };
-  //const handleAvatar = () => setIsOpen(!isOpen);
- 
-  const { fullname, email, bio, imageUrl } = state;
-  const imageId = imageUrl ? imageUrl.split('/') : '';
-  const publicId = imageId[imageId.length - 1].split('.')[0]
 
+  const { fullname, email, bio, imageUrl } = state;
+  const imageId = imageUrl ? imageUrl.split("/") : "";
+  const publicId = imageId[imageId.length - 1].split(".")[0];
+  console.log(imageId, imageUrl, publicId);
   const openWidget = () => {
     (window as any).cloudinary.openUploadWidget(
       {
@@ -56,12 +55,16 @@ const Profile = () => {
       (error: Error, result: any) => {
         if (result.event === "success") {
           dataDispatch({
-            type: "UPDATE_USER",
+            type: "UPDATE_USER_IMAGE",
             payload: { userId: user._id, obj: { imageUrl: result.info.url } }
-          })
-          dataService.updateUser(user._id, {
-            imageUrl: result.info.url
-          }, publicId);
+          });
+          dataService.updateUser(
+            user._id,
+            {
+              imageUrl: result.info.url
+            },
+            publicId
+          );
         }
       }
     );
