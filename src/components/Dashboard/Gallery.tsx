@@ -57,7 +57,6 @@ const Gallery = (props: Props) => {
     }
     return acc;
   }, []);
-  console.log(checkList);
   const handleDelete = () => {
     dataService.removeImage(checkList[0]);
   };

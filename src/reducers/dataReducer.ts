@@ -1,10 +1,13 @@
 import { IComment } from "../components/Blog";
 
 export interface User {
-  id: string;
-  name: string;
+  _id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
   bio: string;
   imageUrl: string;
+  isAdmin: boolean;
 }
 export interface Blog {
   id: string;
@@ -60,7 +63,7 @@ export const dataReducer = (state: DataState, action: DataAction) => {
       return {
         ...state,
         users: state.users.map((user: User) =>
-          user.id !== action.payload.userId ? user : action.payload
+          user._id !== action.payload.userId ? user : action.payload
         )
       };
     case "FETCH_POSTS":
