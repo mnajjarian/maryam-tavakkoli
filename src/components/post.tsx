@@ -6,6 +6,7 @@ import renderHTML from "react-render-html";
 import { stateToHTML } from "draft-js-export-html";
 import { BlogType } from "./Blog";
 import Comment from "./Comment";
+import Loading from './Loading';
 
 const Post = ({ match }: { match: any }) => {
   const {
@@ -22,7 +23,7 @@ const Post = ({ match }: { match: any }) => {
   const post: BlogType = blogs.find((p: BlogType) => p.content.includes(title));
 
   if (!post) {
-    return <div></div>;
+    return <Loading />
   }
   const rawDraft: RawDraftContentState = JSON.parse(post.content);
 

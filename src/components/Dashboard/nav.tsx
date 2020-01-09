@@ -10,7 +10,6 @@ const Nav = () => {
   const [toggle, setToggle] = useState(false);
   const { authService } = useContext(AuthContext);
   const {
-    dataDispatch,
     data: { users }
   } = useContext(DataContext);
 

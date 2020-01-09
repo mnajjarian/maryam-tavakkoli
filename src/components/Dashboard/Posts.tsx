@@ -67,7 +67,7 @@ const Posts = () => {
                 </td>
                 <td>{new Date(blog.createdAt).toISOString().slice(0, 10)}</td>
                 <td>{new Date(blog.updatedAt).toISOString().slice(0, 10)}</td>
-                <td><a href='#' onClick={toggleModal(blog.comments)}>{blog.comments.length}</a></td>
+                <td><a href='/#' onClick={toggleModal(blog.comments)}>{blog.comments.length}</a></td>
                 <td>
                   <a href={`/dashboard/edit/${blog.id}`}>
                     <Button text="Edit" />

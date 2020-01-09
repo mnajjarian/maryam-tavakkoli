@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { Switch, Route, Redirect, match } from "react-router";
+import { Switch, Route, Redirect, match } from "react-router-dom";
 import Biography from "./Biography";
 import About from "./About";
 import Blog from "./Blog";
@@ -26,11 +26,12 @@ const App = () => {
 
   const fetchData = () => {
     dataService.getPosts();
-    dataService.getUsers();
     dataService.getGallery();
+    dataService.getUsers();
   };
   useEffect(() => {
     fetchData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const PrivateRoutes = ({ component: Comp, path, ...rest }: Props) => (
@@ -48,7 +49,7 @@ const App = () => {
   return (
     <div>
       <Switch>
-        <Route exact path="/" component={Biography} />
+        <Route exact path="/" component={About} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/about" component={About} />
         <Route exact path="/blog" component={Blog} />

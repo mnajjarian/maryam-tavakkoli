@@ -3,6 +3,7 @@ import axios from 'axios';
 import { customAxios } from './customAxios';
 import { DataState, DataAction } from '../reducers/dataReducer';
 
+const baseURL = '/api'
 export interface CommentState { 
     commenter?: string, 
     email?: string, 
@@ -42,7 +43,7 @@ export const useDataService = (state: DataState, dispatch: Dispatch<DataAction>)
         })
     };
     const getUsers = () => {
-        customAxios.get('users')
+        axios.get(`${baseURL}/users`)
         .then(res => {
             dispatch({
                 type: 'FETCH_USERS',

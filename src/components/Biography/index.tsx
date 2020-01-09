@@ -11,15 +11,17 @@ interface Profile {
   biography: string;
 }
 const Biography = () => {
+  const { authState } = useContext(AuthContext);
+  
   const {
     data: { users }
   } = useContext(DataContext);
-  const { authState } = useContext(AuthContext);
 
   if (!users.length || !authState) {
     return <div></div>;
   }
   const user = users.filter((user: any) => user._id === authState.id)[0];
+
   const { firstName, lastName, bio, imageUrl } = user;
   const fullname = firstName + " " + lastName;
 
