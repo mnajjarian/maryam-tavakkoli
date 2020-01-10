@@ -6,13 +6,33 @@ export const useAuthService = (
   state: AuthState,
   dispatch: Dispatch<AuthAction>
 ) => {
+  const signup = (credentials: any) => {
+    customAxios
+      .post("/signup", credentials)
+      .then(res => {
+        localStorage.setItem("token", res.data.token);
+        localStorage.setItem("user", res.data.firstName + ' ' + res.data.lastName);
+        localStorage.setItem("userId", res.data._id);
+        setAuthToken(res.data.token);
+        dispatch({
+          type: "SIGNIN_SUCCESS",
+          payload: res.data
+        });
+      })
+      .catch((err: Error) => {
+        dispatch({
+          type: "SET_ERRORS",
+          payload: err.message
+        });
+      });
+  };
   const signin = (credentials: any) => {
     customAxios
       .post("/login", credentials, { withCredentials: true })
       .then(res => {
         localStorage.setItem("token", res.data.token);
-        localStorage.setItem("user", res.data.name);
-        localStorage.setItem("userId", res.data.id)
+        localStorage.setItem("user", res.data.firstName + ' ' + res.data.lastName);
+        localStorage.setItem("userId", res.data._id);
         setAuthToken(res.data.token);
         console.log(res.data);
         dispatch({
@@ -34,6 +54,7 @@ export const useAuthService = (
     });
   };
   return {
+    signup,
     signin,
     logout
   };
