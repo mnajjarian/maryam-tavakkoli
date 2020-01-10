@@ -8,31 +8,32 @@ import CommentList from "../Comments";
 
 const Posts = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [comments, setComments] = useState<IComment[]>([{
-    commenter: '',
-    email: '',
-    comment: '',
-    createdAt: '',
-    _id: '',
-    post: ''
-  }])
+  const [comments, setComments] = useState<IComment[]>([
+    {
+      commenter: "",
+      email: "",
+      comment: "",
+      createdAt: "",
+      _id: "",
+      post: ""
+    }
+  ]);
   const {
     data: { blogs },
     dataService
   } = useContext(DataContext);
   if (!blogs.length) {
-    return <div></div>;
+    return <div className="posts">You don't have any post in your blog.</div>;
   }
 
   const handleClick = (blogId: string) => () => {
-    console.log("delete", blogId);
     dataService.removePost(blogId);
   };
 
   const toggleModal = (commentList: IComment[]) => () => {
-    setComments(commentList)
+    setComments(commentList);
     setIsOpen(!isOpen);
-  }
+  };
 
   return (
     <div className="posts">
@@ -67,7 +68,11 @@ const Posts = () => {
                 </td>
                 <td>{new Date(blog.createdAt).toISOString().slice(0, 10)}</td>
                 <td>{new Date(blog.updatedAt).toISOString().slice(0, 10)}</td>
-                <td><a href='/#' onClick={toggleModal(blog.comments)}>{blog.comments.length}</a></td>
+                <td>
+                  <a href="/#" onClick={toggleModal(blog.comments)}>
+                    {blog.comments.length}
+                  </a>
+                </td>
                 <td>
                   <a href={`/dashboard/edit/${blog.id}`}>
                     <Button text="Edit" />

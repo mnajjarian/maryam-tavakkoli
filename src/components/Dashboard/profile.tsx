@@ -17,7 +17,6 @@ const Profile = () => {
     dataService
   } = useContext(DataContext);
   const { authState } = useContext(AuthContext);
-  //const [isOpen, setIsOpen] = useState(false);
 
   const user = users.filter((user: any) => user._id === authState.id)[0];
 
@@ -29,10 +28,6 @@ const Profile = () => {
   };
   const [state, setState] = useState<InitialState>(initialState);
 
-  if (!users.length || !authState) {
-    return <div></div>;
-  }
-
   const handleChange = (e: FormEvent): void => {
     const { name, value } = e.target as HTMLInputElement;
     setState({
@@ -43,8 +38,8 @@ const Profile = () => {
 
   const { fullname, email, bio, imageUrl } = state;
   const imageId = imageUrl ? imageUrl.split("/") : "";
-  const publicId = imageId[imageId.length - 1].split(".")[0];
-  console.log(imageId, imageUrl, publicId);
+  const publicId = imageId.length ? imageId[imageId.length - 1].split(".")[0] : '';
+
   const openWidget = () => {
     (window as any).cloudinary.openUploadWidget(
       {

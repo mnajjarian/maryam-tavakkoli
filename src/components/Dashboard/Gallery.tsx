@@ -26,8 +26,8 @@ const Gallery = (props: Props) => {
   const openWidget = () => {
     (window as any).cloudinary.openUploadWidget(
       {
-        cloudName: "dfjemz4f7",
-        uploadPreset: "no2bkme1",
+        cloudName: process.env.REACT_APP_CLOUDNAME,
+        uploadPreset: process.env.REACT_APP_PRESET,
         tags: ["xmas"]
       },
       (error: Error, result: any) => {
@@ -60,9 +60,10 @@ const Gallery = (props: Props) => {
   const handleDelete = () => {
     dataService.removeImage(checkList[0]);
   };
+
   return (
     <div className="gallery">
-      {!gallery.length ? <div className="gallery__empty">The gallery is empty! you can  <Button text="Add" handleClick={openWidget} /> </div> :
+      {!gallery.length ? <div className="gallery__empty">The gallery is empty!  <Button text="Add picture" handleClick={openWidget} /> </div> :
       <>
       <div>
         <Button text="Add" handleClick={openWidget} />
@@ -81,7 +82,7 @@ const Gallery = (props: Props) => {
             handleClick={handleClick}
             key={data.public_id}
             publicId={data.public_id}
-            imgUrl={`https://res.cloudinary.com/dfjemz4f7/image/upload/${data.public_id}.jpg`}
+            imgUrl={`https://res.cloudinary.com/${process.env.REACT_APP_CLOUDNAME}/image/upload/${data.public_id}.jpg`}
           />
         ))}
       </div>

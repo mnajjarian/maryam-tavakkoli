@@ -20,16 +20,17 @@ const Section = (props: Props) => (
       <img
       className="section__img"
         style={{ borderRadius: props.borderRadius }}
-        src={props.imgUrl}
+        src={props.imgUrl ? props.imgUrl : require('../assets/images/avatar.png')}
         alt="biography"
       />
       <article className="section__article" >
         <h2 className="section__article--title" >{props.title}</h2>
         <span className="section__article--span" ></span>
         <p className="section__article--text" >{props.text}</p>
-        <div className="section__article__link" >
+        {props.text.length > 20 &&<div className="section__article__link" >
           <Link to={props.href}>{props.btnText}</Link>
         </div>
+        }
       </article>
     </section>
   </div>

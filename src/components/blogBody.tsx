@@ -1,20 +1,28 @@
 import React from "react";
 import CardPost from "./CardPost";
-import { BlogType } from './Blog';
-
+import { BlogType } from "./Blog";
 
 type Props = {
-  posts: BlogType[]
-}
+  posts: BlogType[];
+};
 const BlogBody = (props: Props) => {
   const { posts } = props;
-
+  if (posts.length < 1) {
+    return (
+      <div className="blog">
+        <div className="blog__empty">
+          <div>You don't have any post in your blog!</div>
+          <div>You can create new posts through your <a className="blog__empty__link" href="/dashboard/create">Dashboard</a>.</div>
+        </div>
+      </div>
+    );
+  }
   return (
     <div className="blog">
       <div className="blog__posts">
-        {posts.map(post =>
+        {posts.map(post => (
           <CardPost key={post.id} post={post} />
-        )}
+        ))}
       </div>
     </div>
   );

@@ -63,7 +63,6 @@ const sortByDate = (obj: any) =>
   );
 
 export const dataReducer = (state: DataState, action: DataAction) => {
-  console.log(action);
   switch (action.type) {
     case "FETCH_USERS":
       return { ...state, users: action.payload };

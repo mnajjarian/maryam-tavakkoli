@@ -49,7 +49,7 @@ const App = () => {
   return (
     <div>
       <Switch>
-        <Route exact path="/" component={About} />
+        <Route exact path="/" component={Biography} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/about" component={About} />
         <Route exact path="/blog" component={Blog} />

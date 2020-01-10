@@ -3,7 +3,6 @@ import axios from 'axios';
 import { customAxios } from './customAxios';
 import { DataState, DataAction } from '../reducers/dataReducer';
 
-const baseURL = '/api'
 export interface CommentState { 
     commenter?: string, 
     email?: string, 
@@ -43,7 +42,7 @@ export const useDataService = (state: DataState, dispatch: Dispatch<DataAction>)
         })
     };
     const getUsers = () => {
-        axios.get(`${baseURL}/users`)
+        customAxios.get('/users')
         .then(res => {
             dispatch({
                 type: 'FETCH_USERS',
@@ -113,13 +112,16 @@ export const useDataService = (state: DataState, dispatch: Dispatch<DataAction>)
     };
     const getGallery = () => {
     axios
-      .get("https://res.cloudinary.com/dfjemz4f7/image/list/xmas.json")
+      .get(`https://res.cloudinary.com/${process.env.REACT_APP_CLOUDNAME}/image/list/xmas.json`)
       .then(res => {
         dispatch({
             type: 'FETCH_GALLERY',
             payload: res.data.resources
         })
-      });
+      })
+      .catch((err: Error) => {
+          console.log(err)
+      })
     }
     return {
         getPosts,

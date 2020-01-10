@@ -20,7 +20,7 @@ interface PicProps {
             src={imgUrl}
             alt="pic"
           />
-           <input type="checkbox" checked={checked} className="picture__checked" />
+           <input type="checkbox" readOnly checked={checked} className="picture__checked" />
       </div>
          
     )
