@@ -3,7 +3,6 @@ import Nav from "./Nav";
 
 
 const Dashboard = ({ children }: { children: ReactNode }) => {
-
   return (
     <div className="dashboard">
       <Nav />

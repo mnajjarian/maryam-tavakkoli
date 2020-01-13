@@ -21,10 +21,10 @@ const Biography = () => {
   if (!users.length || !authState) {
     return <Signup />;
   }
-  console.log(users, authState)
-  const user = users.filter((user: any) => user._id === authState.id)[0];
 
-  const { firstName, lastName, bio, imageUrl } = user;
+  //const user = users.filter((user: any) => user._id === authState.id)[0];
+
+  const { firstName, lastName, bio, imageUrl } = users[0];
   const fullname = firstName + " " + lastName;
 
   return (

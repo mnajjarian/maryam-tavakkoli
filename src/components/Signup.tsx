@@ -3,31 +3,38 @@ import Button from "./Button";
 import { AuthContext } from "contexts/authContext";
 
 const Signup = () => {
-    const { authService } = useContext(AuthContext);
-    const [state, setState] = useState({
-        firstName: '',
-        lastName: '',
-        email: '',
-        password: ''
-    })
+  const {
+    authService
+  } = useContext(AuthContext);
+  const [state, setState] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: ""
+  });
 
-    const handleChange = (e: FormEvent) => {
-        const { name, value } = e.target as HTMLInputElement;
-        setState({
-            ...state,
-            [name]: value
-        })
+  const handleChange = (e: FormEvent) => {
+    const { name, value } = e.target as HTMLInputElement;
+    setState({
+      ...state,
+      [name]: value
+    });
+  };
+
+  const handleSubmit = async (e: FormEvent) => {
+      e.preventDefault();
+    try {
+      await authService.signup(state);
+      window.location.reload();
+    } catch (error) {
+      alert(error.message);
     }
+  };
 
-    const handleSubmit = (e: FormEvent) => {
-        e.preventDefault()
-        console.log(state)
-        authService.signup(state)
-    }
+  const { firstName, lastName, email, password } = state;
 
-    const { firstName, lastName, email, password } = state;
   return (
-    <div className='login' >
+    <div className="login">
       <form className="form" onSubmit={handleSubmit}>
         <div className="form__group">
           <label className="form__label" htmlFor="firstName">

@@ -1,8 +1,5 @@
 import React from "react";
-import {
-  RawDraftContentState,
-  RawDraftContentBlock
-} from "draft-js";
+import { RawDraftContentState, RawDraftContentBlock } from "draft-js";
 import { BlogType } from "./Blog";
 import PostBlock from "./PostBlock";
 
@@ -61,7 +58,7 @@ const Jumbotron = (props: Props) => {
             Read more
           </a>
         </div>
-        <PostBlock posts={props.posts} />
+        {props.posts.length > 1 && <PostBlock posts={props.posts} />}
       </div>
     </div>
   );

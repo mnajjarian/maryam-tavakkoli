@@ -31,6 +31,9 @@ const Nav = () => {
   const navList = () => (
     <>
       <div className="nav__list__group">
+        <Link to="/">Home</Link>
+      </div>
+      <div className="nav__list__group">
         <Link to="/dashboard/profile">Profile</Link>
       </div>
       <div className="nav__list__group">
@@ -43,30 +46,31 @@ const Nav = () => {
         <Link to="/dashboard/create">Create new</Link>
       </div>
       <div className="nav__list__logout">
-        <li onClick={handleLogout} >Logout</li>
+        <li onClick={handleLogout}>Logout</li>
       </div>
-      
     </>
   );
   return (
     <div className="nav">
       <ul className="nav__list">{navList()}</ul>
       <div ref={ref} className="nav__icon" onClick={handleToggle}>
-        <img className="nav__icon__image" src={avatarUrl} alt="admin" />
-          <ul className={classNames({
-              nav__logout: true,
-              "nav__logout-hide": !toggle
-            })}>
-            <li onClick={handleLogout} >Logout</li>
-          </ul>
-          <ul
-            className={classNames({
-              nav__menu: true,
-              "nav__menu-hide": !toggle
-            })}
-          >
-            {navList()}
-          </ul>
+        <img className="nav__icon__image" src={avatarUrl || require('../../assets/images/avatar.png')} alt="admin" />
+        <ul
+          className={classNames({
+            nav__logout: true,
+            "nav__logout-hide": !toggle
+          })}
+        >
+          <li onClick={handleLogout}>Logout</li>
+        </ul>
+        <ul
+          className={classNames({
+            nav__menu: true,
+            "nav__menu-hide": !toggle
+          })}
+        >
+          {navList()}
+        </ul>
       </div>
     </div>
   );

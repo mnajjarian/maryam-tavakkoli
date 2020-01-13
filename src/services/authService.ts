@@ -12,7 +12,7 @@ export const useAuthService = (
       .then(res => {
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("user", res.data.firstName + ' ' + res.data.lastName);
-        localStorage.setItem("userId", res.data._id);
+        localStorage.setItem("userId", res.data.id);
         setAuthToken(res.data.token);
         dispatch({
           type: "SIGNIN_SUCCESS",
@@ -32,7 +32,7 @@ export const useAuthService = (
       .then(res => {
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("user", res.data.firstName + ' ' + res.data.lastName);
-        localStorage.setItem("userId", res.data._id);
+        localStorage.setItem("userId", res.data.id);
         setAuthToken(res.data.token);
         console.log(res.data);
         dispatch({
@@ -49,6 +49,8 @@ export const useAuthService = (
   };
   const logout = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    localStorage.removeItem("userId");
     dispatch({
       type: "LOGOUT_USER"
     });

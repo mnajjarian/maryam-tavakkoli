@@ -14,7 +14,7 @@ export const initialAuthState: AuthState = {
 };
 
 export type AuthAction =
-  | { type: "SIGNIN_SUCCESS"; payload: { firstName: string, lastName: string; _id: string, token: string } }
+  | { type: "SIGNIN_SUCCESS"; payload: { name: string; id: string, token: string } }
   | { type: "SIGNIN_ERROR"; payload: string }
   | { type: "SIGNUP_ERROR"; payload: string }
   | { type: "SET_ERRORS"; payload: string }
@@ -22,7 +22,6 @@ export type AuthAction =
   | { type: "LOGOUT_USER" };
 
 export const authReducer = (state: AuthState, action: AuthAction) => {
-  console.log(action);
   switch (action.type) {
     case "SIGNIN_ERROR":
     case "SIGNUP_ERROR":
@@ -30,8 +29,8 @@ export const authReducer = (state: AuthState, action: AuthAction) => {
     case "SIGNIN_SUCCESS":
       return {
         ...state,
-        user: action.payload.firstName + ' ' + action.payload.lastName,
-        id: action.payload._id,
+        user: action.payload.name,
+        id: action.payload.id,
         token: action.payload.token,
         isLoggedIn: true,
         error: null

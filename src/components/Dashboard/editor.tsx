@@ -37,7 +37,7 @@ const RichEditor = (props: EditorProps) => {
   );
 
   const { authState } = useContext(AuthContext);
-  
+
   let editor = createRef<Editor>();
   const focusEditor = () => {
     if (editor.current) {
@@ -84,7 +84,7 @@ const RichEditor = (props: EditorProps) => {
   };
 
   const onAddImage = (publicId: string) => {
-    const urlValue = `https://res.cloudinary.com/dfjemz4f7/image/upload/${publicId}.jpg`;
+    const urlValue = `https://res.cloudinary.com/${process.env.REACT_APP_CLOUDNAME}/image/upload/${publicId}.jpg`;
     const contentState = editorState.getCurrentContent();
     const contentStateWithEntitiy = contentState.createEntity(
       "image",
