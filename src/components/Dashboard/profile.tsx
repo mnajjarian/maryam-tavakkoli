@@ -18,7 +18,8 @@ const Profile = () => {
   } = useContext(DataContext);
   const { authState } = useContext(AuthContext);
 
-  const user = users.filter((user: any) => user._id === authState.id)[0];
+  //const user = users.filter((user: any) => user._id === authState.id)[0];
+  const user = users[0];
 
   const initialState: InitialState = {
     email: user ? user.email : "",
@@ -43,8 +44,8 @@ const Profile = () => {
   const openWidget = () => {
     (window as any).cloudinary.openUploadWidget(
       {
-        cloudName: "dfjemz4f7",
-        uploadPreset: "no2bkme1",
+        cloudName: process.env.REACT_APP_CLOUDNAME,
+        uploadPreset: process.env.REACT_APP_PRESET,
         tags: ["profile"]
       },
       (error: Error, result: any) => {
