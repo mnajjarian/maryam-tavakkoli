@@ -1,7 +1,6 @@
 import React, { useState, FormEvent, useContext } from "react";
 import Button from "../Button";
 import { DataContext } from "../../contexts/dataContext";
-import { AuthContext } from "../../contexts/authContext";
 
 interface InitialState {
   fullname: string;
@@ -16,7 +15,6 @@ const Profile = () => {
     dataDispatch,
     dataService
   } = useContext(DataContext);
-  const { authState } = useContext(AuthContext);
 
   //const user = users.filter((user: any) => user._id === authState.id)[0];
   const user = users[0];
@@ -52,7 +50,7 @@ const Profile = () => {
         if (result.event === "success") {
           dataDispatch({
             type: "UPDATE_USER_IMAGE",
-            payload: { userId: user._id, obj: { imageUrl: result.info.url } }
+            payload: { userId: user._id, obj: { imageUrl: result.info.secure_url } }
           });
           dataService.updateUser(
             user._id,

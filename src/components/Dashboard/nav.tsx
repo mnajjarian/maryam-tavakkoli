@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../contexts/authContext";
 import { useOnClickOutside } from "../../custom-hooks/useOnClickOutside";
 import { DataContext } from "../../contexts/dataContext";
-import { User } from "../../reducers/dataReducer";
+//import { User } from "../../reducers/dataReducer";
 
 const Nav = () => {
   const [toggle, setToggle] = useState(false);
@@ -13,10 +13,11 @@ const Nav = () => {
     data: { users }
   } = useContext(DataContext);
 
-  const user: User = users.filter(
+/*   const user: User = users.filter(
     (user: User) =>
       user.firstName + " " + user.lastName === localStorage.getItem("user")
-  )[0];
+  )[0]; */
+  const user = users[0]
   const avatarUrl = user
     ? user.imageUrl
     : require("../../assets/images/avatar.png");

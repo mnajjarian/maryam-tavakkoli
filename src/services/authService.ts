@@ -34,7 +34,6 @@ export const useAuthService = (
         localStorage.setItem("user", res.data.firstName + ' ' + res.data.lastName);
         localStorage.setItem("userId", res.data.id);
         setAuthToken(res.data.token);
-        console.log(res.data);
         dispatch({
           type: "SIGNIN_SUCCESS",
           payload: res.data

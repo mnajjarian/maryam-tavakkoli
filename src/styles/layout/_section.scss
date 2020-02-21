@@ -23,30 +23,17 @@
 
   &__article {
     width: 40%;
-    &__link {
-      height: 40px;
-      min-height: 19px;
-      width: 142px;
-      border: 2px solid $main-dark-color;
-      color: $main-dark-color;
-      padding: 4px 12px;
-      font-size: 0.7rem;
-      cursor: pointer;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    a {
+      display: inline-block;
+      padding: 0.8em 1.7em;
+      background-color: #5099ff;
+      font-weight: bold;
+      border-radius: 2em;
+      text-transform: uppercase;
+      color: white;
+      margin-top: 1.5em;
       &:hover {
-        border-color: $light-french;
-      }
-      &:hover a {
-        color: $light-french;
-      }
-      a {
-        text-decoration: none;
-        text-transform: capitalize;
-        font-size: 1rem;
-        white-space: nowrap;
-        color: initial;
+        color: $main-dark-color;
       }
     }
     &--span {
@@ -75,8 +62,8 @@
 
 @media (max-width: 768px) {
   .section {
-
-    &__content--row, &__content--row-reverse {
+    &__content--row,
+    &__content--row-reverse {
       flex-direction: column;
     }
     &__article {
