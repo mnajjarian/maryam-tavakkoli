@@ -14,7 +14,7 @@
     height: 100%;
     margin: 0 auto;
     &__link {
-      display: flex;
+      display: inline-flex;
       flex-direction: column;
       a {
         padding: 0.4em 0;
