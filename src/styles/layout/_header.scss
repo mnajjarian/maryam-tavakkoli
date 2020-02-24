@@ -1,17 +1,27 @@
 @import "../abstracts/variables";
 
 .header {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
   height: 440px;
-  background: $main-bg-color;
-  background-image: url("../../assets/images/header2.jpeg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
 
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    background: $main-bg-color;
+    background: url("../../assets/images/header2.jpeg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
   &__content {
     display: flex;
     flex-direction: column;
@@ -28,7 +38,7 @@
   }
   &__title {
     margin: 0;
-    padding: 0;
+    padding-bottom: .2em;
     text-transform: capitalize;
     color: $main-dark-color;
   }

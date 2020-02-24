@@ -6,6 +6,7 @@ interface InitialState {
   fullname: string;
   email: string;
   imageUrl?: string;
+  title: string;
   bio: string;
 }
 
@@ -22,6 +23,7 @@ const Profile = () => {
   const initialState: InitialState = {
     email: user ? user.email : "",
     fullname: user ? user.firstName + " " + user.lastName : "",
+    title: user ? user.title : "",
     bio: user ? user.bio : "",
     imageUrl: user ? user.imageUrl : ""
   };
@@ -35,7 +37,7 @@ const Profile = () => {
     });
   };
 
-  const { fullname, email, bio, imageUrl } = state;
+  const { fullname, email, title, bio, imageUrl } = state;
   const imageId = imageUrl ? imageUrl.split("/") : "";
   const publicId = imageId.length ? imageId[imageId.length - 1].split(".")[0] : '';
 
@@ -111,6 +113,19 @@ const Profile = () => {
               value={email}
               onChange={handleChange}
               placeholder="Email"
+            />
+          </div>
+          <div className="form__group">
+            <label className="form__label" htmlFor="title">
+              Title
+            </label>
+            <input
+              className="form__input"
+              type="text"
+              name="title"
+              value={title}
+              onChange={handleChange}
+              placeholder="title"
             />
           </div>
           <div className="form__group">
