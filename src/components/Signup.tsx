@@ -34,7 +34,8 @@ const Signup = () => {
   const { firstName, lastName, email, password } = state;
 
   return (
-    <div className="login">
+    <div className="login" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+      <h1>Create an account</h1>
       <form className="form" onSubmit={handleSubmit}>
         <div className="form__group">
           <label className="form__label" htmlFor="firstName">
