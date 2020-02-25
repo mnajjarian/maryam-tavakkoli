@@ -21,18 +21,21 @@ const Comment = (props: Props) => {
   const handleToggle = () => setIsOpen(!isOpen);
   return (
     <div className="comment">
-      <div className="comment__board">
-        <h3>Comments</h3>
-        {!isOpen && <Button text="ADD" handleClick={handleToggle} />}
-      </div>
-      {isOpen && <AddComment closeForm={handleToggle} postId={props.postId} />}
+        {props.comments.length ? <p className="comment__header" >Comments</p>: ''}
+{/*         {!isOpen && 
+        <div className='comment__btn'>
+          <img onClick={handleToggle} src={require('../assets/icons/comment.svg')} alt="comment" />
+        </div>
+        } */}
+
+       
       {props.comments.length > 0 &&
         props.comments.map((comment: IComment) => (
           <div className="comment__card">
             <div className="comment__body" key={comment._id}>
               <div className="comment__title">
                 <strong>{comment.commenter}</strong>
-                <div>
+                <div className="comment__date" >
                   {formatDate(comment.createdAt)}
                   {",  " + formatTime(comment.createdAt)}
                 </div>
@@ -41,6 +44,7 @@ const Comment = (props: Props) => {
             </div>
           </div>
         ))}
+        <AddComment closeForm={handleToggle} postId={props.postId} />
     </div>
   );
 };

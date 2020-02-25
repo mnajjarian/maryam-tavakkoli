@@ -56,7 +56,7 @@ const Post = ({ match }: { match: any }) => {
           <footer className="post__footer">
             <div className="post__social">
              {/*  <span className="post__social__title">Share the blog post</span> */}
-              <div className="post__social__buttons">
+              <div className="post__social__buttons ">
                 <div className="post__social__facebook"></div>
                 <div className="post__social__linkedin"></div>
                 <div className="post__social__twitter"></div>

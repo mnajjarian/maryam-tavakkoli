@@ -41,49 +41,52 @@ const AddComment = (props: CommentForm) => {
   const { closeForm } = props;
   const { commenter, email, comment } = state;
   return (
-    <form className="form" onSubmit={handleSubmit}>
-      <div className="form__group">
-        <label className="form__label" htmlFor="commentor">
-          Name
-        </label>
-        <input
-          className="form__input"
-          type="text"
-          name="commenter"
-          value={commenter}
-          onChange={handleChange}
-        />
-      </div>
-      <div className="form__group">
-        <label className="form__label" htmlFor="email">
-          Email
-        </label>
-        <input
-          className="form__input"
-          type="email"
-          name="email"
-          value={email}
-          onChange={handleChange}
-        />
-      </div>
-      <div className="form__group">
-        <label className="form__label" htmlFor="comment">
-          Comment
-        </label>
-        <textarea
-          className="form__textarea"
-          name="comment"
-          value={comment}
-          onChange={handleChange}
-          rows={10}
-          cols={14}
-        />
-      </div>
-      <div className="form__button">
-        <Button text="Cancel" handleClick={closeForm} />
-        <Button text="ADD" />
-      </div>
-    </form>
+    <div className="comments">
+      <form className="form" onSubmit={handleSubmit}>
+        <h3>Leave a comment</h3>
+        <div className="form__group">
+          <label className="form__label" htmlFor="commentor">
+            Name
+          </label>
+          <input
+            className="form__input"
+            type="text"
+            name="commenter"
+            value={commenter}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form__group">
+          <label className="form__label" htmlFor="email">
+            Email
+          </label>
+          <input
+            className="form__input"
+            type="email"
+            name="email"
+            value={email}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form__group">
+          <label className="form__label" htmlFor="comment">
+            Comment
+          </label>
+          <textarea
+            className="form__textarea"
+            name="comment"
+            value={comment}
+            onChange={handleChange}
+            rows={7}
+            cols={12}
+          />
+        </div>
+        <div className="form__button">
+{/*           <Button text="Cancel" handleClick={closeForm} /> */}
+          <Button text="Submit" />
+        </div>
+      </form>
+    </div>
   );
 };
 

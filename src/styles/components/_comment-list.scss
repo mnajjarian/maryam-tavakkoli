@@ -1,3 +1,15 @@
 .comments {
-    
+    padding: 1em 1.5em;
+    border-radius: .5em;
+    background: lightgray;
+    margin: 3em 0;
+    .form__button button {
+        margin-top: .5em;
+        background: darkgray;
+        color: white;
+
+        &:hover {
+            background: gray;
+        }
+    }
 }

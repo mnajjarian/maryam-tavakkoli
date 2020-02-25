@@ -1,23 +1,38 @@
 .comment {
     display: flex;
     flex-direction: column;
-    width: 60%;
-    padding: 16px 0 50px 0;
+    width: 70%;
+    padding: .5em;
+
+    &__header {
+      font-size: 1.5em;
+      border-bottom: 1px solid gray;
+    }
     &__board {
         display: flex;
+        flex-direction: column;
         justify-content: space-between;
         align-items: center;
         border-radius: 4px;
-        padding: 0px 4px;
-        background-color: rgb(145, 3, 145);
-        color: white;
+        padding: 0px 1em;
+        background-color: transparent;
+        color: #111;
     }
   &__card {
     display: flex;
     margin-top: 16px;
     padding: 16px 8px;
-    background-color: white;
     border-radius: 4px;
+    border: 1px solid lightgray;
+    margin-bottom: .2em;
+    strong {
+      font-size: 1.1em;
+    }
+  }
+  &__date {
+    font-size: .8em;
+    font-weight: bold;
+    color: darkgray;
   }
   &__body {
     width: 100%;
@@ -30,5 +45,15 @@
   }
   &__text {
       padding: 8px 4px;
+  }
+  &__btn {
+    cursor: pointer;
+    
+  }
+}
+
+@media (max-width: 768px) {
+  .comment {
+    width: 100%;
   }
 }
