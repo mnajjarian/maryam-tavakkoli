@@ -4,7 +4,6 @@ import Header from "../Header";
 import Footer from "../Footer";
 import { DataContext } from "../../contexts/dataContext";
 import { AuthContext } from "../../contexts/authContext";
-import Signup from "components/Signup";
 
 interface Profile {
   name: string;
@@ -19,7 +18,7 @@ const Biography = () => {
   } = useContext(DataContext);
 
   if (!users.length || !authState) {
-    return <Signup />;
+    return <div></div>;
   }
 
   //const user = users.filter((user: any) => user._id === authState.id)[0];
