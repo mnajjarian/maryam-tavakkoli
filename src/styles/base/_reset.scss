@@ -1,5 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap');
+
 html {
   box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
 *,
@@ -18,7 +22,7 @@ body {
   font-size: 16px;
   line-height: 1.5;
   //font-family: Lato, Sans-Serif;
-  font-family: Arial,sans-serif,Helvetica;
+  font-family: 'Nunito', sans-serif;
 }
 ::selection {
   color: #fff;
@@ -37,12 +41,12 @@ h1 {
   font-size: 2.5em;
   font-weight: 700;
   line-height: 1.3;
-  font-family: Montserrat, Sans-serif;
+  //font-family: Montserrat, Sans-serif;
 }
 h2 {
   font-size: 2.5rem;
   font-weight: 700;
-  font-family: Montserrat, Sans-serif;
+  //font-family: Montserrat, Sans-serif;
 }
 
 a {
