@@ -50,10 +50,11 @@ const RichEditor = (props: EditorProps) => {
   };
 
   const handleSave = (type: string) => () => {
+    console.log(authState)
     if(type === 'Publish') {
       dataService.createNewPost({
         content: editorContent,
-        author: authState.user
+        userId: authState.id
       });
     } else {
       dataService.updatePost(props.blogId.id, editorContent);

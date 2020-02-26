@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { IComment } from "./Blog";
 import { formatDate } from "./CardPost";
-import Button from "./Button";
 import AddComment from "./AddComment";
 
 interface Props {
@@ -15,27 +14,25 @@ export const formatTime = (date: string) =>
     minute: "numeric"
   }).format(new Date(date));
 
-
 const Comment = (props: Props) => {
   const [isOpen, setIsOpen] = useState(false);
   const handleToggle = () => setIsOpen(!isOpen);
   return (
     <div className="comment">
-        {props.comments.length ? <p className="comment__header" >Comments</p>: ''}
-{/*         {!isOpen && 
+      {props.comments.length ? <p className="comment__header">Comments</p> : ""}
+      {/*         {!isOpen && 
         <div className='comment__btn'>
           <img onClick={handleToggle} src={require('../assets/icons/comment.svg')} alt="comment" />
         </div>
         } */}
 
-       
       {props.comments.length > 0 &&
         props.comments.map((comment: IComment) => (
           <div className="comment__card">
             <div className="comment__body" key={comment._id}>
               <div className="comment__title">
                 <strong>{comment.commenter}</strong>
-                <div className="comment__date" >
+                <div className="comment__date">
                   {formatDate(comment.createdAt)}
                   {",  " + formatTime(comment.createdAt)}
                 </div>
@@ -44,7 +41,7 @@ const Comment = (props: Props) => {
             </div>
           </div>
         ))}
-        <AddComment closeForm={handleToggle} postId={props.postId} />
+      <AddComment closeForm={handleToggle} postId={props.postId} />
     </div>
   );
 };

@@ -7,17 +7,15 @@ const timeIcon = require("../assets/icons/time-3.svg");
 const iconUser = require("../assets/icons/user.svg");
 const iconBubble = require("../assets/icons/bubble.svg");
 
-
-
 interface PostProps {
   post: BlogType;
-};
+}
 export const formatDate = (date: string) =>
-new Intl.DateTimeFormat("en-us", {
-  year: "numeric",
-  month: "short",
-  day: "2-digit"
-}).format(new Date(date));
+  new Intl.DateTimeFormat("en-us", {
+    year: "numeric",
+    month: "short",
+    day: "2-digit"
+  }).format(new Date(date));
 const CardPost = (props: PostProps) => {
   const {
     post,
@@ -55,11 +53,14 @@ const CardPost = (props: PostProps) => {
             </span>
             <span className="card__post__icon">
               <img src={iconUser} alt="user icon" />
-              <strong>{post.author}</strong>
+              <strong>{post.user.firstName + " " + post.user.lastName}</strong>
             </span>
             <span className="card__post__icon">
               <img src={iconBubble} alt="comment icon" />
-              <strong>{post.comments.length === 0 ? 'No' : post.comments.length} Comments</strong>
+              <strong>
+                {post.comments.length === 0 ? "No" : post.comments.length}{" "}
+                Comments
+              </strong>
             </span>
           </div>
           <div className="card__post__items">

@@ -38,7 +38,7 @@ const AddComment = (props: CommentForm) => {
       console.log(error);
     }
   };
-  const { closeForm } = props;
+
   const { commenter, email, comment } = state;
   return (
     <div className="comments">

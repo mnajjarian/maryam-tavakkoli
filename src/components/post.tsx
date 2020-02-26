@@ -6,7 +6,7 @@ import renderHTML from "react-render-html";
 import { stateToHTML } from "draft-js-export-html";
 import { BlogType } from "./Blog";
 import Comment from "./Comment";
-import Loading from './Loading';
+import Loading from "./Loading";
 
 const Post = ({ match }: { match: any }) => {
   const {
@@ -23,7 +23,7 @@ const Post = ({ match }: { match: any }) => {
   const post: BlogType = blogs.find((p: BlogType) => p.content.includes(title));
 
   if (!post) {
-    return <Loading />
+    return <Loading />;
   }
   const rawDraft: RawDraftContentState = JSON.parse(post.content);
 
@@ -41,7 +41,7 @@ const Post = ({ match }: { match: any }) => {
           <header className="post__header">
             <p>
               {"By "}
-              {post.author}
+              {post.user.firstName + " " + post.user.lastName}
               <time className="post__time">
                 {" . "}
                 {new Intl.DateTimeFormat("en-us", {
@@ -55,7 +55,7 @@ const Post = ({ match }: { match: any }) => {
           {renderHTML(editorContentHtml)}
           <footer className="post__footer">
             <div className="post__social">
-             {/*  <span className="post__social__title">Share the blog post</span> */}
+              {/*  <span className="post__social__title">Share the blog post</span> */}
               <div className="post__social__buttons ">
                 <div className="post__social__facebook"></div>
                 <div className="post__social__linkedin"></div>
@@ -63,12 +63,12 @@ const Post = ({ match }: { match: any }) => {
               </div>
             </div>
           </footer>
-         {/*  {post.comments.length > 0 && */}
-        <Comment comments={post.comments} postId={post.id} />
-       {/*  } */}
+          {/*  {post.comments.length > 0 && */}
+          <Comment comments={post.comments} postId={post.id} />
+          {/*  } */}
         </article>
-        
-{/*         <div className="related__posts">
+
+        {/*         <div className="related__posts">
           <h2 className="related__posts__title">Related blog posts</h2>
           <span className="related__posts--line"></span>
           <div className="related__posts__card">

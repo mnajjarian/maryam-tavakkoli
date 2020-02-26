@@ -15,6 +15,7 @@ export interface Blog {
   createdAt: string;
   updatedAt: string;
   comments: IComment[];
+  user: User;
 }
 export interface DataState {
   blogs: Blog[];
