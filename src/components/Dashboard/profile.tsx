@@ -59,7 +59,7 @@ const Profile = () => {
           dataService.updateUser(
             user._id,
             {
-              imageUrl: result.info.url
+              imageUrl: result.info.secure_url
             },
             publicId
           );
