@@ -7,12 +7,12 @@ type Props = {
 };
 const BlogBody = (props: Props) => {
   const { posts } = props;
-  if (posts.length < 1) {
+  if (!posts.length) {
     return (
       <div className="blog">
         <div className="blog__empty">
-          <div>You don't have any post in your blog!</div>
-          <div>You can create new posts through your <a className="blog__empty__link" href="/dashboard/create">Dashboard</a>.</div>
+          <div>There is nothing here!</div>
+          <div>You can create new post through your <a className="blog__empty__link" href="/dashboard/create">Dashboard</a>.</div>
         </div>
       </div>
     );

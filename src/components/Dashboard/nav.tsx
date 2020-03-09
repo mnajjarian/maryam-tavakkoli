@@ -1,6 +1,6 @@
 import React, { useState, useContext, useRef } from "react";
 import classNames from "classnames";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { AuthContext } from "../../contexts/authContext";
 import { useOnClickOutside } from "../../custom-hooks/useOnClickOutside";
 import { DataContext } from "../../contexts/dataContext";
@@ -12,7 +12,7 @@ const Nav = () => {
   const {
     data: { users }
   } = useContext(DataContext);
-
+const history = useHistory()
 /*   const user: User = users.filter(
     (user: User) =>
       user.firstName + " " + user.lastName === localStorage.getItem("user")
@@ -25,6 +25,7 @@ const Nav = () => {
   const handleToggle = () => setToggle(!toggle);
   const handleLogout = () => {
     authService.logout();
+    history.push('/')
   };
 
   let ref = useRef<HTMLDivElement>(null);

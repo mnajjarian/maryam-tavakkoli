@@ -19,12 +19,12 @@ interface Props {
 }
 const App = () => {
   const {
-    authState: { isLoggedIn }
+    authState: { isLoggedIn }, authService
   } = useContext(AuthContext);
-
   const { dataService } = useContext(DataContext);
 
   const fetchData = () => {
+    authService.authenticate();
     dataService.getPosts();
     dataService.getGallery();
     dataService.getUsers();

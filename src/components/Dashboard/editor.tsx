@@ -37,7 +37,6 @@ const RichEditor = (props: EditorProps) => {
   );
 
   const { authState } = useContext(AuthContext);
-
   let editor = createRef<Editor>();
   const focusEditor = () => {
     if (editor.current) {
@@ -50,7 +49,6 @@ const RichEditor = (props: EditorProps) => {
   };
 
   const handleSave = (type: string) => () => {
-    console.log(authState)
     if(type === 'Publish') {
       dataService.createNewPost({
         content: editorContent,

@@ -1,16 +1,10 @@
 export interface AuthState {
   isLoggedIn: boolean;
-  token: string | null;
-  user: string | null;
-  id: string | null;
-  error: string | null;
+  id?: string | null;
+  error?: string | null;
 }
 export const initialAuthState: AuthState = {
-  user: localStorage.getItem("user"),
-  token: localStorage.getItem("token"),
-  isLoggedIn: localStorage.getItem("token") !== null,
-  id: localStorage.getItem("userId"),
-  error: null
+  isLoggedIn: false,
 };
 
 export type AuthAction =
@@ -19,6 +13,7 @@ export type AuthAction =
   | { type: "SIGNUP_ERROR"; payload: string }
   | { type: "SET_ERRORS"; payload: string }
   | { type: "SET_USER"; payload: string }
+  | { type: "SET_AUTH"; payload: { auth: boolean } }
   | { type: "LOGOUT_USER" };
 
 export const authReducer = (state: AuthState, action: AuthAction) => {
@@ -29,14 +24,15 @@ export const authReducer = (state: AuthState, action: AuthAction) => {
     case "SIGNIN_SUCCESS":
       return {
         ...state,
-        user: action.payload.name,
         id: action.payload.id,
-        token: action.payload.token,
         isLoggedIn: true,
         error: null
       };
     case "LOGOUT_USER":
       return { ...state, isLoggedIn: false, error: null };
+
+    case "SET_AUTH":
+      return { ...state, isLoggedIn: action.payload.auth }
     default:
       return state;
   }

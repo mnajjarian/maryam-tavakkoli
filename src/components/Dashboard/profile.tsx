@@ -3,8 +3,9 @@ import Button from "../Button";
 import { DataContext } from "../../contexts/dataContext";
 
 interface InitialState {
-  fullname: string;
-  email: string;
+  firstName: string;
+  lastName: string;
+  username: string;
   imageUrl?: string;
   title: string;
   bio: string;
@@ -21,8 +22,9 @@ const Profile = () => {
   const user = users[0];
 
   const initialState: InitialState = {
-    email: user ? user.email : "",
-    fullname: user ? user.firstName + " " + user.lastName : "",
+    username: user ? user.username : "",
+    firstName: user ? user.firstName : "",
+    lastName: user ? user.lastName : "",
     title: user ? user.title : "",
     bio: user ? user.bio : "",
     imageUrl: user ? user.imageUrl : ""
@@ -37,7 +39,7 @@ const Profile = () => {
     });
   };
 
-  const { fullname, email, title, bio, imageUrl } = state;
+  const { firstName, lastName, username, title, bio, imageUrl } = state;
   const imageId = imageUrl ? imageUrl.split("/") : "";
   const publicId = imageId.length ? imageId[imageId.length - 1].split(".")[0] : '';
 
@@ -90,27 +92,40 @@ const Profile = () => {
         </div>
         <form className="form" onSubmit={handleSubmit}>
           <div className="form__group">
-            <label className="form__label" htmlFor="fullname">
-              Name
+            <label className="form__label" htmlFor="firstName">
+              First Name
             </label>
             <input
               className="form__input"
               type="text"
-              name="fullname"
-              value={fullname}
+              name="firstName"
+              value={firstName}
               onChange={handleChange}
-              placeholder="First name and Last Name"
+              placeholder="First name"
             />
           </div>
           <div className="form__group">
-            <label className="form__label" htmlFor="email">
+            <label className="form__label" htmlFor="lastName">
+              Last Name
+            </label>
+            <input
+              className="form__input"
+              type="text"
+              name="lastName"
+              value={lastName}
+              onChange={handleChange}
+              placeholder="Last Name"
+            />
+          </div>
+          <div className="form__group">
+            <label className="form__label" htmlFor="username">
               Email
             </label>
             <input
               className="form__input"
               type="text"
-              name="email"
-              value={email}
+              name="username"
+              value={username}
               onChange={handleChange}
               placeholder="Email"
             />

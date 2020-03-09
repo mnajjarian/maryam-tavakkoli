@@ -1,5 +1,5 @@
 import { Dispatch } from "react";
-import { customAxios, setAuthToken } from "./customAxios";
+import { customAxios } from "./customAxios";
 import { AuthAction, AuthState } from "../reducers/authReducer";
 
 export const useAuthService = (
@@ -10,10 +10,6 @@ export const useAuthService = (
     customAxios
       .post("/signup", credentials)
       .then(res => {
-        localStorage.setItem("token", res.data.token);
-        localStorage.setItem("user", res.data.firstName + ' ' + res.data.lastName);
-        localStorage.setItem("userId", res.data.id);
-        setAuthToken(res.data.token);
         dispatch({
           type: "SIGNIN_SUCCESS",
           payload: res.data
@@ -30,10 +26,6 @@ export const useAuthService = (
     customAxios
       .post("/login", credentials, { withCredentials: true })
       .then(res => {
-        localStorage.setItem("token", res.data.token);
-        localStorage.setItem("user", res.data.firstName + ' ' + res.data.lastName);
-        localStorage.setItem("userId", res.data.id);
-        setAuthToken(res.data.token);
         dispatch({
           type: "SIGNIN_SUCCESS",
           payload: res.data
@@ -46,17 +38,35 @@ export const useAuthService = (
         });
       });
   };
-  const logout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
-    localStorage.removeItem("userId");
-    dispatch({
-      type: "LOGOUT_USER"
-    });
+  const logout = async () => {
+    customAxios
+      .get("/logout")
+      .then(response => {
+        dispatch({
+          type: "LOGOUT_USER"
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
+
+  const authenticate = () => {
+    customAxios.get("/auth").then(response => {
+      dispatch({
+        type: "SET_AUTH",
+        payload: response.data
+      });
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  };
+
   return {
     signup,
     signin,
-    logout
+    logout,
+    authenticate
   };
 };

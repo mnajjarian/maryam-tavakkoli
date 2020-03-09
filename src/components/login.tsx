@@ -4,10 +4,10 @@ import { Redirect } from "react-router";
 import Button from "./Button";
 
 interface InitialState {
-  email: string;
+  username: string;
   password: string;
 }
-const initialState: InitialState = { email: "", password: "" };
+const initialState: InitialState = { username: "", password: "" };
 
 const Login = () => {
   const [state, setState] = useState<InitialState>(initialState);
@@ -16,7 +16,7 @@ const Login = () => {
     authState: { isLoggedIn }
   } = useContext(AuthContext);
 
-  const { email, password } = state;
+  const { username, password } = state;
 
   const handleChange = (e: FormEvent): void => {
     const { name, value } = e.target as HTMLInputElement;
@@ -49,9 +49,9 @@ const Login = () => {
           <input
             className="form__input"
             type="text"
-            name="email"
+            name="username"
             placeholder="Username"
-            value={email}
+            value={username}
             onChange={handleChange}
           />
         </div>

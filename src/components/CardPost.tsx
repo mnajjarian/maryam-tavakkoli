@@ -21,7 +21,6 @@ const CardPost = (props: PostProps) => {
     post,
     post: { content }
   } = props;
-
   const draft: RawDraftContentState = JSON.parse(content);
   const { blocks } = draft;
   const blocksWithText = blocks.filter(
