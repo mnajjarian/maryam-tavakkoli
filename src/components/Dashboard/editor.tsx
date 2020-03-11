@@ -13,7 +13,6 @@ import { getBlockStyle } from "./getBlockStyle";
 import Toolbar from "./Toolbar";
 import { DataContext } from "../../contexts/dataContext";
 import { mediaBlockRenderer } from "./MediaBlockRenderer";
-import { AuthContext } from "../../contexts/authContext";
 
 interface EditorProps {
   blogId?: any;
@@ -36,7 +35,6 @@ const RichEditor = (props: EditorProps) => {
     JSON.stringify(convertToRaw(content))
   );
 
-  const { authState } = useContext(AuthContext);
   let editor = createRef<Editor>();
   const focusEditor = () => {
     if (editor.current) {
@@ -52,7 +50,7 @@ const RichEditor = (props: EditorProps) => {
     if(type === 'Publish') {
       dataService.createNewPost({
         content: editorContent,
-        userId: authState.id
+        userId: data.users[0]._id
       });
     } else {
       dataService.updatePost(props.blogId.id, editorContent);
