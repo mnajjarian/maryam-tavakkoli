@@ -5,6 +5,7 @@ import { AuthProvider } from "./contexts/authContext";
 import App from "./components/App";
 import "./styles/_main.scss";
 import { DataProvider } from "./contexts/dataContext";
+import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <AuthProvider>
@@ -16,3 +17,5 @@ ReactDOM.render(
   </AuthProvider>,
   document.getElementById("root")
 );
+
+serviceWorker.register();
