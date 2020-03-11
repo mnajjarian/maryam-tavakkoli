@@ -1,7 +1,7 @@
 import React, { Fragment, useContext } from "react";
 import Section from "../Section";
 import Header from "../Header";
-import Footer from "../Footer";
+
 import { DataContext } from "../../contexts/dataContext";
 import { AuthContext } from "../../contexts/authContext";
 
@@ -27,8 +27,6 @@ const Biography = () => {
   const fullname = firstName + " " + lastName;
 
   return (
-    <Fragment>
-      <Header />
       <Section
         imgUrl={imageUrl}
         title={fullname}
@@ -38,8 +36,6 @@ const Biography = () => {
         borderRadius="50%"
         text={bio}
       />
-      <Footer />
-    </Fragment>
   );
 };
 
