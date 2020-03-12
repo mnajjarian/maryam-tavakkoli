@@ -2,6 +2,7 @@ import { Dispatch } from "react";
 import axios from "axios";
 import { customAxios } from "./customAxios";
 import { DataState, DataAction } from "../reducers/dataReducer";
+import { Redirect } from "react-router-dom";
 
 export interface CommentState {
   commenter?: string;
@@ -41,8 +42,13 @@ export const useDataService = (
   };
   const updatePost = (blogId: string, content: string) => {
     customAxios.put(`/posts/${blogId}`, { content: content }).then(res => {
-      console.log(res.data);
-    });
+      dispatch({
+        type: "EDIT_POST",
+        payload: res.data
+      })
+    }).catch(err => {
+      console.log(err)
+    })
   };
   const getUsers = () => {
     customAxios.get("/users").then(res => {

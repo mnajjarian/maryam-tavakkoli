@@ -7,6 +7,7 @@ type Props = {
 };
 const BlogBody = (props: Props) => {
   const { posts } = props;
+  
   if (!posts.length) {
     return (
       <div className="blog">

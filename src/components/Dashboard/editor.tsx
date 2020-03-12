@@ -13,6 +13,7 @@ import { getBlockStyle } from "./getBlockStyle";
 import Toolbar from "./Toolbar";
 import { DataContext } from "../../contexts/dataContext";
 import { mediaBlockRenderer } from "./MediaBlockRenderer";
+import { useHistory } from "react-router-dom";
 
 interface EditorProps {
   blogId?: any;
@@ -35,6 +36,8 @@ const RichEditor = (props: EditorProps) => {
     JSON.stringify(convertToRaw(content))
   );
 
+  const history = useHistory();
+
   let editor = createRef<Editor>();
   const focusEditor = () => {
     if (editor.current) {
@@ -52,8 +55,10 @@ const RichEditor = (props: EditorProps) => {
         content: editorContent,
         userId: data.users[0]._id
       });
+      history.push('/dashboard/posts')
     } else {
       dataService.updatePost(props.blogId.id, editorContent);
+      history.push('/dashboard/posts')
     }
   };
 

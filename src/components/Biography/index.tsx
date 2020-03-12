@@ -1,6 +1,5 @@
-import React, { Fragment, useContext } from "react";
+import React, { useContext } from "react";
 import Section from "../Section";
-import Header from "../Header";
 
 import { DataContext } from "../../contexts/dataContext";
 import { AuthContext } from "../../contexts/authContext";
