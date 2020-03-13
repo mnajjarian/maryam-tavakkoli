@@ -25,9 +25,12 @@ export interface BlogType {
 
 const Blog = () => {
   const {
-    data: { blogs }, data
+    data: { blogs }
   } = useContext(DataContext);
-console.log(data)
+
+  if(!blogs.length) {
+    return <div></div>
+  }
   return (
     <Fragment>
       <Nav />

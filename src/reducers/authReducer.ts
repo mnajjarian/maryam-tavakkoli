@@ -16,7 +16,7 @@ export type AuthAction =
   | { type: "SET_AUTH"; payload: { auth: boolean } }
   | { type: "LOGOUT_USER" };
 
-export const authReducer = (state: AuthState, action: AuthAction) => {
+export const authReducer = (state: AuthState = initialAuthState, action: AuthAction) => {
   switch (action.type) {
     case "SIGNIN_ERROR":
     case "SIGNUP_ERROR":

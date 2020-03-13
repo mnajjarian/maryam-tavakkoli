@@ -2,7 +2,6 @@ import { Dispatch } from "react";
 import axios from "axios";
 import { customAxios } from "./customAxios";
 import { DataState, DataAction } from "../reducers/dataReducer";
-import { Redirect } from "react-router-dom";
 
 export interface CommentState {
   commenter?: string;
