@@ -1,0 +1,29 @@
+.subscription {
+    display: flex;
+    flex-direction: column;
+    &__text {
+        padding: 1em 0;
+        font-size: 1.2em;
+    }
+    &__error {
+        color: red;
+        font-size: .7em;
+        margin-bottom: 0;
+    }
+    &__shake {
+        animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+      
+    }
+}
+
+@media (max-width: 768px) {
+    .subscription {
+        //flex-direction: row;
+        .button {
+            margin-left: 0;
+        }
+        &__error {
+            font-size: .6em;
+        }
+    }
+}
