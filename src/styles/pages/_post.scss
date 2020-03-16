@@ -74,27 +74,21 @@
       align-items: center;
       padding-top: 0.25rem;
     }
-    &__facebook {
-      mask: url("../../assets/icons/facebook-2.svg");
 
-    }
-    &__linkedin {
-      mask: url("../../assets/icons/linkedin-2.svg");
-    }
-    &__twitter {
-      mask: url("../../assets/icons/twitter-2.svg");
-    }
     &__facebook,
     &__linkedin,
     &__twitter {
-      width: 40px;
-      height: 40px;
-      background-color: $main-bg-color;
+      img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        &:hover {
+          background-color: $primary;
+        }
+      }
       cursor: pointer;
       margin: 0 0.25rem;
-      &:hover {
-        background-color: $main-dark-color;
-      }
+     
     }
   }
 }

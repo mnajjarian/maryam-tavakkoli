@@ -57,9 +57,15 @@ const Post = ({ match }: { match: any }) => {
             <div className="post__social">
               {/*  <span className="post__social__title">Share the blog post</span> */}
               <div className="post__social__buttons ">
-                <div className="post__social__facebook"></div>
-                <div className="post__social__linkedin"></div>
-                <div className="post__social__twitter"></div>
+                <div className="post__social__facebook">
+                  <img src={require('../assets/icons/facebook-2.svg')} alt='facebook' />
+                </div>
+                <div className="post__social__linkedin">
+                <img src={require('../assets/icons/linkedin-2.svg')} alt='linkedin' />
+                </div>
+                <div className="post__social__twitter">
+                <img src={require('../assets/icons/twitter-2.svg')} alt='twitter' />
+                </div>
               </div>
             </div>
           </footer>

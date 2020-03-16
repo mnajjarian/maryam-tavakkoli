@@ -18,7 +18,7 @@ const Author = (props: Props) => {
       <h2 className="author__title" >About the author</h2>
       <img
         className="author__img"
-        src={require(`../assets/images/bio-image.jpg`)}
+        src={''}
         alt="author"
       />
       <p className="author__name">

@@ -4,9 +4,7 @@ interface ButtonProps {
     text: string;
     handleClick?: () => void;
 }
-const Button = (props: ButtonProps) => {
-    const { text, handleClick } = props;
-    
+const Button: React.FC<ButtonProps> = ({ text, handleClick }) => {    
     return(
         <button type="submit" className="button" onClick={handleClick} >{text}</button>
     );

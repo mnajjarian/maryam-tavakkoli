@@ -1,16 +1,16 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import Modal from "./Modal";
 
 const Footer = () => (
   <div className="footer">
-    <section className="footer__section">
+{/*     <section className="footer__section">
       <ul className="footer__section__link">
         <NavLink to="/">Home</NavLink>
         <NavLink to="/about">About</NavLink>
         <NavLink to="/blog">Blog</NavLink>
       </ul>
     </section>
-    <section className="footer__section">
+     <section className="footer__section">
       <ul className="footer__section__list">
         <li className="footer__section__items">
           <a
@@ -43,7 +43,7 @@ const Footer = () => (
           </a>
         </li>
       </ul>
-    </section>
+    </section> */}
     <div className="footer__subtitle">
       site by{" "}
       <a
@@ -55,6 +55,12 @@ const Footer = () => (
         mahdi najjarian
       </a>
     </div>
+    <div className="footer__subscribe" >
+      <a className="footer__subscribe__link" href="/#">subscribe</a>
+    </div>
+    <Modal isOpen={false}>
+      
+    </Modal>
   </div>
 );
 

@@ -1,7 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { Switch, Route, Redirect, match } from "react-router-dom";
 import Biography from "./Biography";
-import About from "./About";
 import Blog from "./Blog";
 import Post from "./Post";
 import Login from "./Login";
@@ -12,6 +11,7 @@ import Gallery from "./Dashboard/Gallery";
 import Profile from "./Dashboard/Profile";
 import RichEditor from "./Dashboard/Editor";
 import Posts from "./Dashboard/Posts";
+import Header from "./Header";
 
 interface Props {
   component: any;
@@ -50,9 +50,9 @@ const App = () => {
   return (
     <div>
       <Switch>
-        <Route exact path="/" component={Biography} />
+        <Route exact path="/" component={Header} />
         <Route exact path="/login" component={Login} />
-        <Route exact path="/about" component={About} />
+        <Route exact path="/about" component={Biography} />
         <Route exact path="/blog" component={Blog} />
         <Route
           exact

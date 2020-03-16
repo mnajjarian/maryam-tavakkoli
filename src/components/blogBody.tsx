@@ -5,8 +5,7 @@ import { BlogType } from "./Blog";
 type Props = {
   posts: BlogType[];
 };
-const BlogBody = (props: Props) => {
-  const { posts } = props;
+const BlogBody: React.FC<Props> = ({ posts }) => {
   
   if (!posts.length) {
     return (

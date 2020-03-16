@@ -1,4 +1,4 @@
-import React, { useState, useContext, FormEvent } from "react";
+import React, { useState, useContext, FormEvent, ChangeEvent } from "react";
 import Button from "./Button";
 import { DataContext } from "../contexts/dataContext";
 
@@ -23,8 +23,8 @@ const AddComment = (props: CommentForm) => {
   });
   const { dataService } = useContext(DataContext);
 
-  const handleChange = (e: FormEvent) => {
-    const { name, value } = e.target as HTMLInputElement;
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
     setState({
       ...state,
       [name]: value

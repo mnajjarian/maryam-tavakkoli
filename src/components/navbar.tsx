@@ -42,14 +42,25 @@ const Nav = () => {
           show: !toggle
         })}
       >
-        <ul>
+        <ul className="navbar__list" >
           <NavLink to="/">Home</NavLink>
           <NavLink to="/about">About</NavLink>
           <NavLink to="/blog">Blog</NavLink>
           {isLoggedIn &&
           <NavLink to="/dashboard">Dashboard</NavLink>
           }
+           <li className="navbar__social">
+          <a
+            className="navbar__social__link"
+            href="https://www.linkedin.com/in/maryam-tavakoli/"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <img className="navbar__social__icon" src={require("../assets/icons/linkedin-2.svg")} alt="icon" />
+          </a>
+        </li>
         </ul>
+       
       </nav>
     </div>
   );

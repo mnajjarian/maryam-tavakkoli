@@ -1,4 +1,4 @@
-import React, { useState, useContext, FormEvent } from "react";
+import React, { useState, useContext, FormEvent, ChangeEvent } from "react";
 import { AuthContext } from "../contexts/authContext";
 import { Redirect } from "react-router";
 import Button from "./Button";
@@ -18,8 +18,8 @@ const Login = () => {
 
   const { username, password } = state;
 
-  const handleChange = (e: FormEvent): void => {
-    const { name, value } = e.target as HTMLInputElement;
+  const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
+    const { name, value } = e.target;
     setState({
       ...state,
       [name]: value
