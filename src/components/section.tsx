@@ -91,7 +91,7 @@ const Social = (): JSX.Element => (
         rel="noopener noreferrer"
         target="_blank"
       >
-        <img src={require("../assets/icons/instagram-2.svg")} alt="icon" />
+        <img src={require("../assets/icons/twitter-2.svg")} alt="icon" />
       </a>
     </li>
   </ul>

@@ -30,7 +30,7 @@
         outline: none;
         border-radius: 4px;
         padding: 12px 4px;
-        font-size: 1rem;
+        font-size: 1em;
         line-height: 2;
         width: 100%;
         &::placeholder {
@@ -48,6 +48,14 @@
     .form {
         &__group {
             display: block;
+        }
+        &__input {
+            margin-bottom: 1em;
+        }
+        &__textarea {
+            &::placeholder {
+                font-size: .8em;
+            }
         }
     }
 }

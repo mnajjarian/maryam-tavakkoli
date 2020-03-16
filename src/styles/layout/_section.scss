@@ -70,9 +70,13 @@
     &__link {
       padding: 0.2em;
 
-      img:hover {
-        border-radius: 50%;
-        background: $primary;
+      img {
+        height: 40px;
+        width: 40px;
+        &:hover {
+          border-radius: 50%;
+          background: $primary;
+        }
       }
     }
   }

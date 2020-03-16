@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import Modal from "./Modal";
+import Subscription from "./Subscription";
 
-const Footer = () => (
+const Footer = () => {
+  const [isOpen, setIsOpen] = useState(false)
+  return(
   <div className="footer">
-{/*     <section className="footer__section">
+    {/*     <section className="footer__section">
       <ul className="footer__section__link">
         <NavLink to="/">Home</NavLink>
         <NavLink to="/about">About</NavLink>
@@ -55,13 +58,15 @@ const Footer = () => (
         mahdi najjarian
       </a>
     </div>
-    <div className="footer__subscribe" >
-      <a className="footer__subscribe__link" href="/#">subscribe</a>
+    <div className="footer__subscribe">
+      <a className="footer__subscribe__link" href="/#" onClick={() => setIsOpen(!isOpen)}>
+        subscribe
+      </a>
     </div>
-    <Modal isOpen={false}>
-      
-    </Modal>
+      <Modal isOpen={isOpen} handleClose={() => setIsOpen(!isOpen)}>
+        <Subscription handleToggle={() => setIsOpen(!isOpen)} />
+      </Modal>
   </div>
-);
+)};
 
 export default Footer;

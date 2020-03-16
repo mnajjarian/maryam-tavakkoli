@@ -15,7 +15,7 @@ const Modal = (props: Props) => {
         "modal-isOpen": isOpen
       })}
     >
-      <div className="modal__content">
+      <div className="modal__content" style={{height: '60%', width: '70%', background: 'lightblue'}}>
         <div className="modal__close" onClick={handleClose}>
           &times;
         </div>
