@@ -6,17 +6,17 @@
   align-items: center;
   height: 100%;
   width: 100%;
-  padding-top: 50px;
-  overflow: hidden;
+  padding-top: 2em;
+  //overflow: hidden;
   color: #333;
   &__content {
     display: flex;
     flex-direction: row-reverse;
     border-radius: 16px;
-    background-color: #333;
+    background-color: $primary;
     color: white;
     width: 80%;
-    padding: 20px;
+    padding: 1.5em;
   }
   &__photo {
     display: flex;
@@ -61,22 +61,32 @@
     border-radius: 8px;
     backface-visibility: hidden;
   }
+  .button {
+    color: $black;
+    background-color: $white;
+    &:hover {
+      color: $primary;
+      background-color: $light;
+    }
+  }
 }
 
 @media (max-width: 760px) {
   .profile {
-    padding-top: 200px;
-    overflow: auto;
-    background-color: #333;
+    background-color: $primary;
+    padding-top: 15em;
     &__content {
       width: 100%;
       justify-content: center;
       align-items: center;
       flex-direction: column;
+      border-radius: 0;
     }
-    &__photo {
-      width: 80%;
-      margin: 20px 0;
+    &__img {
+      width: 10em;
+      height: 10em;
+      //margin: 20px 0;
+      border-radius: 50%;
     }
   }
 }

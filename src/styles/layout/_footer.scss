@@ -61,14 +61,11 @@
       }
     }
   }
-  &__modal {
-  
-  }
 }
 
 @media (max-width: 768px) {
   .footer {
-    flex-direction: column;
+    //flex-direction: column;
     justify-content: center;
     align-items: center;
     &__section {

@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { DataContext } from "../../contexts/dataContext";
+import { DataContext } from "../contexts/dataContext";
 
 interface Props {
   name: String;

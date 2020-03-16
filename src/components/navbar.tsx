@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import classNames from "classnames";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../contexts/authContext";
@@ -7,7 +7,7 @@ const Nav = () => {
   const [toggle, setToggle] = React.useState<boolean>(false);
   const { authState: { isLoggedIn } } = useContext(AuthContext);
 
-  useEffect(() => {
+/*   useEffect(() => {
     const nav = document.getElementById("nav");
     if (nav) {
       const sticky = nav.offsetTop;
@@ -22,9 +22,9 @@ const Nav = () => {
         window.removeEventListener("scroll", scrollCallBack) as any;
    
     }
-  }, []);
+  }, []); */
   return (
-    <div id="nav" className="navbar">
+    <div id="nav" className="navbar sticky">
       <div
         className={classNames({
           navbar__menu: true,

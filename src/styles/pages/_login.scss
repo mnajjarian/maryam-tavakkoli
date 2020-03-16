@@ -2,7 +2,7 @@
 
 
 .login {
-    background: #5801CB;
+    background: $primary;
     height: 100vh;
     color: white;
 
@@ -18,9 +18,12 @@
 
         button {
             text-transform: uppercase;
-            color: #5801CB;
+            color: $white;
             font-size: .9em;
             font-weight: bold;
+            &:hover {
+                color: $primary;
+            }
         }
     }
 }

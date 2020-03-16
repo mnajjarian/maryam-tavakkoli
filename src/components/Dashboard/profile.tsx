@@ -149,8 +149,7 @@ const Profile = () => {
             </label>
             <textarea
               className="form__textarea"
-              cols={12}
-              rows={9}
+              rows={6}
               name="bio"
               value={bio}
               onChange={handleChange}

@@ -1,17 +1,15 @@
 import React, { useContext } from "react";
-import Section from "../Section";
+import Section from "./Section";
 
-import { DataContext } from "../../contexts/dataContext";
-import { AuthContext } from "../../contexts/authContext";
+import { DataContext } from "../contexts/dataContext";
+import { AuthContext } from "../contexts/authContext";
+import Footer from "components/Footer";
+import Nav from "components/Navbar";
 
-interface Profile {
-  name: string;
-  image: string;
-  biography: string;
-}
-const Biography = () => {
+
+const About = () => {
   const { authState } = useContext(AuthContext);
-  
+
   const {
     data: { users }
   } = useContext(DataContext);
@@ -26,16 +24,15 @@ const Biography = () => {
   const fullname = firstName + " " + lastName;
 
   return (
+    <div className='about'>
+      <Nav />
       <Section
         imgUrl={imageUrl}
-        title={fullname}
-        href="/about"
-        btnText="read more"
-        flexDirect="row"
-        borderRadius="50%"
         text={bio}
       />
+      <Footer />
+    </div>
   );
 };
 
-export default Biography;
+export default About;

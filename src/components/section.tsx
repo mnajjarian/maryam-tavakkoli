@@ -1,47 +1,41 @@
 import React from "react";
-import classNames from "classnames";
 
 interface Props {
   imgUrl: string;
-  title: string;
-  href: string;
-  btnText: string;
   text: string;
-  flexDirect: string;
-  borderRadius: string;
 }
-const Section = (props: Props) => (
+const Section: React.FC<Props> = ({ imgUrl, text}) => (
   <div className="section">
     <section
-      className={classNames({
-        section__content: true,
-        [`section__content--${props.flexDirect}`]: true
-      })}
+      className="section__content"
     >
       <img
         className="section__img"
-        style={{ borderRadius: props.borderRadius }}
         src={
-          props.imgUrl ? props.imgUrl : require("../assets/images/avatar.png")
+          imgUrl ? imgUrl : require("../assets/images/avatar.png")
         }
         alt="biography"
       />
       <article className="section__article">
-        <h2 className="section__article--title">{props.title}</h2>
+        <h2 className="section__article--title">Hello,</h2>
+        <h3>a bit about me</h3>
         <span className="section__article--span"></span>
-        <p className="section__article--text">{props.text}</p>
+        <div className="section__links">
+          <a href="/about#" className="section__item">my resume</a>
+          <a href="/about#" className="section__item">my resume</a>
+          <a href="/about#" className="section__item">my resume</a>
+        </div>
+        <span className="section__article--span"></span>
+        <p className="section__article--text">{text}</p>
         {/* {props.text.length > 20 && <Link to={props.href}>{props.btnText}</Link>} */}
       </article>
-      <Social />
     </section>
-
-    <Footer />
   </div>
 );
 
 export default Section;
 
-const Footer = (): JSX.Element => {
+const FooterX = (): JSX.Element => {
   return (
     <div className="section__footer">
       <ul className="section__footer__list">
