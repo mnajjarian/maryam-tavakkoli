@@ -1,0 +1,91 @@
+.latest {
+  padding: 2em 0 7em 0;
+  text-align: center;
+  &__title {
+    margin-bottom: 0;
+    @include font-size-l-xx;
+    font-weight: 500;
+    text-transform: capitalize;
+    padding: 0.5em;
+  }
+  &__line {
+    @include timeline-line {
+      width: 60%;
+      height: 3px;
+    }
+  }
+  &__posts {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: $spacing-02;
+  }
+
+  &__card {
+    position: relative;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25em;
+    width: $spacing-18;
+    height: $spacing-18;
+    margin-right: $spacing-01;
+    cursor: pointer;
+    &:hover {
+      opacity: 0.7;
+      & > a {
+        color: $primary;
+      }
+    }
+    & > a {
+      text-decoration: none;
+      color: $dark;
+    }
+    &__img {
+      height: $spacing-12;
+      width: 100%;
+      border-top-left-radius: calc(0.25rem - 1px);
+      border-top-right-radius: calc(0.25em - 1px);
+      display: block;
+    }
+    &__body {
+      padding: 0em 0.9em;
+    }
+    &__text {
+      @include font-size-m;
+      line-height: 1.5em;
+    }
+  }
+}
+
+@include for-phone {
+  .latest {
+    &__title {
+        @include font-size-l;
+      }
+    &__posts {
+      flex-direction: column;
+    }
+    &__card {
+      margin: 0.5em;
+    }
+  }
+}
+
+@include for-big-desktop-up {
+  .latest {
+    &__title {
+      @include font-size-l-xxx;
+    }
+    &__card {
+      width: $spacing-28;
+      height: $spacing-28;
+      &__img {
+        height: $spacing-20;
+      }
+      &__text {
+        @include font-size-l;
+      }
+    }
+  }
+}

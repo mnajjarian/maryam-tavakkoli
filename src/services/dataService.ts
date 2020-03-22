@@ -1,134 +1,143 @@
-import { Dispatch } from "react";
-import axios from "axios";
-import { customAxios } from "./customAxios";
-import { DataState, DataAction } from "../reducers/dataReducer";
+import { Dispatch } from 'react'
+import axios from 'axios'
+import { customAxios } from './customAxios'
+import { DataState, DataAction, User } from '../reducers/dataReducer'
 
 export interface CommentState {
-  commenter?: string;
-  email?: string;
-  comment: string;
+  commenter?: string
+  email?: string
+  comment: string
 }
 
-export const useDataService = (
-  state: DataState,
-  dispatch: Dispatch<DataAction>
-) => {
+export const useDataService = (state: DataState, dispatch: Dispatch<DataAction>) => {
   const getPosts = () => {
     customAxios
-      .get("/posts")
+      .get('/posts')
       .then(res => {
         dispatch({
-          type: "FETCH_POSTS",
-          payload: res.data
-        });
+          type: 'FETCH_POSTS',
+          payload: res.data,
+        })
       })
       .catch(err => {
-        console.log(err);
-      });
-  };
+        console.log(err)
+      })
+  }
   const createNewPost = (newPost: { userId: string; content: string }) => {
     customAxios
-      .post("/posts", newPost)
+      .post('/posts', newPost)
       .then(res => {
         dispatch({
-          type: "ADD_POST",
-          payload: res.data
-        });
+          type: 'ADD_POST',
+          payload: res.data,
+        })
       })
       .catch(err => {
-        console.log(err);
-      });
-  };
-  const updatePost = (blogId: string, content: string) => {
-    customAxios.put(`/posts/${blogId}`, { content: content }).then(res => {
-      dispatch({
-        type: "EDIT_POST",
-        payload: res.data
+        console.log(err)
       })
-    }).catch(err => {
-      console.log(err)
-    })
-  };
+  }
+  const updatePost = (blogId: string, content: string) => {
+    customAxios
+      .put(`/posts/${blogId}`, { content: content })
+      .then(res => {
+        dispatch({
+          type: 'EDIT_POST',
+          payload: res.data,
+        })
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
   const getUsers = () => {
-    customAxios.get("/users").then(res => {
+    customAxios.get('/users').then(res => {
       dispatch({
-        type: "FETCH_USERS",
-        payload: res.data
-      });
-    });
-  };
-  const updateUser = (objId: string, obj: any, publicId: string) => {
+        type: 'FETCH_USERS',
+        payload: res.data,
+      })
+    })
+  }
+  const updateUser = (objId: string, obj: User, publicId: string): void => {
+    console.log(obj)
     customAxios
       .put(`/users/${objId}`, { obj: obj, publicId: publicId })
       .then(res => {
-        dispatch({
-          type: "UPDATE_USER",
-          payload: res.data
-        });
-      });
-  };
+        if (res.data._id) {
+          dispatch({
+            type: 'UPDATE_USER',
+            payload: res.data,
+          })
+        } else {
+          dispatch({
+            type: 'ERROR_MESSAGE',
+            payload: res.data,
+          })
+        }
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
   const removeImage = (publicId: string) => {
     customAxios.delete(`/assets/${publicId}`).then(res => {
       dispatch({
-        type: "REMOVE_IMAGE",
-        payload: publicId
-      });
-    });
-  };
+        type: 'REMOVE_IMAGE',
+        payload: publicId,
+      })
+    })
+  }
   const removeAssets = (publicIds: string[]) => {
-    customAxios.post("/assets", publicIds).then(res => {
-      console.log(res.data);
-    });
-  };
+    customAxios.post('/assets', publicIds).then(res => {
+      console.log(res.data)
+    })
+  }
   const removePost = (blogId: string) => {
     customAxios.delete(`/posts/${blogId}`).then(res => {
       dispatch({
-        type: "REMOVE_POST",
-        payload: blogId
-      });
-    });
-  };
+        type: 'REMOVE_POST',
+        payload: blogId,
+      })
+    })
+  }
   const addComment = (comment: CommentState) => {
     customAxios
-      .post("/comments", comment)
+      .post('/comments', comment)
       .then(res => {
         dispatch({
-          type: "ADD_COMMENT",
-          payload: res.data
-        });
+          type: 'ADD_COMMENT',
+          payload: res.data,
+        })
       })
       .catch((err: Error) => {
-        console.log(err);
-      });
-  };
+        console.log(err)
+      })
+  }
   const removeComment = (commentId: string) => {
     customAxios
       .delete(`/comments/${commentId}`)
       .then(res => {
         dispatch({
-          type: "REMOVE_COMMENT",
-          payload: res.data
-        });
+          type: 'REMOVE_COMMENT',
+          payload: res.data,
+        })
       })
       .catch((err: Error) => {
-        console.log(err);
-      });
-  };
+        console.log(err)
+      })
+  }
   const getGallery = () => {
     axios
-      .get(
-        `https://res.cloudinary.com/${process.env.REACT_APP_CLOUDNAME}/image/list/xmas.json`
-      )
+      .get(`https://res.cloudinary.com/${process.env.REACT_APP_CLOUDNAME}/image/list/xmas.json`)
       .then(res => {
         dispatch({
-          type: "FETCH_GALLERY",
-          payload: res.data.resources
-        });
+          type: 'FETCH_GALLERY',
+          payload: res.data.resources,
+        })
       })
       .catch((err: Error) => {
-        console.log(err);
-      });
-  };
+        console.log(err)
+      })
+  }
   return {
     getPosts,
     getGallery,
@@ -140,6 +149,6 @@ export const useDataService = (
     removeAssets,
     removeImage,
     addComment,
-    removeComment
-  };
-};
+    removeComment,
+  }
+}

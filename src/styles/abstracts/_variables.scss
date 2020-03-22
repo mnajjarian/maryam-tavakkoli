@@ -1,13 +1,155 @@
-$dark-light: #777;
-$main-bg-color: #4b6cb7;
-$main-dark-color: #292b5c;
-$light-french: #d1b873;
-$blog-bg-color: #ff8300;
+@import url("https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap");
+
+$font-family: 'Open Sans', sans-serif;
+
+
 
 
 $primary: #1292B4;
 $white: #FFF;
 $lighter: #F3F3F3;
 $light: #DAE1E7;
-$dark: #444;
+
+
+$main-bg-color: red;
+$main-dark-color: red;
+
+
+/* colors */
+//$primary: #dd7f45;
+$light-french: #d1b873;
+$primary-light: rgba(221, 127, 69, 0.5);
+$primary-dark: #37c095;
+$secondary: #dadada;
+$danger: #d24848;
+$duplicate: #307e7e;
+$light: #fff;
+
 $black: #000;
+$dark: #444;
+$dark-light: #303030;
+$dark-light-1: #232323;
+$dark-light-2: #4c4c4c;
+
+$white: #fff;
+$green: #37c095;
+$grey-light: #a1a1a1;
+$grey-light-1: #e5e5e5;
+$grey-light-2: #bdbdbd;
+$grey-light-3: #f4f4f4;
+
+$disabled: rgb(165, 164, 164);
+$disabled-dark: grey;
+
+$spacing-base: 16px;
+
+$spacing-00-25: $spacing-base * 0.25;
+$spacing-00-50: $spacing-base * 0.5;
+$spacing-00-75: $spacing-base * 0.75;
+$spacing-01: $spacing-base * 1;
+$spacing-01-50: $spacing-base * 1.5;
+$spacing-02: $spacing-base * 2;
+$spacing-02-50: $spacing-base * 2.5;
+$spacing-03: $spacing-base * 3;
+$spacing-04: $spacing-base * 4;
+$spacing-06: $spacing-base * 6;
+$spacing-08: $spacing-base * 8;
+$spacing-10: $spacing-base * 10;
+$spacing-12: $spacing-base * 12;
+$spacing-16: $spacing-base * 16;
+$spacing-18: $spacing-base * 18;
+$spacing-20: $spacing-base * 20;
+$spacing-24: $spacing-base * 24;
+$spacing-26: $spacing-base * 26;
+$spacing-28: $spacing-base * 28;
+$spacing-32: $spacing-base * 32;
+$spacing-40: $spacing-base * 40;
+$spacing-48: $spacing-base * 48;
+
+$maximum-width: 1280px;
+
+@mixin font-size-l-xxxx {
+  @include interpolate(
+    $properties: font-size,
+    $min-screen: 20rem,
+    $max-screen: 85.375rem,
+    $min-value: 1.802rem,
+    $max-value: 4.209rem
+  );
+}
+@mixin font-size-l-xxx {
+  @include interpolate(
+    $properties: font-size,
+    $min-screen: 20rem,
+    $max-screen: 85.375rem,
+    $min-value: 1.602rem,
+    $max-value: 3.157rem
+  );
+}
+@mixin font-size-l-xx {
+  @include interpolate(
+    $properties: font-size,
+    $min-screen: 20rem,
+    $max-screen: 85.375rem,
+    $min-value: 1.424rem,
+    $max-value: 2.369rem
+  );
+}
+@mixin font-size-l-x {
+  @include interpolate(
+    $properties: font-size,
+    $min-screen: 20rem,
+    $max-screen: 85.375rem,
+    $min-value: 1.266rem,
+    $max-value: 1.777rem
+  );
+}
+@mixin font-size-l {
+  @include interpolate(
+    $properties: font-size,
+    $min-screen: 20rem,
+    $max-screen: 85.375rem,
+    $min-value: 1.125rem,
+    $max-value: 1.333rem
+  );
+}
+@mixin font-size-m {
+  font-size: 1rem;
+}
+@mixin font-size-s {
+  @include interpolate(
+    $properties: font-size,
+    $min-screen: 20rem,
+    $max-screen: 85.375rem,
+    $min-value: 0.889rem,
+    $max-value: 0.75rem
+  );
+}
+@mixin font-size-s-x {
+  @include interpolate(
+    $properties: font-size,
+    $min-screen: 20rem,
+    $max-screen: 85.375rem,
+    $min-value: 0.79rem,
+    $max-value: 0.563rem
+  );
+}
+@mixin font-size-s-xx {
+  @include interpolate(
+    $properties: font-size,
+    $min-screen: 20rem,
+    $max-screen: 85.375rem,
+    $min-value: 0.702rem,
+    $max-value: 0.422rem
+  );
+}
+
+@mixin maxWidth-margin-padding {
+  max-width: $maximum-width;
+  margin: 0 auto;
+  padding: 0 $spacing-04;
+
+  @include for-tablet-portrait-down {
+    padding: 0 $spacing-02;
+  }
+}
