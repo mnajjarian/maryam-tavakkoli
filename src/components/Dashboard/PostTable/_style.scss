@@ -1,3 +1,4 @@
+@import '../../../styles/abstracts/variables';
 .posts {
   display: flex;
   justify-content: center;
@@ -10,7 +11,7 @@
     width: 100%;
     color: #333;
   }
-  
+
   th,
   td {
     text-align: center;
@@ -21,16 +22,17 @@
       &:visited {
         color: #000;
       }
-      &:active, &:hover {
+      &:active,
+      &:hover {
         color: #aaa;
       }
     }
   }
-  
+
   tr:nth-child(even) {
     background-color: #f2f2f2;
   }
-  
+
   th {
     background-color: #4caf50;
     text-transform: capitalize;
@@ -39,9 +41,9 @@
 }
 
 tr > td:last-child button {
-    background: red;
-    color: white;
-    &:hover {
-        background: rgb(212, 32, 32);
-    }
+  background: red;
+  color: white;
+  &:hover {
+    background: rgb(212, 32, 32);
+  }
 }

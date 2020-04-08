@@ -4,9 +4,54 @@ import Button from '../../Button'
 import { BlogType, CommentInterface } from '../../Blog'
 import { extractFromDraft } from '../../../Helper'
 import Modal from '../../Modal'
-import CommentList from '../../CommentList'
+import CommentList from '../CommentList'
 import Table from 'components/Table'
 import { Link } from 'react-router-dom'
+
+type TableRow = {
+  item: BlogType
+  index: number
+  handleClick: (id: string) => () => void
+  toggleModal: (e: MouseEvent<HTMLAnchorElement>, comments: CommentInterface[]) => void
+}
+function BlogRow(props: TableRow): JSX.Element {
+  const {
+    item: { comments, content, createdAt, updatedAt, id },
+    index,
+    toggleModal,
+    handleClick,
+  } = props
+  const date = (date: string): JSX.Element => <td>{new Date(date).toISOString().slice(0, 10)}</td>
+  return (
+    <tr>
+      <td>{index + 1}</td>
+      <td>
+        <a
+          href={`/blog/${extractFromDraft(content)
+            .title.split(' ')
+            .join('-')}`}
+        >
+          {extractFromDraft(content).title}
+        </a>
+      </td>
+      {date(createdAt)}
+      {date(updatedAt)}
+      <td>
+        <a href="/#" onClick={(e: MouseEvent<HTMLAnchorElement>): void => toggleModal(e, comments)}>
+          {comments.length}
+        </a>
+      </td>
+      <td>
+        <Link to={`/dashboard/edit/${id}`}>
+          <Button text="Edit" />
+        </Link>
+      </td>
+      <td>
+        <Button text="Delete" handleClick={handleClick(id)} />
+      </td>
+    </tr>
+  )
+}
 
 function Posts(): JSX.Element {
   const [isOpen, setIsOpen] = useState(false)
@@ -51,33 +96,7 @@ function Posts(): JSX.Element {
       <div className="posts-table">
         <Table heads={heads}>
           {blogs.map((blog: BlogType, index: number) => (
-            <tr key={blog.id}>
-              <td>{index + 1}</td>
-              <td>
-                <a
-                  href={`/blog/${extractFromDraft(blog.content)
-                    .title.split(' ')
-                    .join('-')}`}
-                >
-                  {extractFromDraft(blog.content).title}
-                </a>
-              </td>
-              <td>{new Date(blog.createdAt).toISOString().slice(0, 10)}</td>
-              <td>{new Date(blog.updatedAt).toISOString().slice(0, 10)}</td>
-              <td>
-                <a href="/#" onClick={(e: MouseEvent<HTMLAnchorElement>): void => toggleModal(e, blog.comments)}>
-                  {blog.comments.length}
-                </a>
-              </td>
-              <td>
-                <Link to={`/dashboard/edit/${blog.id}`}>
-                  <Button text="Edit" />
-                </Link>
-              </td>
-              <td>
-                <Button text="Delete" handleClick={handleClick(blog.id)} />
-              </td>
-            </tr>
+            <BlogRow key={blog.id} item={blog} index={index} toggleModal={toggleModal} handleClick={handleClick} />
           ))}
         </Table>
       </div>

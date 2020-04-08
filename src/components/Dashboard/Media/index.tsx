@@ -1,14 +1,14 @@
 import React from 'react'
 import { EntityInstance, ContentBlock, ContentState } from 'draft-js'
 
-interface ImageProps {
+type ImageProps = {
   src: string
 }
-interface MediaProps {
+type MediaProps = {
   block: ContentBlock
   contentState: ContentState
 }
-const Image = (props: ImageProps): JSX.Element | null => {
+function Image(props: ImageProps): JSX.Element | null {
   if (!!props.src) {
     return <img src={props.src} alt="upload to cloud" />
   }

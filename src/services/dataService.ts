@@ -3,14 +3,29 @@ import axios from 'axios'
 import { customAxios } from './customAxios'
 import { DataState, DataAction, User } from '../reducers/dataReducer'
 
-export interface CommentState {
+export type CommentState = {
   commenter?: string
   email?: string
   comment: string
 }
+type NewPost = { userId: string; content: string }
 
-export const useDataService = (state: DataState, dispatch: Dispatch<DataAction>) => {
-  const getPosts = () => {
+type DataService = {
+  getPosts: () => void
+  getGallery: () => void
+  createNewPost: (newPost: NewPost) => void
+  updatePost: (blogId: string, content: string) => void
+  removePost: (blogId: string) => void
+  getUsers: () => void
+  updateUser: (objId: string, obj: User, publicId: string) => void
+  removeAssets: (publicId: string[]) => void
+  removeImage: (publicId: string) => void
+  addComment: (comment: CommentState) => void
+  removeComment: (commentId: string) => void
+}
+
+export function useDataService(state: DataState, dispatch: Dispatch<DataAction>): DataService {
+  const getPosts = (): void => {
     customAxios
       .get('/posts')
       .then(res => {
@@ -23,7 +38,7 @@ export const useDataService = (state: DataState, dispatch: Dispatch<DataAction>)
         console.log(err)
       })
   }
-  const createNewPost = (newPost: { userId: string; content: string }) => {
+  const createNewPost = (newPost: NewPost): void => {
     customAxios
       .post('/posts', newPost)
       .then(res => {
@@ -36,7 +51,7 @@ export const useDataService = (state: DataState, dispatch: Dispatch<DataAction>)
         console.log(err)
       })
   }
-  const updatePost = (blogId: string, content: string) => {
+  const updatePost = (blogId: string, content: string): void => {
     customAxios
       .put(`/posts/${blogId}`, { content: content })
       .then(res => {
@@ -49,7 +64,7 @@ export const useDataService = (state: DataState, dispatch: Dispatch<DataAction>)
         console.log(err)
       })
   }
-  const getUsers = () => {
+  const getUsers = (): void => {
     customAxios.get('/users').then(res => {
       dispatch({
         type: 'FETCH_USERS',
@@ -78,28 +93,28 @@ export const useDataService = (state: DataState, dispatch: Dispatch<DataAction>)
         console.log(err)
       })
   }
-  const removeImage = (publicId: string) => {
-    customAxios.delete(`/assets/${publicId}`).then(res => {
+  const removeImage = (publicId: string): void => {
+    customAxios.delete(`/assets/${publicId}`).then(() => {
       dispatch({
         type: 'REMOVE_IMAGE',
         payload: publicId,
       })
     })
   }
-  const removeAssets = (publicIds: string[]) => {
+  const removeAssets = (publicIds: string[]): void => {
     customAxios.post('/assets', publicIds).then(res => {
       console.log(res.data)
     })
   }
-  const removePost = (blogId: string) => {
-    customAxios.delete(`/posts/${blogId}`).then(res => {
+  const removePost = (blogId: string): void => {
+    customAxios.delete(`/posts/${blogId}`).then(() => {
       dispatch({
         type: 'REMOVE_POST',
         payload: blogId,
       })
     })
   }
-  const addComment = (comment: CommentState) => {
+  const addComment = (comment: CommentState): void => {
     customAxios
       .post('/comments', comment)
       .then(res => {
@@ -112,7 +127,7 @@ export const useDataService = (state: DataState, dispatch: Dispatch<DataAction>)
         console.log(err)
       })
   }
-  const removeComment = (commentId: string) => {
+  const removeComment = (commentId: string): void => {
     customAxios
       .delete(`/comments/${commentId}`)
       .then(res => {
@@ -125,7 +140,7 @@ export const useDataService = (state: DataState, dispatch: Dispatch<DataAction>)
         console.log(err)
       })
   }
-  const getGallery = () => {
+  const getGallery = (): void => {
     axios
       .get(`https://res.cloudinary.com/${process.env.REACT_APP_CLOUDNAME}/image/list/xmas.json`)
       .then(res => {

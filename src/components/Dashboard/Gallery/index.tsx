@@ -41,7 +41,7 @@ function Gallery(props: Props): JSX.Element {
     )
   }
 
-  const handleClick = (publicId: string) => () => {
+  const handleClick = (publicId: string) => (): void => {
     if (props.withCb) {
       props.cb(publicId)
     }
@@ -51,13 +51,13 @@ function Gallery(props: Props): JSX.Element {
     })
   }
 
-  const checkList = gallery.reduce((acc: any, curr: GalleryInterface) => {
+  const checkList = gallery.reduce((acc: string[], curr: GalleryInterface) => {
     if (checkState[curr.public_id]) {
       acc.push(curr.public_id)
     }
     return acc
   }, [])
-  const handleDelete = () => {
+  const handleDelete = (): void => {
     dataService.removeImage(checkList[0])
   }
 
@@ -75,7 +75,6 @@ function Gallery(props: Props): JSX.Element {
               <Button text={checkList.length > 1 ? 'Delete all' : 'Delete'} handleClick={handleDelete} />
             )}
           </div>
-
           <div className="gallery__contents">
             {gallery.map((data: GalleryInterface) => (
               <Picture

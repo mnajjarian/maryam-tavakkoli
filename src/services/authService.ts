@@ -2,10 +2,21 @@ import { Dispatch } from 'react'
 import { customAxios } from './customAxios'
 import { AuthAction, AuthState } from '../reducers/authReducer'
 
-export const useAuthService = (state: AuthState, dispatch: Dispatch<AuthAction>) => {
-  const signup = (credentials: any) => {
+type Cred = {
+  username: string
+  password: string
+  email?: string
+}
+type AuthService = {
+  signup: (cred: Cred) => void
+  signin: (cred: Cred) => void
+  logout: () => void
+  authenticate: () => void
+}
+export const useAuthService = (state: AuthState, dispatch: Dispatch<AuthAction>): AuthService => {
+  const signup = (cred: Cred): void => {
     customAxios
-      .post('/signup', credentials)
+      .post('/signup', cred)
       .then(res => {
         dispatch({
           type: 'SIGNIN_SUCCESS',
@@ -19,9 +30,9 @@ export const useAuthService = (state: AuthState, dispatch: Dispatch<AuthAction>)
         })
       })
   }
-  const signin = (credentials: any) => {
+  const signin = (cred: Cred): void => {
     customAxios
-      .post('/login', credentials, { withCredentials: true })
+      .post('/login', cred)
       .then(res => {
         dispatch({
           type: 'SIGNIN_SUCCESS',
@@ -35,10 +46,10 @@ export const useAuthService = (state: AuthState, dispatch: Dispatch<AuthAction>)
         })
       })
   }
-  const logout = async () => {
+  const logout = (): void => {
     customAxios
       .get('/logout')
-      .then(response => {
+      .then(() => {
         dispatch({
           type: 'LOGOUT_USER',
         })

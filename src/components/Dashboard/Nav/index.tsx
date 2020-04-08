@@ -1,11 +1,11 @@
+/* eslint-disable @typescript-eslint/camelcase */
+/* eslint-disable camelcase */
 import React, { useState, useContext, useRef } from 'react'
 import classNames from 'classnames'
 import { Link, useHistory } from 'react-router-dom'
 import { AuthContext } from '../../../contexts/authContext'
 import { useOnClickOutside } from '../../../custom-hooks/useOnClickOutside'
 import { DataContext } from '../../../contexts/dataContext'
-
-//import { User } from "../../reducers/dataReducer";
 
 function Nav(): JSX.Element {
   const [toggle, setToggle] = useState(false)
@@ -14,10 +14,7 @@ function Nav(): JSX.Element {
     data: { users },
   } = useContext(DataContext)
   const history = useHistory()
-  /*   const user: User = users.filter(
-    (user: User) =>
-      user.firstName + " " + user.lastName === localStorage.getItem("user")
-  )[0]; */
+
   const user = users[0]
   const avatarUrl = user ? user.imageUrl : require('../../../assets/images/avatar.png')
 

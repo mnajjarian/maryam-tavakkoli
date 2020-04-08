@@ -9,7 +9,7 @@ interface InitialState {
 }
 const initialState: InitialState = { username: '', password: '' }
 
-const Login = () => {
+function Login(): JSX.Element {
   const [state, setState] = useState<InitialState>(initialState)
   const {
     authService,
@@ -26,7 +26,7 @@ const Login = () => {
     })
   }
 
-  const handleSubmit = async (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent): Promise<JSX.Element | undefined> => {
     e.preventDefault()
     try {
       await authService.signin(state)

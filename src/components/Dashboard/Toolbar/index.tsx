@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 /* eslint-disable @typescript-eslint/camelcase */
 import React, { useState, useRef } from 'react'
 import { EditorState, DraftBlockType, RichUtils } from 'draft-js'
@@ -14,7 +15,7 @@ interface ToolbarProps {
   onAddImage: (publicId: string) => void
   editorState: EditorState
   handleChange: (editorState: EditorState) => void
-  handleSave: (type: string) => any
+  handleSave: (type: string) => () => void
 }
 function Toolbar(props: ToolbarProps): JSX.Element {
   const [isOpen, setIsOpen] = useState(false)

@@ -2,21 +2,33 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { RawDraftContentBlock, RawDraftContentState } from 'draft-js'
 import { BlogType } from '../Blog'
+import TimeIcon from '../../assets/icons/time-3.svg'
+import IconUser from '../../assets/icons/user.svg'
+import IconBubble from '../../assets/icons/bubble.svg'
+import { formatDate } from '../../Helper'
 
-import timeIcon from '../../assets/icons/time-3.svg'
-import iconUser from '../../assets/icons/user.svg'
-import iconBubble from '../../assets/icons/bubble.svg'
-
-interface PostProps {
+type PostProps = {
   post: BlogType
+  type?: string
 }
-export const formatDate = (date: string) =>
-  new Intl.DateTimeFormat('en-us', {
-    year: 'numeric',
-    month: 'short',
-    day: '2-digit',
-  }).format(new Date(date))
-const CardPost = (props: PostProps) => {
+
+function CardIcon({ post, type }: PostProps): JSX.Element {
+  const fullName = post.user.firstName + ' ' + post.user.lastName
+  const comment = post.comments.length === 0 ? 'No Comments' : post.comments.length + ' Comments'
+  const time = (
+    <time dateTime="2019-09-12" itemProp={post.createdAt}>
+      {formatDate(post.createdAt)}
+    </time>
+  )
+  return (
+    <span className="card__post__icon">
+      <img src={type === 'comment' ? IconBubble : type === 'user' ? IconUser : TimeIcon} alt="comment icon" />
+      <strong>{type === 'comment' ? comment : type === 'user' ? fullName : time}</strong>
+    </span>
+  )
+}
+
+function CardPost(props: PostProps): JSX.Element {
   const {
     post,
     post: { content },
@@ -34,22 +46,9 @@ const CardPost = (props: PostProps) => {
         <div className="card__post__content">
           <h2>{title.text}</h2>
           <div className="card__post__header">
-            <span className="card__post__icon">
-              <img src={timeIcon} alt="clock icon" />
-              <strong>
-                <time dateTime="2019-09-12" itemProp={post.createdAt}>
-                  {formatDate(post.createdAt)}
-                </time>
-              </strong>
-            </span>
-            <span className="card__post__icon">
-              <img src={iconUser} alt="user icon" />
-              <strong>{post.user.firstName + ' ' + post.user.lastName}</strong>
-            </span>
-            <span className="card__post__icon">
-              <img src={iconBubble} alt="comment icon" />
-              <strong>{post.comments.length === 0 ? 'No' : post.comments.length} Comments</strong>
-            </span>
+            <CardIcon post={post} type="time" />
+            <CardIcon post={post} type="user" />
+            <CardIcon post={post} type="comment" />
           </div>
           <div className="card__post__items">
             <p>

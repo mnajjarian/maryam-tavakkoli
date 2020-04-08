@@ -6,6 +6,19 @@ type DraftType = {
   p: string
   url: string
 }
+
+export const formatDate = (date: string): string =>
+  new Intl.DateTimeFormat('en-us', {
+    year: 'numeric',
+    month: 'short',
+    day: '2-digit',
+  }).format(new Date(date))
+
+export const formatTime = (date: string): string =>
+  new Intl.DateTimeFormat('en-us', {
+    hour: 'numeric',
+    minute: 'numeric',
+  }).format(new Date(date))
 export const emailValidation = (email: string): RegExpMatchArray | null =>
   email.match(/^([a-zA-Z0-9_\-.]+)@([a-zA-Z0-9_\-\\.]+)\.([a-zA-Z]{2,5})$/)
 

@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 /* eslint-disable @typescript-eslint/camelcase */
 import React, { useContext } from 'react'
 import classNames from 'classnames'
@@ -7,6 +8,7 @@ import LinkedinIcon from '../../assets/icons/linkedin-2.svg'
 
 function Nav(): JSX.Element {
   const [toggle, setToggle] = React.useState<boolean>(false)
+  const handleToggle = (): void => setToggle(!toggle)
   const {
     authState: { isLoggedIn },
   } = useContext(AuthContext)
@@ -17,7 +19,7 @@ function Nav(): JSX.Element {
           navbar__menu: true,
           navbar__menu__change: toggle,
         })}
-        onClick={() => setToggle(!toggle)}
+        onClick={handleToggle}
       >
         <div></div>
         <div></div>

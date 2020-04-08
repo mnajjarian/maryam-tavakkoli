@@ -1,3 +1,5 @@
+@import '../../styles/abstracts/variables';
+@import '../../styles/abstracts/mixins';
 .latest {
   padding: 2em 0 7em 0;
   text-align: center;
@@ -61,8 +63,8 @@
 @include for-phone {
   .latest {
     &__title {
-        @include font-size-l;
-      }
+      @include font-size-l;
+    }
     &__posts {
       flex-direction: column;
     }

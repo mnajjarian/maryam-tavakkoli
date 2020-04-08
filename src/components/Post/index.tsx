@@ -1,5 +1,4 @@
-import React, { Fragment, useContext } from 'react'
-import Nav from '../Navbar'
+import React, { useContext } from 'react'
 import { DataContext } from '../../contexts/dataContext'
 import { convertFromRaw, EditorState, RawDraftContentState } from 'draft-js'
 import renderHTML from 'react-render-html'
@@ -10,8 +9,16 @@ import Loading from '../Loading'
 import LinkedinIcon from '../../assets/icons/linkedin-2.svg'
 import FacebookIcon from '../../assets/icons/facebook-2.svg'
 import TwitterIcon from '../../assets/icons/twitter-2.svg'
+import Layout from 'components/Layout'
 
-const Post = ({ match }: { match: any }) => {
+type Match = {
+  match: {
+    params: {
+      id: string
+    }
+  }
+}
+function Post({ match }: Match): JSX.Element {
   const {
     data: { blogs },
   } = useContext(DataContext)
@@ -35,30 +42,26 @@ const Post = ({ match }: { match: any }) => {
   const editorContentHtml = stateToHTML(editorState.getCurrentContent())
 
   return (
-    <Fragment>
-      <div className="nav__wrapper">
-        <Nav />
-      </div>
+    <Layout>
       <main className="post">
         <article className="post__article">
           <header className="post__header">
             <p>
               {'By '}
-              {post.user.firstName + ' ' + post.user.lastName}
+              <strong>{post.user.firstName + ' ' + post.user.lastName}</strong>
               <time className="post__time">
-                {' . '}
+                {' '}
                 {new Intl.DateTimeFormat('en-us', {
                   year: 'numeric',
                   month: 'long',
                   day: '2-digit',
                 }).format(new Date(post.createdAt))}
-              </time>{' '}
+              </time>
             </p>
           </header>
           {renderHTML(editorContentHtml)}
           <footer className="post__footer">
             <div className="post__social">
-              {/*  <span className="post__social__title">Share the blog post</span> */}
               <div className="post__social__buttons ">
                 <div className="post__social__facebook">
                   <img src={FacebookIcon} alt="facebook" />
@@ -72,29 +75,10 @@ const Post = ({ match }: { match: any }) => {
               </div>
             </div>
           </footer>
-          {/*  {post.comments.length > 0 && */}
           <Comment comments={post.comments} postId={post.id} />
-          {/*  } */}
         </article>
-
-        {/*         <div className="related__posts">
-          <h2 className="related__posts__title">Related blog posts</h2>
-          <span className="related__posts--line"></span>
-          <div className="related__posts__card">
-            <ul className="related__posts__list">
-              <li className="related__posts__items">
-                <img
-                  className="related__posts--img"
-                  src={require(`../assets/images/tech-image.jpg`)}
-                  alt="related post"
-                />
-                <p className="related__posts--text">{title}</p>
-              </li>
-            </ul>
-          </div>
-        </div> */}
       </main>
-    </Fragment>
+    </Layout>
   )
 }
 

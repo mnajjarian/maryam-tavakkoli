@@ -2,7 +2,7 @@ import React, { MouseEvent } from 'react'
 import classNames from 'classnames'
 import { DraftBlockType, DraftInlineStyleType } from 'draft-js'
 
-export interface StyleButtonProps {
+export type StyleButtonProps = {
   active: boolean
   style: DraftBlockType | DraftInlineStyleType
   onToggle: (style: DraftBlockType | DraftInlineStyleType) => void

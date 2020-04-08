@@ -1,9 +1,11 @@
+@import '../../styles/abstracts/variables';
+@import '../../styles/abstracts/mixins';
 .jumbotron {
   position: relative;
   display: flex;
   width: 100%;
   height: 100vh;
-  //padding-bottom: 10px;
+  padding-bottom: 10px;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -20,9 +22,8 @@
     width: 60%;
   }
   &__title {
-    font-size: 2.5rem;
-    
     line-height: 65px;
+    @include font-size-l-xx;
   }
   &__text {
     opacity: 0.79;
@@ -35,24 +36,25 @@
     border-radius: 25px;
     text-transform: uppercase;
     font-size: 0.7rem;
-    background-color: purple;
     cursor: pointer;
+    @include color($primary, $dark);
 
     &:hover {
-      background: rgba(191, 85, 236, 1);
-    }
-    &:active {
-      background: rgba(154, 18, 179, 1);
+      @include color($dark, $white);
     }
   }
 }
 
-@media only screen and (max-width: 760px) {
+@include for-phone {
   .jumbotron {
+    &__overlay {
+      padding: 0;
+    }
     &__post {
       width: 100%;
     }
     &__title {
+      margin-top: 0;
       width: 100%;
       font-size: 2.2rem;
       letter-spacing: unset;

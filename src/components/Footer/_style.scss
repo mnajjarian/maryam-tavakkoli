@@ -1,3 +1,4 @@
+@import '../../styles/abstracts/variables';
 .footer {
   display: flex;
   align-self: flex-end;
@@ -50,15 +51,15 @@
   &__subscribe {
     padding: 1em;
     cursor: pointer;
-      padding: 0.6em 0.8em;
-      border: 1px solid $white;
-      border-radius: 0.25em;
-      color: $white;
-      text-transform: uppercase;
-      &:hover {
-        color: $primary;
-        border-color: $primary;
-      }
+    padding: 0.6em 0.8em;
+    border: 1px solid $white;
+    border-radius: 0.25em;
+    color: $white;
+    text-transform: uppercase;
+    &:hover {
+      color: $primary;
+      border-color: $primary;
+    }
   }
 }
 

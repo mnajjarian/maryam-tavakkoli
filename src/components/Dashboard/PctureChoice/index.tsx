@@ -1,13 +1,13 @@
 import React from 'react'
 
-interface PicProps {
+type Props = {
   checked: boolean
   imgUrl: string
   publicId: string
   handleClick: (publicId: string) => () => void
 }
 
-export function Picture(props: PicProps): JSX.Element {
+export function Picture(props: Props): JSX.Element {
   const { imgUrl, publicId, handleClick, checked } = props
   return (
     <div className="picture" key={publicId} onClick={handleClick(publicId)}>

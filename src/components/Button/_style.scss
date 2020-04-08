@@ -1,25 +1,26 @@
+@import '../../styles/abstracts/variables';
 .button {
-    border: none;
-    border-radius: 5px;
-    min-width: 80px;
-    max-width: max-content;
-    font-size: 1rem;
-    text-transform: capitalize;
+  border: none;
+  border-radius: 5px;
+  min-width: 80px;
+  max-width: max-content;
+  font-size: 1rem;
+  text-transform: capitalize;
+  color: $white;
+  cursor: pointer;
+  background-color: $black;
+  padding: 8px 4px;
+  margin: 0 0.5em;
+  outline: none;
+  &:focus {
     color: $white;
-    cursor: pointer;
-    background-color: $black;
-    padding: 8px 4px;
-    margin: 0 .5em;
-    outline: none;
-    &:focus {
-        color: $white;
-        background-color: $dark;
-    }
-    &:active {
-        color: $primary;
-        background-color: $dark;
-    }
-    &:hover {
-        background-color: $dark;
-    }
+    background-color: $dark;
+  }
+  &:active {
+    color: $primary;
+    background-color: $dark;
+  }
+  &:hover {
+    background-color: $dark;
+  }
 }

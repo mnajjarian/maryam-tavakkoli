@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { EditorState, DraftBlockType, DraftInlineStyleType } from 'draft-js'
 import HeaderStyleDropdown from '../HeaderStyleDropdown'
 import StyleButton from '../StyleButton'
@@ -33,12 +33,13 @@ const BLOCK_TYPES_HEADING: BlockTypes = [
   { label: 'Heading 6', style: 'header-six', type: 'BLOCK_TYPE' },
 ]
 
-interface StyleTypesProps {
+type StyleTypesProps = {
   editorState: EditorState
   onToggleBlock: (style: DraftBlockType) => void
   onToggleInline: (style: DraftBlockType | DraftInlineStyleType) => void
 }
-const StyleTypes = (props: StyleTypesProps) => {
+
+function StyleTypes(props: StyleTypesProps): JSX.Element {
   const { editorState, onToggleBlock, onToggleInline } = props
   const selection = editorState.getSelection()
   const blockType = editorState
