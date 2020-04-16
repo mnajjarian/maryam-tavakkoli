@@ -1,27 +1,28 @@
-import React, { ReactNode } from 'react'
-import classNames from 'classnames'
+import React, { useEffect, ReactNode } from 'react'
+import { createPortal } from 'react-dom'
 
 type Props = {
-  isOpen: boolean
-  handleClose?: () => void
   children: ReactNode
+  toggleModal: () => void
 }
-function Modal(props: Props): JSX.Element {
-  const { handleClose, isOpen, children } = props
-  return (
-    <div
-      className={classNames({
-        modal: true,
-        'modal-isOpen': isOpen,
-      })}
-    >
-      <div className="modal__content" style={{ height: '60%', width: '70%', background: 'lightblue' }}>
-        <div className="modal__close" onClick={handleClose}>
-          &times;
-        </div>
-        {children}
-      </div>
-    </div>
+
+const modalRoot = document.createElement('portal')
+function Modal(props: Props): React.ReactElement | null {
+  const { toggleModal, children } = props
+  useEffect(() => {
+    document.body.appendChild(modalRoot)
+
+    return (): void => {
+      document.body.removeChild(modalRoot)
+    }
+  }, [])
+
+  return createPortal(
+    <div className="modal">
+      <div className="modal__overlay" onClick={toggleModal} />
+      <div className="modal__body">{children}</div>
+    </div>,
+    modalRoot as HTMLElement,
   )
 }
 

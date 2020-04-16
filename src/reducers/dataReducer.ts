@@ -66,6 +66,11 @@ export type DataAction =
 const sortByDate = (obj: Blog[]): Blog[] =>
   obj.sort((a: Blog, b: Blog) => Number(new Date(b.createdAt)) - Number(new Date(a.createdAt)))
 
+/** check for exhaustiveness on reducer */
+function assertNever(x: never): never {
+  throw new Error('Unexpected object: ' + x)
+}
+
 export const dataReducer = (state: DataState, action: DataAction): DataState => {
   console.log(action)
   switch (action.type) {
@@ -124,7 +129,11 @@ export const dataReducer = (state: DataState, action: DataAction): DataState => 
         ...state,
         blogs: state.blogs.map((blog: Blog) => (blog.id === action.payload.post ? postBlog : blog)),
       }
+    case 'ERROR_MESSAGE':
+      return {
+        ...state,
+      }
     default:
-      return state
+      return assertNever(action)
   }
 }

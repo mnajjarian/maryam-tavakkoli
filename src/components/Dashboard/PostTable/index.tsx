@@ -73,6 +73,7 @@ function Posts(): JSX.Element {
     return <div className="posts">You do not have any post in your blog.</div>
   }
 
+  const toggleModal = (): void => setIsOpen(!isOpen)
   const handleClick = (blogId: string) => (): void | null => {
     const alert = 'Are you sure you want to delete this post?'
     if (window.confirm(alert)) {
@@ -82,7 +83,7 @@ function Posts(): JSX.Element {
     }
   }
 
-  const toggleModal = (e: MouseEvent<HTMLAnchorElement>, commentList: CommentInterface[]): void => {
+  const toggle = (e: MouseEvent<HTMLAnchorElement>, commentList: CommentInterface[]): void => {
     e.preventDefault()
     setComments(commentList)
     setIsOpen(!isOpen)
@@ -90,13 +91,15 @@ function Posts(): JSX.Element {
   const heads = ['post', 'title', 'created', 'updated', 'comments', 'edit', 'delete']
   return (
     <div className="posts">
-      <Modal isOpen={isOpen} handleClose={(): void => setIsOpen(!isOpen)}>
-        <CommentList comments={comments} />
-      </Modal>
+      {isOpen && (
+        <Modal toggleModal={toggleModal}>
+          <CommentList comments={comments} />
+        </Modal>
+      )}
       <div className="posts-table">
         <Table heads={heads}>
           {blogs.map((blog: BlogType, index: number) => (
-            <BlogRow key={blog.id} item={blog} index={index} toggleModal={toggleModal} handleClick={handleClick} />
+            <BlogRow key={blog.id} item={blog} index={index} toggleModal={toggle} handleClick={handleClick} />
           ))}
         </Table>
       </div>

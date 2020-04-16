@@ -1,9 +1,8 @@
 /* eslint-disable camelcase */
 /* eslint-disable @typescript-eslint/camelcase */
-import React, { useState, useRef } from 'react'
+import React, { useState } from 'react'
 import { EditorState, DraftBlockType, RichUtils } from 'draft-js'
 import classNames from 'classnames'
-import { useOnClickOutside } from '../../../custom-hooks/useOnClickOutside'
 import Button from '../../Button'
 import StyleTypes from '../StyleTypes'
 import Modal from '../../Modal'
@@ -22,6 +21,7 @@ function Toolbar(props: ToolbarProps): JSX.Element {
   const [toggle, setToggle] = useState(false)
   const { editorState, handleChange, onAddImage, handleSave, variant } = props
 
+  const toggleModal = (): void => setIsOpen(!isOpen)
   const handleCb = (publicId: string): void => {
     onAddImage(publicId)
     setIsOpen(false)
@@ -37,10 +37,9 @@ function Toolbar(props: ToolbarProps): JSX.Element {
     }
     handleChange(RichUtils.toggleInlineStyle(editorState, style))
   }
-  const ref = useRef<HTMLDivElement>(null)
-  useOnClickOutside(ref, () => setIsOpen(false))
+
   return (
-    <div ref={ref} className="toolbar">
+    <div className="toolbar">
       <div className="RichEditor-controls">
         <StyleTypes editorState={editorState} onToggleBlock={toggleBlockType} onToggleInline={toggleInlineStyle} />
       </div>
@@ -55,9 +54,12 @@ function Toolbar(props: ToolbarProps): JSX.Element {
       >
         <Button text={variant} handleClick={handleSave(variant)} />
       </div>
-      <Modal isOpen={isOpen} handleClose={(): void => setIsOpen(false)}>
-        <Gallery withCb={true} cb={handleCb} />
-      </Modal>
+
+      {isOpen && (
+        <Modal toggleModal={toggleModal}>
+          <Gallery withCb={true} cb={handleCb} />
+        </Modal>
+      )}
     </div>
   )
 }

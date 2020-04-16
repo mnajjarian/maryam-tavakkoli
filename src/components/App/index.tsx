@@ -17,7 +17,7 @@ const Profile = lazyImport('Dashboard/Profile')
 const RichEditor = lazyImport('Dashboard/Editor')
 const Posts = lazyImport('Dashboard/PostTable')
 
-interface Props {
+type Props = {
   component: any
   path: string
 }

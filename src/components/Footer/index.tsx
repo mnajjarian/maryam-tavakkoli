@@ -4,7 +4,7 @@ import Subscription from '../Subscription'
 
 function Footer(): JSX.Element {
   const [isOpen, setIsOpen] = useState(false)
-  const toggle = (): void => setIsOpen(!isOpen)
+  const toggleModal = (): void => setIsOpen(!isOpen)
   return (
     <div className="footer">
       <div className="footer__subtitle">
@@ -18,13 +18,15 @@ function Footer(): JSX.Element {
           mahdi najjarian
         </a>
       </div>
-      <span className="footer__subscribe" role="button" onClick={toggle}>
+      <span className="footer__subscribe" role="button" onClick={toggleModal}>
         subscribe
       </span>
 
-      <Modal isOpen={isOpen} handleClose={toggle}>
-        <Subscription handleToggle={toggle} />
-      </Modal>
+      {isOpen && (
+        <Modal toggleModal={toggleModal}>
+          <Subscription handleToggle={toggleModal} />
+        </Modal>
+      )}
     </div>
   )
 }
