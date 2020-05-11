@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-import { CommentInterface } from '../components/Blog'
+import { CommentInterface } from '../components/Blog/Blog'
 
 export interface User {
   _id: string
@@ -72,7 +72,7 @@ function assertNever(x: never): never {
 }
 
 export const dataReducer = (state: DataState, action: DataAction): DataState => {
-  console.log(action)
+  //console.log(action)
   switch (action.type) {
     case 'FETCH_USERS':
       return { ...state, users: action.payload }
