@@ -2,6 +2,8 @@ import React, { useState, FormEvent, useContext } from 'react'
 import { Button } from '../../Button/Button'
 import { DataContext } from '../../../contexts/dataContext'
 import AvatarIcon from '../../../assets/images/avatar.png'
+import { DataServices } from 'services/dataService'
+import { User } from 'reducers/dataReducer'
 
 type InitialState = {
   firstName: string
@@ -16,17 +18,16 @@ export function Profile(): JSX.Element {
   const {
     data: { users },
     dataDispatch,
-    dataService,
   } = useContext(DataContext)
-
+  const dataService = new DataServices(dataDispatch)
   //const user = users.filter((user: any) => user._id === authState.id)[0];
   const user = users[0]
 
-  const initialState: InitialState = {
+  const initialState: Omit<User, '_id' | 'isAdmin'> = {
     username: user ? user.username : '',
     firstName: user ? user.firstName : '',
     lastName: user ? user.lastName : '',
-    title: user ? user.title : '',
+    title: user ? user.bio : '',
     bio: user ? user.bio : '',
     imageUrl: user ? user.imageUrl : '',
   }

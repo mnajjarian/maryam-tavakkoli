@@ -30,7 +30,7 @@ export function Post({ match }: Match): JSX.Element {
   }
 
   const title: string = id.split('-').join(' ')
-  const post: BlogType = blogs.find((p: BlogType) => p.content.includes(title))
+  const post: BlogType | undefined = blogs.find((p: BlogType) => p.content.includes(title))
 
   if (!post) {
     return <Loading />

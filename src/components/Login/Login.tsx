@@ -2,6 +2,7 @@ import React, { useState, useContext, FormEvent, ChangeEvent } from 'react'
 import { AuthContext } from '../../contexts/authContext'
 import { Redirect } from 'react-router'
 import { Button } from '../Button/Button'
+import { AuthService } from 'services/authService'
 
 interface InitialState {
   username: string
@@ -12,10 +13,10 @@ const initialState: InitialState = { username: '', password: '' }
 export function Login(): JSX.Element {
   const [state, setState] = useState<InitialState>(initialState)
   const {
-    authService,
+    authDispatch,
     authState: { isLoggedIn },
   } = useContext(AuthContext)
-
+  const authService = new AuthService(authDispatch)
   const { username, password } = state
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {

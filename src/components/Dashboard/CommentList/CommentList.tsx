@@ -3,6 +3,7 @@ import { CommentInterface } from '../../Blog/Blog'
 import { Button } from '../../Button/Button'
 import { DataContext } from '../../../contexts/dataContext'
 import { Table } from '../../Table/Table'
+import { DataServices } from 'services/dataService'
 
 type Props = {
   comments: CommentInterface[]
@@ -19,6 +20,7 @@ export function CommentRow(props: TableRow): JSX.Element {
     index,
     handleDelete,
   } = props
+
   return (
     <tr>
       <td>{index + 1}</td>
@@ -33,9 +35,14 @@ export function CommentRow(props: TableRow): JSX.Element {
 }
 
 export function CommentList(props: Props): JSX.Element {
-  const { dataService } = useContext(DataContext)
-  const handleDelete = (commentId: string) => (): void => {
-    dataService.removeComment(commentId)
+  const { dataDispatch } = useContext(DataContext)
+  const dataService = new DataServices(dataDispatch)
+  const handleDelete = (commentId: string) => async (): Promise<void> => {
+    try {
+      await dataService.removeComment(commentId)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   const heads = ['number', 'comment', 'commenter', 'email', 'action']

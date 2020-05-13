@@ -15,6 +15,7 @@ import { mediaBlockRenderer } from '../MediaBlockRenderer/MediaBlockRenderer'
 import { useHistory } from 'react-router-dom'
 import { getBlockStyle } from 'Helper'
 import { BlogType } from 'components/Blog/Blog'
+import { DataServices } from 'services/dataService'
 
 type HandleKeyCommand = 'handled' | 'not-handled'
 type Props = {
@@ -23,7 +24,8 @@ type Props = {
   }
 }
 export function RichEditor(props: Props): JSX.Element {
-  const { data, dataService } = useContext(DataContext)
+  const { data, dataDispatch } = useContext(DataContext)
+  const dataService = new DataServices(dataDispatch)
   const blogPost = props.blogId ? data.blogs.filter((b: BlogType) => b.id === props.blogId.id)[0] : null
   const blogState: EditorState = blogPost
     ? EditorState.createWithContent(convertFromRaw(JSON.parse(blogPost.content)))

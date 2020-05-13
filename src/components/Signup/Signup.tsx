@@ -1,13 +1,15 @@
 import React, { useState, FormEvent, useContext, ReactNode } from 'react'
 import { Button } from '../Button/Button'
 import { AuthContext } from 'contexts/authContext'
+import { AuthService } from 'services/authService'
 
 export function Signup(): ReactNode {
-  const { authService } = useContext(AuthContext)
+  const { authDispatch } = useContext(AuthContext)
+  const authService = new AuthService(authDispatch)
   const [state, setState] = useState({
     firstName: '',
     lastName: '',
-    email: '',
+    username: '',
     password: '',
   })
 
@@ -29,7 +31,7 @@ export function Signup(): ReactNode {
     }
   }
 
-  const { firstName, lastName, email, password } = state
+  const { firstName, lastName, username, password } = state
 
   return (
     <div className="login" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -68,9 +70,9 @@ export function Signup(): ReactNode {
           <input
             className="form__input"
             type="text"
-            name="email"
+            name="username"
             placeholder="Email"
-            value={email}
+            value={username}
             onChange={handleChange}
           />
         </div>

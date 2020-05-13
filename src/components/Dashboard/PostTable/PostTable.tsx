@@ -7,6 +7,7 @@ import { Modal } from '../../Modal/Modal'
 import { CommentList } from '../CommentList/CommentList'
 import { Table } from 'components/Table/Table'
 import { Link } from 'react-router-dom'
+import { DataServices } from 'services/dataService'
 
 type TableRow = {
   item: BlogType
@@ -67,8 +68,9 @@ export function PostTable(): JSX.Element {
   ])
   const {
     data: { blogs },
-    dataService,
+    dataDispatch,
   } = useContext(DataContext)
+  const dataService = new DataServices(dataDispatch)
   if (!blogs.length) {
     return <div className="posts">You do not have any post in your blog.</div>
   }

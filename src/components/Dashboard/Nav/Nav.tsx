@@ -6,10 +6,12 @@ import { Link, useHistory } from 'react-router-dom'
 import { AuthContext } from '../../../contexts/authContext'
 import { useOnClickOutside } from '../../../custom-hooks/useOnClickOutside'
 import { DataContext } from '../../../contexts/dataContext'
+import { AuthService } from 'services/authService'
 
 export function Nav(): JSX.Element {
   const [toggle, setToggle] = useState(false)
-  const { authService } = useContext(AuthContext)
+  const { authDispatch } = useContext(AuthContext)
+  const authService = new AuthService(authDispatch)
   const {
     data: { users },
   } = useContext(DataContext)

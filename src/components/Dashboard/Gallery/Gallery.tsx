@@ -3,6 +3,7 @@ import { Button } from '../../Button/Button'
 import { Picture } from '../PctureChoice/PctureChoice'
 import { DataContext } from '../../../contexts/dataContext'
 import { GalleryInterface } from '../../../reducers/dataReducer'
+import { DataServices } from 'services/dataService'
 
 interface Props {
   withCb: boolean
@@ -13,9 +14,8 @@ export function Gallery(props: Props): JSX.Element {
   const {
     data: { gallery },
     dataDispatch,
-    dataService,
   } = useContext(DataContext)
-
+  const dataService = new DataServices(dataDispatch)
   const images = gallery.reduce((acc: any, curr: GalleryInterface) => {
     acc[curr.public_id] = false
     return acc

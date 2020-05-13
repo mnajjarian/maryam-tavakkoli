@@ -1,56 +1,56 @@
 import { Dispatch } from 'react'
 import { customAxios } from './customAxios'
-import { AuthAction, AuthState } from '../reducers/authReducer'
+import { AuthAction } from '../reducers/authReducer'
 
 type Cred = {
+  firstName: string
+  lastName: string
   username: string
   password: string
-  email?: string
 }
-type AuthService = {
-  signup: (cred: Cred) => void
-  signin: (cred: Cred) => void
-  logout: () => void
-  authenticate: () => void
-}
-export const useAuthService = (state: AuthState, dispatch: Dispatch<AuthAction>): AuthService => {
-  const signup = (cred: Cred): void => {
+
+export class AuthService {
+  private dispatch: Dispatch<AuthAction>
+  constructor(authDispatch: Dispatch<AuthAction>) {
+    this.dispatch = authDispatch
+  }
+  signup = (cred: Cred): void => {
     customAxios
       .post('/signup', cred)
       .then(res => {
-        dispatch({
+        this.dispatch({
           type: 'SIGNIN_SUCCESS',
           payload: res.data,
         })
       })
       .catch((err: Error) => {
-        dispatch({
+        this.dispatch({
           type: 'SET_ERRORS',
           payload: err.message,
         })
       })
   }
-  const signin = (cred: Cred): void => {
+  signin = (cred: Pick<Cred, 'username' | 'password'>): void => {
     customAxios
       .post('/login', cred)
       .then(res => {
-        dispatch({
+        this.dispatch({
           type: 'SIGNIN_SUCCESS',
           payload: res.data,
         })
       })
       .catch((err: Error) => {
-        dispatch({
+        this.dispatch({
           type: 'SET_ERRORS',
           payload: err.message,
         })
       })
   }
-  const logout = (): void => {
+  logout = (): void => {
     customAxios
       .get('/logout')
       .then(() => {
-        dispatch({
+        this.dispatch({
           type: 'LOGOUT_USER',
         })
       })
@@ -59,11 +59,11 @@ export const useAuthService = (state: AuthState, dispatch: Dispatch<AuthAction>)
       })
   }
 
-  const authenticate = (): void => {
+  authenticate = (): void => {
     customAxios
       .get('/auth')
       .then(response => {
-        dispatch({
+        this.dispatch({
           type: 'SET_AUTH',
           payload: response.data,
         })
@@ -71,12 +71,5 @@ export const useAuthService = (state: AuthState, dispatch: Dispatch<AuthAction>)
       .catch(err => {
         console.log(err)
       })
-  }
-
-  return {
-    signup,
-    signin,
-    logout,
-    authenticate,
   }
 }

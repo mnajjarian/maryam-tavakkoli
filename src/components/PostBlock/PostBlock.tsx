@@ -3,9 +3,6 @@ import { BlogType } from '../Blog/Blog'
 import { extractFromDraft, formatDateAndTime } from '../../Helper'
 import { DataContext } from 'contexts/dataContext'
 
-interface Props {
-  posts: BlogType[]
-}
 type BlockType = {
   block: BlogType
 }

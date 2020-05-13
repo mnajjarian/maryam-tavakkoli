@@ -2,6 +2,7 @@ import React, { ReactNode, lazy } from 'react'
 import { Nav } from './Nav/Nav'
 import { Route, match } from 'react-router-dom'
 
+type Match = match
 const lazyImport = (fileName: string): React.LazyExoticComponent<React.ComponentType<any>> =>
   lazy(() => import(`../Dashboard/${fileName}/${fileName}`).then(module => ({ default: module[fileName] })))
 
@@ -10,7 +11,7 @@ const Profile = lazyImport('Profile')
 const RichEditor = lazyImport('RichEditor')
 const Posts = lazyImport('PostTable')
 
-export function Dashboard({ match }: { match: match }): JSX.Element {
+export function Dashboard({ match }: { match: Match }): JSX.Element {
   const { url } = match
 
   return (

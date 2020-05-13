@@ -1,20 +1,18 @@
-import React, { useReducer, createContext, ReactNode } from 'react'
-import { dataReducer, initialDataState } from '../reducers/dataReducer'
-import { useDataService } from '../services/dataService'
+import React, { useReducer, createContext, ReactNode, Dispatch } from 'react'
+import { dataReducer, initialDataState, DataAction, DataState } from '../reducers/dataReducer'
 
-interface DataProviderProps {
-  children: ReactNode
+interface ContextType {
+  data: DataState
+  dataDispatch: Dispatch<DataAction>
 }
-export const DataContext = createContext({} as any)
+export const DataContext = createContext({} as ContextType)
 
-export const DataProvider = ({ children }: DataProviderProps): JSX.Element => {
+export const DataProvider = ({ children }: { children: ReactNode }): JSX.Element => {
   const [data, dataDispatch] = useReducer(dataReducer, initialDataState)
-  const dataService = useDataService(data, dataDispatch)
 
   const values = {
     data,
     dataDispatch,
-    dataService,
   }
   return <DataContext.Provider value={values}>{children}</DataContext.Provider>
 }

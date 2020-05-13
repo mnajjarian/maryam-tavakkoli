@@ -3,12 +3,13 @@ import { CommentInterface } from '../components/Blog/Blog'
 
 export interface User {
   _id: string
+  isAdmin: boolean
+  username: string
   firstName: string
   lastName: string
-  email: string
+  imageUrl?: string
+  title: string
   bio: string
-  imageUrl: string
-  isAdmin: boolean
 }
 export interface Blog {
   id: string

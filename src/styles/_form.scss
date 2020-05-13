@@ -1,61 +1,64 @@
 .form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  &__group {
     display: flex;
-    flex-direction: column;
     width: 100%;
-    
-    &__group {
-        display: flex;
-        width: 100%;
-        margin-bottom: 8px;
+    margin-bottom: 8px;
+  }
+  &__label {
+    min-width: 100px;
+    padding: 0.5em 0;
+    text-align: center;
+  }
+  &__input {
+    display: block;
+    width: 100%;
+    border: none;
+    border-radius: 4px;
+    padding: 12px 4px;
+    font-size: 1rem;
+    outline: none;
+    &:focus {
+      transform: scaleX(1.05);
     }
-    &__label {
-        min-width: 100px;
-        padding: .5em 0;
-        text-align: center;
-     }
-    &__input {
-        display: block;
-        width: 100%;
-        border: none;
-        border-radius: 4px;
-        padding: 12px 4px;
-        font-size: 1rem;
-        outline: none;
-        &::placeholder {
-          padding-left: 2px;
-      }
+    &::placeholder {
+      padding-left: 2px;
     }
-    &__textarea {
-        border: none;
-        outline: none;
-        border-radius: 4px;
-        padding: 12px 4px;
-        font-size: 1em;
-        line-height: 2;
-        width: 100%;
-        &::placeholder {
-          padding-left: 2px;
-      }
+  }
+  &__textarea {
+    border: none;
+    outline: none;
+    border-radius: 4px;
+    padding: 12px 4px;
+    font-size: 1em;
+    line-height: 2;
+    width: 100%;
+    &::placeholder {
+      padding-left: 2px;
     }
-    &__button {
-        display: flex;
-        justify-content: flex-end;
-        width: 100%;
-    }
+  }
+  &__button {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+  }
 }
 
 @media (max-width: 768px) {
-    .form {
-        &__group {
-            display: block;
-        }
-        &__input {
-            margin-bottom: 1em;
-        }
-        &__textarea {
-            &::placeholder {
-                font-size: .8em;
-            }
-        }
+  .form {
+    &__group {
+      display: block;
     }
+    &__input {
+      margin-bottom: 1em;
+    }
+    &__textarea {
+      &::placeholder {
+        font-size: 0.8em;
+      }
+    }
+  }
 }

@@ -1,6 +1,7 @@
 import React, { useState, useContext, FormEvent, ChangeEvent } from 'react'
 import { Button } from '../Button/Button'
 import { DataContext } from '../../contexts/dataContext'
+import { DataServices } from 'services/dataService'
 
 interface CommentForm {
   closeForm: () => void
@@ -21,7 +22,8 @@ export function AddComment(props: CommentForm): JSX.Element {
     comment: '',
     post: props.postId,
   })
-  const { dataService } = useContext(DataContext)
+  const { dataDispatch } = useContext(DataContext)
+  const dataService = new DataServices(dataDispatch)
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
     const { name, value } = e.target
