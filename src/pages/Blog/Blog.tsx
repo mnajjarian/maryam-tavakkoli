@@ -1,9 +1,9 @@
 import React, { useContext } from 'react'
-import { Jumbotron } from '../Jumbotron/Jumbotron'
-import { BlogBody } from '../BlogBody/BlogBody'
+import { BlogBody } from './BlogBody/BlogBody'
 import { DataContext } from '../../contexts/dataContext'
 import { User } from 'reducers/dataReducer'
-import { Layout } from '../Layout/Layout'
+import { Layout } from '../../components/Layout/Layout'
+import { Jumbotron } from './Jumbotron/Jumbotrun'
 
 export interface CommentInterface {
   _id: string

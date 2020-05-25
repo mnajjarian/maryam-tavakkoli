@@ -1,0 +1,40 @@
+@import '../../../styles/abstracts/variables';
+@import '../../../styles/abstracts/mixins';
+
+.header {
+  font-family: 'Merriweather', serif;
+  letter-spacing: 1px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  h1 {
+    margin-bottom: 0;
+  }
+  img {
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+  }
+
+  &__scroll {
+    position: relative;
+    &-down {
+      position: absolute;
+      left: 50%;
+      bottom: -5vh;
+      display: block;
+      text-align: center;
+      font-size: 20px;
+      z-index: 99;
+      text-decoration: none;
+      text-shadow: 0;
+      width: 15px;
+      height: 15px;
+      border-bottom: 2px solid #aaa;
+      border-right: 2px solid #aaa;
+      transform: translate(-50%, 0%) rotate(45deg);
+      animation: fade_move_down 2s ease-in-out infinite;
+    }
+  }
+}

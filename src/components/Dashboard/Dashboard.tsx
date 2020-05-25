@@ -1,6 +1,7 @@
 import React, { ReactNode, lazy } from 'react'
 import { Nav } from './Nav/Nav'
 import { Route, match } from 'react-router-dom'
+import { Notification } from 'components/Notification/Notification'
 
 type Match = match
 const lazyImport = (fileName: string): React.LazyExoticComponent<React.ComponentType<any>> =>
@@ -33,7 +34,8 @@ export function DashboardWrapper({ children }: { children: ReactNode }): JSX.Ele
   return (
     <div className="dashboard">
       <Nav />
-      {children}
+      <Notification />
+      <div className="dashboard__content">{children}</div>
     </div>
   )
 }

@@ -1,0 +1,68 @@
+@import './Comment/style';
+
+.post {
+  display: flex;
+  padding: 10em 2em 6em 6em;
+  @include for-phone {
+    padding: 4em 1em;
+  }
+
+  &__info {
+    color: #444;
+  }
+  &__title {
+    width: 80%;
+    line-height: 1.5;
+  }
+  &__content {
+    h1 {
+      display: none;
+      font-size: 3em;
+      font-weight: 400;
+      line-height: 1.5;
+    }
+    h1 > p {
+      line-height: 1.5;
+      font-style: italic;
+    }
+    figure {
+      margin-left: 0;
+    }
+    figure > img {
+      width: 100%;
+    }
+    figure ~ p {
+      line-height: 1.7;
+      font-size: 1.2em;
+      word-break: break-word;
+    }
+  }
+  &__social {
+    display: flex;
+    justify-content: center;
+    padding: 1em 0.5em;
+    &__icon {
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-self: center;
+      height: 50px;
+      width: 50px;
+      border-radius: 50%;
+      margin: 0 0.5em;
+      img {
+        height: 100%;
+        width: 100%;
+      }
+      &:hover {
+        background-color: $primary;
+      }
+    }
+  }
+  &__line {
+    display: block;
+    padding: 1em 0;
+    width: 100%;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+}

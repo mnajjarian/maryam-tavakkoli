@@ -1,19 +1,19 @@
-import { Switch, Route, Redirect } from 'react-router-dom'
-import React, { lazy, useContext, ReactNode } from 'react'
+import { Switch, Route, Redirect, RouteComponentProps } from 'react-router-dom'
+import React, { lazy, useContext } from 'react'
 import { AuthContext } from 'contexts/authContext'
+import { Home } from '../../pages/Home/Home'
+import { Blog } from '../../pages/Blog/Blog'
 
-const lazyImport = (fileName: string): React.LazyExoticComponent<React.ComponentType<any>> =>
+const lazyImport = (fileName: string): React.LazyExoticComponent<any> =>
   lazy(() => import(`../${fileName}/${fileName}`).then(module => ({ default: module[fileName] })))
 
-const Blog = lazyImport('Blog')
-const Post = lazyImport('Post')
+const Post = lazy(() => import('../../pages/Post/Post').then(module => ({ default: module.Post })))
 const Login = lazyImport('Login')
-const Home = lazyImport('Home')
-const About = lazyImport('About')
+
 const Dashboard = lazyImport('Dashboard')
 
-type Props = {
-  component: any
+type PropsType = {
+  Component: React.FunctionComponent<RouteComponentProps>
   path: string
 }
 export function Routes(): JSX.Element {
@@ -21,12 +21,12 @@ export function Routes(): JSX.Element {
     authState: { isLoggedIn },
   } = useContext(AuthContext)
 
-  const PrivateRoutes = ({ component: Comp, path, ...rest }: Props): JSX.Element => (
+  const PrivateRoutes = ({ Component, path, ...rest }: PropsType): JSX.Element => (
     <Route
       path={path}
-      render={(props: any): JSX.Element =>
+      render={(props: RouteComponentProps): JSX.Element =>
         isLoggedIn ? (
-          <Comp {...props} {...rest} />
+          <Component {...props} {...rest} />
         ) : (
           <Redirect to={{ pathname: '/login', state: { from: props.location } }} />
         )
@@ -37,16 +37,15 @@ export function Routes(): JSX.Element {
     <Switch>
       <Route exact path="/" component={Home} />
       <Route exact path="/login" component={Login} />
-      <Route exact path="/about" component={About} />
       <Route exact path="/blog" component={Blog} />
       <Route
         exact
         path="/blog/:id"
-        component={(props: any): JSX.Element | null => (props ? <Post {...props} /> : null)}
+        component={(props: PropsType): JSX.Element | null => (props ? <Post {...props} /> : null)}
       />
       <PrivateRoutes
         path="/dashboard"
-        component={({ match }: { match: { url: string } }): ReactNode => <Dashboard match={match} />}
+        Component={({ match }: { match: { url: string } }): JSX.Element => <Dashboard match={match} />}
       />
     </Switch>
   )

@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { CardPost } from '../CardPost/CardPost'
-import { BlogType } from '../Blog/Blog'
-import { DataContext } from 'contexts/dataContext'
+import { BlogType } from '../Blog'
+import { DataContext } from '../../../contexts/dataContext'
 
 export function BlogBody(): JSX.Element {
   const {
@@ -25,8 +25,8 @@ export function BlogBody(): JSX.Element {
   }
 
   return (
-    <div className="blog">
-      <div className="blog__posts">
+    <div className="row articles">
+      <div className="col-sm-12 col-md-8">
         {blogs.map((post: BlogType) => (
           <CardPost key={post.id} post={post} />
         ))}

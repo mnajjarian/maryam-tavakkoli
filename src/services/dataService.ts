@@ -121,18 +121,13 @@ export class DataServices {
     customAxios
       .delete(`/comments/${commentId}`)
       .then(res => {
-        console.log(res)
-        if (!res.data.error) {
-          this.dispatch({
-            type: 'REMOVE_COMMENT',
-            payload: res.data,
-          })
-        } else {
-          return
-        }
+        this.dispatch({
+          type: 'REMOVE_COMMENT',
+          payload: res.data,
+        })
       })
-      .catch((err: Error) => {
-        console.log(err)
+      .catch(() => {
+        window.location.href = '/'
       })
   }
   getGallery = (): void => {

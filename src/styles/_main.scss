@@ -1,22 +1,20 @@
 @import './abstracts/variables';
+@import './abstracts//grid-system';
 @import './abstracts/animation';
 @import './abstracts/normalize';
 @import './abstracts/mixins';
-@import './form';
 @import '../components/Dashboard/main';
-@import '../components/Header/style';
 @import '../components/jumbotron/style';
 @import '../components/Footer/style';
 @import '../components/Navbar/style';
-@import '../components/BlogBody/style';
-@import '../components/CardPost/style';
-@import '../components/About/style';
-@import '../components/Post/style';
+
 @import '../components/Login/style';
 @import '../components/Button/style';
 @import '../components/Modal/style';
 @import '../components/PostBlock/style';
-@import '../components/Comment/style';
 @import '../components/Loading/style';
 @import '../components/LatestPost/style';
 @import '../components/Subscription/style';
+
+@import '../pages/style';
+@import './form';

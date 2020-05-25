@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { PostBlock } from '../PostBlock/PostBlock'
 import { extractFromDraft } from '../../Helper'
-import { DataContext } from 'contexts/dataContext'
+import { DataContext } from '../../contexts/dataContext'
 
 export function Jumbotron(): JSX.Element {
   const {

@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
-import { BlogType } from '../Blog/Blog'
+import { BlogType } from '../../pages/Blog/Blog'
 import { extractFromDraft, formatDateAndTime } from '../../Helper'
-import { DataContext } from 'contexts/dataContext'
+import { DataContext } from '../../contexts/dataContext'
 
 type BlockType = {
   block: BlogType

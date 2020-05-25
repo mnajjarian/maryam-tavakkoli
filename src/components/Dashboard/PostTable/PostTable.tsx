@@ -1,7 +1,7 @@
 import React, { useContext, useState, MouseEvent } from 'react'
 import { DataContext } from '../../../contexts/dataContext'
 import { Button } from '../../Button/Button'
-import { BlogType, CommentInterface } from '../../Blog/Blog'
+import { BlogType, CommentInterface } from '../../../pages/Blog/Blog'
 import { extractFromDraft } from '../../../Helper'
 import { Modal } from '../../Modal/Modal'
 import { CommentList } from '../CommentList/CommentList'

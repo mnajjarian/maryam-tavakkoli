@@ -6,7 +6,7 @@ type Props = {
   toggleModal: () => void
 }
 
-const modalRoot = document.createElement('portal')
+const modalRoot: HTMLElement = document.createElement('portal')
 
 export function Modal(props: Props): React.ReactElement | null {
   const { toggleModal, children } = props

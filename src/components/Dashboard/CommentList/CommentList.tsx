@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { CommentInterface } from '../../Blog/Blog'
+import { CommentInterface } from '../../../pages/Blog/Blog'
 import { Button } from '../../Button/Button'
 import { DataContext } from '../../../contexts/dataContext'
 import { Table } from '../../Table/Table'

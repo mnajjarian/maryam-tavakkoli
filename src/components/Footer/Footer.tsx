@@ -1,32 +1,22 @@
-import React, { useState } from 'react'
-import { Modal } from '../Modal/Modal'
+import React from 'react'
+import LinkedinIcon from '../../assets/icons/linkedin-2.svg'
 import { Subscription } from '../Subscription/Subscription'
 
 export function Footer(): JSX.Element {
-  const [isOpen, setIsOpen] = useState(false)
-  const toggleModal = (): void => setIsOpen(!isOpen)
   return (
-    <div className="footer">
-      <div className="footer__subtitle">
-        site by{' '}
+    <section id="contact" className="footer col-sm-12 col-md-6">
+      <h1>let's get in touch!</h1>
+      <div className="footer__social">
         <a
-          className="footer__subtitle__link"
-          href="https://github.com/mnajjarian"
+          className="navbar__social__link"
+          href="https://www.linkedin.com/in/maryam-tavakoli/"
           rel="noopener noreferrer"
           target="_blank"
         >
-          mahdi najjarian
+          <img className="navbar__social__icon" src={LinkedinIcon} alt="icon" />
         </a>
       </div>
-      <span className="footer__subscribe" role="button" onClick={toggleModal}>
-        subscribe
-      </span>
-
-      {isOpen && (
-        <Modal toggleModal={toggleModal}>
-          <Subscription handleToggle={toggleModal} />
-        </Modal>
-      )}
-    </div>
+      <Subscription />
+    </section>
   )
 }

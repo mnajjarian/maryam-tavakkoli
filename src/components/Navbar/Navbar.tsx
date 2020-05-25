@@ -1,10 +1,9 @@
 /* eslint-disable camelcase */
 /* eslint-disable @typescript-eslint/camelcase */
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import classNames from 'classnames'
 import { NavLink } from 'react-router-dom'
 import { AuthContext } from '../../contexts/authContext'
-import LinkedinIcon from '../../assets/icons/linkedin-2.svg'
 
 export function Nav(): JSX.Element {
   const [toggle, setToggle] = React.useState<boolean>(false)
@@ -12,8 +11,22 @@ export function Nav(): JSX.Element {
   const {
     authState: { isLoggedIn },
   } = useContext(AuthContext)
+  useEffect(() => {
+    const el = document.getElementById('navbar')
+    const scrollFunc = (): void => {
+      if (window.scrollY >= 50 && el) {
+        el.classList.add('sticky')
+      } else if (el) {
+        el.classList.remove('sticky')
+      }
+    }
+    document.addEventListener('scroll', scrollFunc)
+    return (): void => {
+      document.removeEventListener('scroll', scrollFunc)
+    }
+  }, [])
   return (
-    <div className="navbar">
+    <div id="navbar" className="navbar">
       <div
         className={classNames({
           navbar__menu: true,
@@ -33,20 +46,11 @@ export function Nav(): JSX.Element {
         })}
       >
         <ul className="navbar__items__list">
-          <NavLink to="/">Home</NavLink>
-          <NavLink to="/about">About</NavLink>
-          <NavLink to="/blog">Blog</NavLink>
+          <a href="/#home">home</a>
+          <a href="/#about">about</a>
+          <a href="/#contact">contact</a>
+          <NavLink to="/blog">blog</NavLink>
           {isLoggedIn && <NavLink to="/dashboard">Dashboard</NavLink>}
-          <li className="navbar__social">
-            <a
-              className="navbar__social__link"
-              href="https://www.linkedin.com/in/maryam-tavakoli/"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              <img className="navbar__social__icon" src={LinkedinIcon} alt="icon" />
-            </a>
-          </li>
         </ul>
       </nav>
     </div>

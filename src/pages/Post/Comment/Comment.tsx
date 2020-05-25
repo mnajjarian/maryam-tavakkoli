@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { CommentInterface } from '../Blog/Blog'
-import { formatDate, formatTime } from '../../Helper'
+import { CommentInterface } from '../../Blog/Blog'
+import { formatDate, formatTime } from '../../../Helper'
 import { AddComment } from '../AddComment/AddComment'
 
 type Props = {
@@ -30,7 +30,7 @@ function CommentCard(props: { item: CommentInterface }): JSX.Element {
           <strong>{commenter}</strong>
           <div className="comment__date">
             {formatDate(createdAt)}
-            {',  ' + formatTime(createdAt)}
+            &nbsp;{formatTime(createdAt)}
           </div>
         </div>
         <p className="comment__text">{comment}</p>

@@ -1,29 +1,26 @@
-.subscription {
-    display: flex;
-    flex-direction: column;
-    &__text {
-        padding: 1em 0;
-        font-size: 1.2em;
-    }
-    &__error {
-        color: red;
-        font-size: .7em;
-        margin-bottom: 0;
-    }
-    &__shake {
-        animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
-      
-    }
-}
+@import '../../styles/abstracts/mixins';
 
-@media (max-width: 768px) {
-    .subscription {
-        //flex-direction: row;
-        .button {
-            margin-left: 0;
-        }
-        &__error {
-            font-size: .6em;
-        }
-    }
+.subscription {
+  display: flex;
+  flex-direction: column;
+  padding-top: 1em;
+  width: 50%;
+  @include for-phone {
+    width: 90%;
+  }
+  h2 {
+    margin-bottom: 0;
+  }
+  &__text {
+    padding: 1em 0;
+    font-size: 1.2em;
+  }
+  &__error {
+    color: red;
+    font-size: 0.7em;
+    margin-bottom: 0;
+  }
+  &__shake {
+    animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  }
 }

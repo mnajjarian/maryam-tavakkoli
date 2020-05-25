@@ -1,0 +1,13 @@
+.about {
+  background: #eee;
+  font-size: 1.5em;
+  font-family: 'Merriweather', serif;
+  line-height: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  &-p {
+    width: 80%;
+  }
+}

@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { extractFromDraft } from '../../Helper'
 import { DataContext } from 'contexts/dataContext'
-import { BlogType } from '../Blog/Blog'
+import { BlogType } from '../../pages/Blog/Blog'
 import { Link } from 'react-router-dom'
 
 type Props = {
@@ -9,7 +9,7 @@ type Props = {
 }
 export function CardPost({ post }: Props): JSX.Element {
   return (
-    <div className="latest__card">
+    <div className="col-sm-12 col-md-4">
       <Link
         to={`/blog/${extractFromDraft(post.content)
           .title.split(' ')
@@ -24,6 +24,15 @@ export function CardPost({ post }: Props): JSX.Element {
   )
 }
 
+export function PostTab({ post }: Props): JSX.Element {
+  return (
+    <div className="">
+      <div>{extractFromDraft(post.content).title}</div>
+      <div>{extractFromDraft(post.content).p.substring(0, 100)}</div>
+    </div>
+  )
+}
+
 export function LastPost(): JSX.Element {
   const {
     data: { blogs },
@@ -32,14 +41,15 @@ export function LastPost(): JSX.Element {
   const lastPosts = blogs.slice(0, 3)
 
   return (
-    <div className="latest">
-      <h2 className="latest__title">Latest posts</h2>
-      <div className="latest__line"></div>
-      <div className="latest__posts">
+    <section className="latest">
+      <div className="latest__header">
+        <h2 className="latest__title">Latest posts</h2>
+      </div>
+      <div className="row">
         {lastPosts.map((blog: BlogType) => (
-          <CardPost key={blog.id} post={blog} />
+          <PostTab key={blog.id} post={blog} />
         ))}
       </div>
-    </div>
+    </section>
   )
 }

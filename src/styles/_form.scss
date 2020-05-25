@@ -11,6 +11,7 @@
   &__label {
     min-width: 100px;
     padding: 0.5em 0;
+    margin-right: 0.5em;
     text-align: center;
   }
   &__input {
@@ -19,10 +20,11 @@
     border: none;
     border-radius: 4px;
     padding: 12px 4px;
+    margin-top: 0.5em;
     font-size: 1rem;
     outline: none;
     &:focus {
-      transform: scaleX(1.05);
+      border: 1px solid $primary;
     }
     &::placeholder {
       padding-left: 2px;
@@ -33,9 +35,13 @@
     outline: none;
     border-radius: 4px;
     padding: 12px 4px;
+    margin-top: 0.5em;
     font-size: 1em;
     line-height: 2;
     width: 100%;
+    &:focus {
+      border: 1px solid $primary;
+    }
     &::placeholder {
       padding-left: 2px;
     }

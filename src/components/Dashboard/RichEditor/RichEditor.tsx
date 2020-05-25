@@ -14,7 +14,7 @@ import { DataContext } from '../../../contexts/dataContext'
 import { mediaBlockRenderer } from '../MediaBlockRenderer/MediaBlockRenderer'
 import { useHistory } from 'react-router-dom'
 import { getBlockStyle } from 'Helper'
-import { BlogType } from 'components/Blog/Blog'
+import { BlogType } from 'pages/Blog/Blog'
 import { DataServices } from 'services/dataService'
 
 type HandleKeyCommand = 'handled' | 'not-handled'

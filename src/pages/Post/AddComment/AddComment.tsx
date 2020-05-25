@@ -1,6 +1,6 @@
 import React, { useState, useContext, FormEvent, ChangeEvent } from 'react'
-import { Button } from '../Button/Button'
-import { DataContext } from '../../contexts/dataContext'
+import { Button } from '../../../components/Button/Button'
+import { DataContext } from '../../../contexts/dataContext'
 import { DataServices } from 'services/dataService'
 
 interface CommentForm {
@@ -43,7 +43,7 @@ export function AddComment(props: CommentForm): JSX.Element {
 
   const { commenter, email, comment } = state
   return (
-    <div className="comments">
+    <div className="comment__form">
       <form className="form" onSubmit={handleSubmit}>
         <h3>Leave a comment</h3>
         <div className="form__group">
@@ -67,7 +67,7 @@ export function AddComment(props: CommentForm): JSX.Element {
             name="comment"
             value={comment}
             onChange={handleChange}
-            rows={7}
+            rows={3}
             cols={12}
           />
         </div>

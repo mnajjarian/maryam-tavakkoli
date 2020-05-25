@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-import { CommentInterface } from '../components/Blog/Blog'
+import { CommentInterface } from '../pages/Blog/Blog'
 
 export interface User {
   _id: string
@@ -24,6 +24,7 @@ export interface DataState {
   blogs: Blog[]
   gallery: GalleryInterface[]
   users: User[]
+  message: string | null
 }
 export interface GalleryInterface {
   created_at: string
@@ -45,6 +46,7 @@ export const initialDataState: DataState = {
   blogs: [],
   users: [],
   gallery: [],
+  message: null,
 }
 
 export type DataAction =
@@ -62,7 +64,8 @@ export type DataAction =
   | { type: 'REMOVE_IMAGE'; payload: string }
   | { type: 'ADD_COMMENT'; payload: CommentInterface }
   | { type: 'REMOVE_COMMENT'; payload: CommentInterface }
-  | { type: 'ERROR_MESSAGE'; payload: { error: string } }
+  | { type: 'ERROR_MESSAGE'; payload: string }
+  | { type: 'REMOVE_MESSAGE' }
 
 const sortByDate = (obj: Blog[]): Blog[] =>
   obj.sort((a: Blog, b: Blog) => Number(new Date(b.createdAt)) - Number(new Date(a.createdAt)))
@@ -133,6 +136,12 @@ export const dataReducer = (state: DataState, action: DataAction): DataState => 
     case 'ERROR_MESSAGE':
       return {
         ...state,
+        message: action.payload,
+      }
+    case 'REMOVE_MESSAGE':
+      return {
+        ...state,
+        message: null,
       }
     default:
       return assertNever(action)
