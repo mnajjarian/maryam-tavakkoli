@@ -57,8 +57,12 @@ export function Gallery(props: Props): JSX.Element {
     }
     return acc
   }, [])
-  const handleDelete = (): void => {
-    dataService.removeImage(checkList[0])
+  const handleDelete = async (): Promise<void> => {
+    try {
+      await dataService.removeImage(checkList[0])
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (

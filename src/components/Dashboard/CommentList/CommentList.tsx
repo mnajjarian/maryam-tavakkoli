@@ -4,6 +4,7 @@ import { Button } from '../../Button/Button'
 import { DataContext } from '../../../contexts/dataContext'
 import { Table } from '../../Table/Table'
 import { DataServices } from 'services/dataService'
+import { Redirect } from 'react-router-dom'
 
 type Props = {
   comments: CommentInterface[]

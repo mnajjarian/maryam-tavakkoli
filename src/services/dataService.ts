@@ -127,7 +127,7 @@ export class DataServices {
         })
       })
       .catch(() => {
-        window.location.href = '/'
+        window.location.href = '/dashboard/posts'
       })
   }
   getGallery = (): void => {

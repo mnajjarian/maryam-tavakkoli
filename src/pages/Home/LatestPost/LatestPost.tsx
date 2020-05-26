@@ -12,9 +12,15 @@ export function LatestPost(): JSX.Element {
       {blogs.map(blog => (
         <div key={blog.id} className="latest__card">
           <div className="latest__card__title">
-            <a href="/">{extractFromDraft(blog.content).title}</a>
+            <a
+              href={`/blog/${extractFromDraft(blog.content)
+                .title.split(' ')
+                .join('-')}`}
+            >
+              {extractFromDraft(blog.content).title}
+            </a>
           </div>
-          <p>{extractFromDraft(blog.content).p.substring(0, 250)}</p>
+          <p>{extractFromDraft(blog.content).p.substring(0, 250)}...</p>
           <div className="latest__card__date">
             <time dateTime={blog.createdAt}>{formatDate(blog.createdAt)}</time>
           </div>
