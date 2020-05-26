@@ -48,15 +48,30 @@ export function Post({ match }: any): JSX.Element {
           <div className="post__content ">{renderHTML(editorContentHtml)}</div>
 
           <div className="post__social">
-            <div className="post__social__icon">
+            <a
+              href={`https://www.facebook.com/sharer/sharer.php?u=https://maryamtavakkoli.com/blog/${id}`}
+              rel="noopener noreferrer"
+              target="_blank"
+              className="post__social__icon"
+            >
               <img src={FacebookIcon} alt="facebook" />
-            </div>
-            <div className="post__social__icon">
+            </a>
+            <a
+              className="post__social__icon"
+              href={`https://www.linkedin.com/shareArticle?mini=true&url=https://maryamtavakkoli.com/blog/${id}`}
+              rel="noopener noreferrer"
+              target="_blank"
+            >
               <img src={LinkedinIcon} alt="linkedin" />
-            </div>
-            <div className="post__social__icon">
+            </a>
+            <a
+              className="post__social__icon"
+              href={`https://www.twitter.com/intent/tweet?url=https://maryamtavakkoli.com/blog/${id}&text=${title}`}
+              rel="noopener noreferrer"
+              target="_blank"
+            >
               <img src={TwitterIcon} alt="twitter" />
-            </div>
+            </a>
           </div>
           <span className="post__line"></span>
           <Comment comments={post.comments} postId={post.id} />

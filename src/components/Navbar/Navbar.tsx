@@ -26,7 +26,7 @@ export function Nav(): JSX.Element {
     }
   }, [])
   return (
-    <div id="navbar" className="navbar">
+    <div id="navbar" className="navbar sticky">
       <div
         className={classNames({
           navbar__menu: true,
