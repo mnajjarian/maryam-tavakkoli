@@ -63,7 +63,6 @@ export class DataServices {
     })
   }
   updateUser = (objId: string, obj: { imageUrl: string } | Omit<User, '_id' | 'isAdmin'>, publicId?: string): void => {
-    console.log(obj)
     customAxios
       .put(`/users/${objId}`, { obj: obj, publicId: publicId })
       .then(res => {

@@ -20,14 +20,14 @@ export function Profile(): JSX.Element {
     dataDispatch,
   } = useContext(DataContext)
   const dataService = new DataServices(dataDispatch)
-  //const user = users.filter((user: any) => user._id === authState.id)[0];
+
   const user = users[0]
 
   const initialState: Omit<User, '_id' | 'isAdmin'> = {
     username: user ? user.username : '',
     firstName: user ? user.firstName : '',
     lastName: user ? user.lastName : '',
-    title: user ? user.bio : '',
+    title: user ? user.title : '',
     bio: user ? user.bio : '',
     imageUrl: user ? user.imageUrl : '',
   }
@@ -153,7 +153,7 @@ export function Profile(): JSX.Element {
               name="bio"
               value={bio}
               onChange={handleChange}
-              placeholder="Biography"
+              placeholder="About"
             ></textarea>
           </div>
           <div className="form__button">

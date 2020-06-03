@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import { DataContext } from 'contexts/dataContext'
+import avatar from '../../../assets/images/avatar.png'
 
 export function Header(): JSX.Element {
   const { data } = useContext(DataContext)
@@ -11,7 +12,7 @@ export function Header(): JSX.Element {
 
   return (
     <section id="home" className="header col-sm-12 col-md-12">
-      <img src={data.users[0].imageUrl} alt="author" />
+      <img src={data.users[0].imageUrl ? data.users[0].imageUrl : require(avatar)} alt="author" />
       <h1>{fullName}</h1>
       <p>{data.users[0].title}</p>
       <a href="#about" className="header__scroll">

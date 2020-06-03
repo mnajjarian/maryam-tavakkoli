@@ -50,6 +50,16 @@ export const extractFromDraft = (content: string): DraftType => {
   }
 }
 
+export const validateDraft = (content: string): boolean => {
+  const draft: RawDraftContentState = JSON.parse(content)
+  const { blocks } = draft
+  const blockHaveHeader1 = blocks.filter((block: RawDraftContentBlock) => block.type === 'header-one')[0]
+  const blockHaveText = blocks
+    .filter((block: RawDraftContentBlock) => block.type === 'unstyled')
+    .filter((b: RawDraftContentBlock) => b.text.length > 1)
+  console.log(blockHaveText)
+  return blockHaveHeader1 !== undefined && blockHaveText.length > 0
+}
 export const formatDateAndTime = (date: string): string =>
   new Intl.DateTimeFormat('en-us', {
     day: 'numeric',

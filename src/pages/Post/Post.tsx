@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { DataContext } from '../../contexts/dataContext'
 import { convertFromRaw, EditorState, RawDraftContentState } from 'draft-js'
 import renderHTML from 'react-render-html'
@@ -19,11 +19,11 @@ export function Post({ match }: any): JSX.Element {
   const {
     params: { id },
   } = match
-  if (!id) {
-    return <div></div>
-  }
 
   const title: string = id.split('-').join(' ')
+  useEffect(() => {
+    document.title = title
+  }, [])
   const post: BlogType | undefined = blogs.find((p: BlogType) => p.content.includes(title))
 
   if (!post) {

@@ -13,7 +13,7 @@ import { Toolbar } from '../Toolbar/Toolbar'
 import { DataContext } from '../../../contexts/dataContext'
 import { mediaBlockRenderer } from '../MediaBlockRenderer/MediaBlockRenderer'
 import { useHistory } from 'react-router-dom'
-import { getBlockStyle } from 'Helper'
+import { getBlockStyle, validateDraft } from 'Helper'
 import { BlogType } from 'pages/Blog/Blog'
 import { DataServices } from 'services/dataService'
 
@@ -32,9 +32,6 @@ export function RichEditor(props: Props): JSX.Element {
     : EditorState.createEmpty()
 
   const [editorState, setEditorState] = useState<EditorState>(blogState)
-  const content = editorState.getCurrentContent()
-
-  const [editorContent, setEditorContent] = useState<string>(JSON.stringify(convertToRaw(content)))
 
   const history = useHistory()
 
@@ -46,11 +43,14 @@ export function RichEditor(props: Props): JSX.Element {
   }
   const handleChange = (editorState: EditorState): void => {
     setEditorState(editorState)
-    setEditorContent(JSON.stringify(convertToRaw(content)))
   }
 
   const handleSave = (type: string) => (): void => {
-    if (type === 'Publish') {
+    const content = editorState.getCurrentContent()
+    const editorContent = JSON.stringify(convertToRaw(content))
+    if (!validateDraft(editorContent)) {
+      focusEditor()
+    } else if (type === 'Publish') {
       dataService.createNewPost({
         content: editorContent,
         userId: data.users[0]._id,
@@ -64,6 +64,7 @@ export function RichEditor(props: Props): JSX.Element {
 
   const handleKeyCommand = (command: DraftEditorCommand, editorState: EditorState): HandleKeyCommand => {
     const newState = RichUtils.handleKeyCommand(editorState, command)
+
     if (newState) {
       handleChange(newState)
       return 'handled'
@@ -71,7 +72,7 @@ export function RichEditor(props: Props): JSX.Element {
       return 'not-handled'
     }
   }
-  const mapKeyToEditorCommand = (e: KeyboardEvent): any => {
+  const mapKeyToEditorCommand = (e: KeyboardEvent): DraftEditorCommand | null => {
     if (e.keyCode === 9) {
       const newEditorState = RichUtils.onTab(e, editorState, 4)
       if (newEditorState !== editorState) {
