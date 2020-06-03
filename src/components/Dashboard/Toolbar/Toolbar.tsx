@@ -14,8 +14,9 @@ interface ToolbarProps {
   onAddImage: (publicId: string) => void
   editorState: EditorState
   handleChange: (editorState: EditorState) => void
-  handleSave: (type: string) => () => void
+  handleSave: () => void
 }
+
 export function Toolbar(props: ToolbarProps): JSX.Element {
   const [isOpen, setIsOpen] = useState(false)
   const [toggle, setToggle] = useState(false)
@@ -52,7 +53,7 @@ export function Toolbar(props: ToolbarProps): JSX.Element {
           'toolbar__buttons-hide': !toggle,
         })}
       >
-        <Button text={variant} handleClick={handleSave(variant)} />
+        <Button text={variant} handleClick={handleSave} />
       </div>
 
       {isOpen && (

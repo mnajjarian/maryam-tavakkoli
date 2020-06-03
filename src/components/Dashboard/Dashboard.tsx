@@ -1,10 +1,9 @@
 import React, { ReactNode, lazy } from 'react'
 import { Nav } from './Nav/Nav'
-import { Route, match } from 'react-router-dom'
+import { Route, RouteComponentProps } from 'react-router-dom'
 import { Notification } from 'components/Notification/Notification'
 
-type Match = match
-const lazyImport = (fileName: string): React.LazyExoticComponent<React.ComponentType<any>> =>
+const lazyImport = (fileName: string): React.LazyExoticComponent<React.ComponentType<React.FC>> =>
   lazy(() => import(`../Dashboard/${fileName}/${fileName}`).then(module => ({ default: module[fileName] })))
 
 const Gallery = lazyImport('Gallery')
@@ -12,7 +11,7 @@ const Profile = lazyImport('Profile')
 const RichEditor = lazyImport('RichEditor')
 const Posts = lazyImport('PostTable')
 
-export function Dashboard({ match }: { match: Match }): JSX.Element {
+export function Dashboard({ match }: RouteComponentProps): JSX.Element {
   const { url } = match
 
   return (
@@ -20,11 +19,7 @@ export function Dashboard({ match }: { match: Match }): JSX.Element {
       <Route path={`${url}/profile`} component={Profile} exact />
       <Route path={`${url}/gallery`} component={Gallery} exact />
       <Route path={`${url}/create`} component={RichEditor} exact />
-      <Route
-        path={`${url}/edit/:id`}
-        component={({ match }: { match: match }): JSX.Element => <RichEditor blogId={match.params} />}
-        exact
-      />
+      <Route path={`${url}/edit/:postId`} component={RichEditor} exact />
       <Route path={`${url}/posts`} component={Posts} exact />
     </DashboardWrapper>
   )

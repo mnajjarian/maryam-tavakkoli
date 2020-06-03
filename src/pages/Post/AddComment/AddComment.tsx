@@ -72,7 +72,6 @@ export function AddComment(props: CommentForm): JSX.Element {
           />
         </div>
         <div className="form__button">
-          {/*           <Button text="Cancel" handleClick={closeForm} /> */}
           <Button text="Submit" />
         </div>
       </form>

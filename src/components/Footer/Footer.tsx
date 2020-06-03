@@ -1,6 +1,6 @@
 import React from 'react'
 import LinkedinIcon from '../../assets/icons/linkedin-2.svg'
-import { Subscription } from '../Subscription/Subscription'
+import { Subscription } from './Subscription/Subscription'
 
 export function Footer(): JSX.Element {
   return (

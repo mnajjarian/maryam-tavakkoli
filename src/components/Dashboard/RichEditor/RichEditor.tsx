@@ -12,21 +12,24 @@ import {
 import { Toolbar } from '../Toolbar/Toolbar'
 import { DataContext } from '../../../contexts/dataContext'
 import { mediaBlockRenderer } from '../MediaBlockRenderer/MediaBlockRenderer'
-import { useHistory } from 'react-router-dom'
+import { useHistory, RouteComponentProps } from 'react-router-dom'
 import { getBlockStyle, validateDraft } from 'Helper'
 import { BlogType } from 'pages/Blog/Blog'
 import { DataServices } from 'services/dataService'
 
 type HandleKeyCommand = 'handled' | 'not-handled'
+
 type Props = {
-  blogId: {
-    id?: string
-  }
+  postId: string
 }
-export function RichEditor(props: Props): JSX.Element {
+export function RichEditor({ match }: RouteComponentProps<Props>): JSX.Element {
+  const {
+    params: { postId },
+  } = match
+
   const { data, dataDispatch } = useContext(DataContext)
   const dataService = new DataServices(dataDispatch)
-  const blogPost = props.blogId ? data.blogs.filter((b: BlogType) => b.id === props.blogId.id)[0] : null
+  const blogPost = postId ? data.blogs.filter((b: BlogType) => b.id === postId)[0] : null
   const blogState: EditorState = blogPost
     ? EditorState.createWithContent(convertFromRaw(JSON.parse(blogPost.content)))
     : EditorState.createEmpty()
@@ -45,19 +48,19 @@ export function RichEditor(props: Props): JSX.Element {
     setEditorState(editorState)
   }
 
-  const handleSave = (type: string) => (): void => {
+  const handleSave = (): void => {
     const content = editorState.getCurrentContent()
     const editorContent = JSON.stringify(convertToRaw(content))
     if (!validateDraft(editorContent)) {
       focusEditor()
-    } else if (type === 'Publish') {
+    } else if (!postId) {
       dataService.createNewPost({
         content: editorContent,
         userId: data.users[0]._id,
       })
       history.push('/dashboard/posts')
     } else {
-      dataService.updatePost(props.blogId.id, editorContent)
+      dataService.updatePost(postId, editorContent)
       history.push('/dashboard/posts')
     }
   }
@@ -112,7 +115,7 @@ export function RichEditor(props: Props): JSX.Element {
     <div className="editor">
       <div className="RichEditor">
         <Toolbar
-          variant={props.blogId ? 'Save' : 'Publish'}
+          variant={postId ? 'Save' : 'Publish'}
           onAddImage={onAddImage}
           editorState={editorState}
           handleChange={handleChange}

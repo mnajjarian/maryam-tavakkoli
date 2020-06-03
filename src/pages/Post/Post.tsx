@@ -11,19 +11,24 @@ import FacebookIcon from '../../assets/icons/facebook-2.svg'
 import TwitterIcon from '../../assets/icons/twitter-2.svg'
 import { Layout } from '../../components/Layout/Layout'
 import { formatDate } from 'Helper'
+import { RouteComponentProps } from 'react-router-dom'
 
-export function Post({ match }: any): JSX.Element {
+type Props = {
+  postId: string
+}
+export function Post({ match }: RouteComponentProps<Props>): JSX.Element {
   const {
     data: { blogs },
   } = useContext(DataContext)
   const {
-    params: { id },
+    params: { postId },
   } = match
 
-  const title: string = id.split('-').join(' ')
+  const title: string = postId.split('-').join(' ')
   useEffect(() => {
     document.title = title
-  }, [])
+  }, [title])
+
   const post: BlogType | undefined = blogs.find((p: BlogType) => p.content.includes(title))
 
   if (!post) {
@@ -45,11 +50,12 @@ export function Post({ match }: any): JSX.Element {
             <time>{formatDate(post.createdAt)}</time>
             &nbsp;|&nbsp;By&nbsp;{post.user.firstName + ' ' + post.user.lastName}
           </p>
+          <span className="post__line"></span>
           <div className="post__content ">{renderHTML(editorContentHtml)}</div>
 
           <div className="post__social">
             <a
-              href={`https://www.facebook.com/sharer/sharer.php?u=https://maryamtavakkoli.com/blog/${id}`}
+              href={`https://www.facebook.com/sharer/sharer.php?u=https://maryamtavakkoli.com/blog/${postId}`}
               rel="noopener noreferrer"
               target="_blank"
               className="post__social__icon"
@@ -58,7 +64,7 @@ export function Post({ match }: any): JSX.Element {
             </a>
             <a
               className="post__social__icon"
-              href={`https://www.linkedin.com/shareArticle?mini=true&url=https://maryamtavakkoli.com/blog/${id}`}
+              href={`https://www.linkedin.com/shareArticle?mini=true&url=https://maryamtavakkoli.com/blog/${postId}`}
               rel="noopener noreferrer"
               target="_blank"
             >
@@ -66,7 +72,7 @@ export function Post({ match }: any): JSX.Element {
             </a>
             <a
               className="post__social__icon"
-              href={`https://www.twitter.com/intent/tweet?url=https://maryamtavakkoli.com/blog/${id}&text=${title}`}
+              href={`https://www.twitter.com/intent/tweet?url=https://maryamtavakkoli.com/blog/${postId}&text=${title}`}
               rel="noopener noreferrer"
               target="_blank"
             >

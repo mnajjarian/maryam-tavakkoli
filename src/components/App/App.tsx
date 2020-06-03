@@ -14,8 +14,8 @@ export function App(): JSX.Element {
     const authService = new AuthService(authDispatch)
     const fetchData = (): void => {
       authService.authenticate()
-      dataService.getPosts()
       dataService.getUsers()
+      dataService.getPosts()
       dataService.getGallery()
     }
     fetchData()

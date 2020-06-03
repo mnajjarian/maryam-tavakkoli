@@ -34,6 +34,7 @@ export interface GalleryInterface {
   type: string
   version: number
   width: number
+  secure_url: string
 }
 export interface UserUpdateImage {
   obj: {

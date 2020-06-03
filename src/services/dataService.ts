@@ -1,7 +1,6 @@
 import { Dispatch } from 'react'
-import axios from 'axios'
 import { customAxios } from './customAxios'
-import { DataAction, User } from '../reducers/dataReducer'
+import { DataAction, User, GalleryInterface } from '../reducers/dataReducer'
 
 export type CommentState = {
   commenter?: string
@@ -25,7 +24,7 @@ export class DataServices {
         })
       })
       .catch(err => {
-        console.log(err)
+        console.log('getPosts: ', err)
       })
   }
   createNewPost = (newPost: NewPost): void => {
@@ -38,7 +37,7 @@ export class DataServices {
         })
       })
       .catch(err => {
-        console.log(err)
+        console.log('createNewPost: ', err)
       })
   }
   updatePost = (blogId: string | undefined, content: string): void => {
@@ -55,12 +54,17 @@ export class DataServices {
       })
   }
   getUsers = (): void => {
-    customAxios.get('/users').then(res => {
-      this.dispatch({
-        type: 'FETCH_USERS',
-        payload: res.data,
+    customAxios
+      .get('/users')
+      .then(res => {
+        this.dispatch({
+          type: 'FETCH_USERS',
+          payload: res.data,
+        })
       })
-    })
+      .catch(err => {
+        console.log('getUsers: ', err)
+      })
   }
   updateUser = (objId: string, obj: { imageUrl: string } | Omit<User, '_id' | 'isAdmin'>, publicId?: string): void => {
     customAxios
@@ -79,16 +83,21 @@ export class DataServices {
         }
       })
       .catch(err => {
-        console.log(err)
+        console.log('updateUser: ', err)
       })
   }
   removeImage = (publicId: string): void => {
-    customAxios.delete(`/assets/${publicId}`).then(() => {
-      this.dispatch({
-        type: 'REMOVE_IMAGE',
-        payload: publicId,
+    customAxios
+      .delete(`/assets/${publicId}`)
+      .then(() => {
+        this.dispatch({
+          type: 'REMOVE_IMAGE',
+          payload: publicId,
+        })
       })
-    })
+      .catch(err => {
+        console.log('removeImage: ', err)
+      })
   }
   removeAssets = (publicIds: string[]): void => {
     customAxios.post('/assets', publicIds).then(res => {
@@ -96,12 +105,17 @@ export class DataServices {
     })
   }
   removePost = (blogId: string): void => {
-    customAxios.delete(`/posts/${blogId}`).then(() => {
-      this.dispatch({
-        type: 'REMOVE_POST',
-        payload: blogId,
+    customAxios
+      .delete(`/posts/${blogId}`)
+      .then(() => {
+        this.dispatch({
+          type: 'REMOVE_POST',
+          payload: blogId,
+        })
       })
-    })
+      .catch(err => {
+        console.log('removePost: ', err)
+      })
   }
   addComment = (comment: CommentState): void => {
     customAxios
@@ -113,7 +127,7 @@ export class DataServices {
         })
       })
       .catch((err: Error) => {
-        console.log(err)
+        console.log('addComment: ', err)
       })
   }
   removeComment = (commentId: string): void => {
@@ -130,16 +144,17 @@ export class DataServices {
       })
   }
   getGallery = (): void => {
-    axios
-      .get(`https://res.cloudinary.com/${process.env.REACT_APP_CLOUDNAME}/image/list/xmas.json`)
+    customAxios
+      .get('/gallery')
       .then(res => {
+        const result = res.data.filter((g: GalleryInterface) => g.format !== 'json')
         this.dispatch({
           type: 'FETCH_GALLERY',
-          payload: res.data.resources,
+          payload: result,
         })
       })
       .catch((err: Error) => {
-        console.log(err)
+        console.log('getGallery: ', err)
       })
   }
 }

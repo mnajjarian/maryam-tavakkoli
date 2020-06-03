@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 /* eslint-disable @typescript-eslint/camelcase */
 import React, { useState, ChangeEvent } from 'react'
-import { Button } from '../Button/Button'
+import { Button } from '../../Button/Button'
 import { emailValidation } from 'Helper'
 import classNames from 'classnames'
 
