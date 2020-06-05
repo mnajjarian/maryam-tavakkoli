@@ -3,7 +3,6 @@ import { DataContext } from '../../contexts/dataContext'
 import { convertFromRaw, EditorState, RawDraftContentState } from 'draft-js'
 import renderHTML from 'react-render-html'
 import { stateToHTML } from 'draft-js-export-html'
-import { BlogType } from '../Blog/Blog'
 import { Comment } from './Comment/Comment'
 import Loading from '../../components/Loading/Loading'
 import LinkedinIcon from '../../assets/icons/linkedin-4.svg'
@@ -12,6 +11,7 @@ import TwitterIcon from '../../assets/icons/twitter-2.svg'
 import { Layout } from '../../components/Layout/Layout'
 import { formatDate } from 'Helper'
 import { RouteComponentProps } from 'react-router-dom'
+import { BlogInterface } from 'reducers/dataReducer'
 
 type Props = {
   postId: string
@@ -29,7 +29,7 @@ export function Post({ match }: RouteComponentProps<Props>): JSX.Element {
     document.title = title
   }, [title])
 
-  const post: BlogType | undefined = blogs.find((p: BlogType) => p.content.includes(title))
+  const post: BlogInterface | undefined = blogs.find((p: BlogInterface) => p.content.includes(title))
 
   if (!post) {
     return <Loading />

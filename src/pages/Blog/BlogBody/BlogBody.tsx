@@ -1,12 +1,12 @@
 import React, { useContext } from 'react'
 import { CardPost } from '../CardPost/CardPost'
-import { BlogType } from '../Blog'
 import { DataContext } from '../../../contexts/dataContext'
+import { BlogInterface } from 'reducers/dataReducer'
 
 export function BlogBody(): JSX.Element {
-  const {
-    data: { blogs },
-  } = useContext(DataContext)
+  const { data } = useContext(DataContext)
+  const blogs = data.blogs.filter(blog => blog.draft !== false)
+
   if (!blogs.length) {
     return (
       <div className="blog">
@@ -27,7 +27,7 @@ export function BlogBody(): JSX.Element {
   return (
     <div className="row articles">
       <div className="col-sm-12 col-md-8">
-        {blogs.map((post: BlogType) => (
+        {blogs.map((post: BlogInterface) => (
           <CardPost key={post.id} post={post} />
         ))}
       </div>

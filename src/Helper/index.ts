@@ -57,7 +57,6 @@ export const validateDraft = (content: string): boolean => {
   const blockHaveText = blocks
     .filter((block: RawDraftContentBlock) => block.type === 'unstyled')
     .filter((b: RawDraftContentBlock) => b.text.length > 1)
-  console.log(blockHaveText)
   return blockHaveHeader1 !== undefined && blockHaveText.length > 0
 }
 export const formatDateAndTime = (date: string): string =>

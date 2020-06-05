@@ -10,17 +10,17 @@ import { Gallery } from '../Gallery/Gallery'
 import SaveIcon from '../../../assets/icons/save.svg'
 
 interface ToolbarProps {
-  variant: string
+  draft: boolean
   onAddImage: (publicId: string) => void
   editorState: EditorState
   handleChange: (editorState: EditorState) => void
-  handleSave: () => void
+  handleSave: (variant: string) => () => void
 }
 
 export function Toolbar(props: ToolbarProps): JSX.Element {
   const [isOpen, setIsOpen] = useState(false)
   const [toggle, setToggle] = useState(false)
-  const { editorState, handleChange, onAddImage, handleSave, variant } = props
+  const { editorState, handleChange, onAddImage, handleSave, draft } = props
 
   const toggleModal = (): void => setIsOpen(!isOpen)
   const handleCb = (publicId: string): void => {
@@ -53,7 +53,8 @@ export function Toolbar(props: ToolbarProps): JSX.Element {
           'toolbar__buttons-hide': !toggle,
         })}
       >
-        <Button text={variant} handleClick={handleSave} />
+        <Button text={!draft ? 'draft' : 'save'} handleClick={handleSave('save')} />
+        <Button text="publish" handleClick={handleSave('publish')} />
       </div>
 
       {isOpen && (

@@ -14,8 +14,8 @@ import { DataContext } from '../../../contexts/dataContext'
 import { mediaBlockRenderer } from '../MediaBlockRenderer/MediaBlockRenderer'
 import { useHistory, RouteComponentProps } from 'react-router-dom'
 import { getBlockStyle, validateDraft } from 'Helper'
-import { BlogType } from 'pages/Blog/Blog'
 import { DataServices } from 'services/dataService'
+import { BlogInterface } from 'reducers/dataReducer'
 
 type HandleKeyCommand = 'handled' | 'not-handled'
 
@@ -29,7 +29,7 @@ export function RichEditor({ match }: RouteComponentProps<Props>): JSX.Element {
 
   const { data, dataDispatch } = useContext(DataContext)
   const dataService = new DataServices(dataDispatch)
-  const blogPost = postId ? data.blogs.filter((b: BlogType) => b.id === postId)[0] : null
+  const blogPost = postId ? data.blogs.filter((b: BlogInterface) => b.id === postId)[0] : null
   const blogState: EditorState = blogPost
     ? EditorState.createWithContent(convertFromRaw(JSON.parse(blogPost.content)))
     : EditorState.createEmpty()
@@ -48,7 +48,8 @@ export function RichEditor({ match }: RouteComponentProps<Props>): JSX.Element {
     setEditorState(editorState)
   }
 
-  const handleSave = (): void => {
+  const handleSave = (variant: string) => (): void => {
+    console.log(variant)
     const content = editorState.getCurrentContent()
     const editorContent = JSON.stringify(convertToRaw(content))
     if (!validateDraft(editorContent)) {
@@ -57,12 +58,14 @@ export function RichEditor({ match }: RouteComponentProps<Props>): JSX.Element {
       dataService.createNewPost({
         content: editorContent,
         userId: data.users[0]._id,
+        draft: variant === 'draft',
       })
-      history.push('/dashboard/posts')
-    } else {
-      dataService.updatePost(postId, editorContent)
-      history.push('/dashboard/posts')
+    } else if (blogPost && variant === 'save') {
+      dataService.updatePost(postId, { ...blogPost, content: editorContent, draft: true })
+    } else if (blogPost && variant === 'publish') {
+      dataService.updatePost(postId, { ...blogPost, content: editorContent, draft: false })
     }
+    history.push('/dashboard')
   }
 
   const handleKeyCommand = (command: DraftEditorCommand, editorState: EditorState): HandleKeyCommand => {
@@ -115,7 +118,7 @@ export function RichEditor({ match }: RouteComponentProps<Props>): JSX.Element {
     <div className="editor">
       <div className="RichEditor">
         <Toolbar
-          variant={postId ? 'Save' : 'Publish'}
+          draft={(blogPost && blogPost.draft) || false}
           onAddImage={onAddImage}
           editorState={editorState}
           handleChange={handleChange}

@@ -1,9 +1,9 @@
 import React, { useContext } from 'react'
-import { CommentInterface } from '../../../pages/Blog/Blog'
 import { Button } from '../../Button/Button'
 import { DataContext } from '../../../contexts/dataContext'
 import { Table } from '../../Table/Table'
 import { DataServices } from '../../../services/dataService'
+import { CommentInterface } from '../../../reducers/dataReducer'
 
 type Props = {
   comments: CommentInterface[]

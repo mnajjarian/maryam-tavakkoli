@@ -1,5 +1,4 @@
 /* eslint-disable camelcase */
-import { CommentInterface } from '../pages/Blog/Blog'
 
 export interface User {
   _id: string
@@ -11,17 +10,26 @@ export interface User {
   title: string
   bio: string
 }
-export interface Blog {
+export interface CommentInterface {
+  _id: string
+  comment: string
+  post: string
+  commenter: string
+  email: string
+  createdAt: string
+}
+export interface BlogInterface {
   id: string
   content: string
   createdAt: string
   updatedAt: string
   comments: CommentInterface[]
   user: User
+  draft: boolean
 }
 export interface DataState {
   isFetched: boolean
-  blogs: Blog[]
+  blogs: BlogInterface[]
   gallery: GalleryInterface[]
   users: User[]
   message: string | null
@@ -54,10 +62,10 @@ export type DataAction =
   | { type: 'FETCH_USERS'; payload: User[] }
   | { type: 'UPDATE_USER'; payload: any }
   | { type: 'UPDATE_USER_IMAGE'; payload: UserUpdateImage }
-  | { type: 'ADD_POST'; payload: Blog }
-  | { type: 'EDIT_POST'; payload: Blog }
+  | { type: 'ADD_POST'; payload: BlogInterface }
+  | { type: 'EDIT_POST'; payload: BlogInterface }
   | { type: 'REMOVE_POST'; payload: string }
-  | { type: 'FETCH_POSTS'; payload: Blog[] }
+  | { type: 'FETCH_POSTS'; payload: BlogInterface[] }
   | { type: 'POSTS_FECHED' }
   | { type: 'FETCH_GALLERY'; payload: GalleryInterface[] }
   | { type: 'ADD_GALLERY'; payload: GalleryInterface }
@@ -68,8 +76,8 @@ export type DataAction =
   | { type: 'ERROR_MESSAGE'; payload: string }
   | { type: 'REMOVE_MESSAGE' }
 
-const sortByDate = (obj: Blog[]): Blog[] =>
-  obj.sort((a: Blog, b: Blog) => Number(new Date(b.createdAt)) - Number(new Date(a.createdAt)))
+const sortByDate = (obj: BlogInterface[]): BlogInterface[] =>
+  obj.sort((a: BlogInterface, b: BlogInterface) => Number(new Date(b.createdAt)) - Number(new Date(a.createdAt)))
 
 /** check for exhaustiveness on reducer */
 function assertNever(x: never): never {
@@ -108,12 +116,12 @@ export const dataReducer = (state: DataState, action: DataAction): DataState => 
     case 'EDIT_POST':
       return {
         ...state,
-        blogs: state.blogs.map(blog => (blog.id !== action.payload.id ? blog : action.payload)),
+        blogs: state.blogs.map(blog => (blog.id === action.payload.id ? action.payload : blog)),
       }
     case 'REMOVE_POST':
       return {
         ...state,
-        blogs: state.blogs.filter((blog: Blog) => blog.id !== action.payload),
+        blogs: state.blogs.filter((blog: BlogInterface) => blog.id !== action.payload),
       }
     case 'REMOVE_IMAGE':
       return {
@@ -121,18 +129,18 @@ export const dataReducer = (state: DataState, action: DataAction): DataState => 
         gallery: state.gallery.filter((img: GalleryInterface) => img.public_id !== action.payload),
       }
     case 'ADD_COMMENT':
-      const post = state.blogs.filter((b: Blog) => b.id === action.payload.post)[0]
+      const post = state.blogs.filter((b: BlogInterface) => b.id === action.payload.post)[0]
       post.comments = post.comments.concat(action.payload)
       return {
         ...state,
-        blogs: state.blogs.map((blog: Blog) => (blog.id === action.payload._id ? post : blog)),
+        blogs: state.blogs.map((blog: BlogInterface) => (blog.id === action.payload._id ? post : blog)),
       }
     case 'REMOVE_COMMENT':
-      const postBlog = state.blogs.filter((b: Blog) => b.id === action.payload.post)[0]
+      const postBlog = state.blogs.filter((b: BlogInterface) => b.id === action.payload.post)[0]
       postBlog.comments = postBlog.comments.filter((comment: CommentInterface) => comment._id !== action.payload._id)
       return {
         ...state,
-        blogs: state.blogs.map((blog: Blog) => (blog.id === action.payload.post ? postBlog : blog)),
+        blogs: state.blogs.map((blog: BlogInterface) => (blog.id === action.payload.post ? postBlog : blog)),
       }
     case 'ERROR_MESSAGE':
       return {

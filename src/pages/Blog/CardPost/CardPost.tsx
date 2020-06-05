@@ -1,12 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { RawDraftContentBlock, RawDraftContentState } from 'draft-js'
-import { BlogType } from '../Blog'
 import { formatDate } from '../../../Helper'
 import IconBubble from '../../../assets/icons/bubble.svg'
+import { BlogInterface } from 'reducers/dataReducer'
 
 type PostProps = {
-  post: BlogType
+  post: BlogInterface
   type?: string
 }
 

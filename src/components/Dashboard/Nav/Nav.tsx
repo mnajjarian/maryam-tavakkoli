@@ -40,6 +40,9 @@ export function Nav(): JSX.Element {
         <Link to="/dashboard/gallery">Gallery</Link>
       </div>
       <div className="nav__list__group">
+        <Link to="/dashboard/drafts">drafts</Link>
+      </div>
+      <div className="nav__list__group">
         <Link to="/dashboard/posts">Posts</Link>
       </div>
       <div className="nav__list__group">

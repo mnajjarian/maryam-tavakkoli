@@ -1,13 +1,13 @@
 import { Dispatch } from 'react'
 import { customAxios } from './customAxios'
-import { DataAction, User, GalleryInterface } from '../reducers/dataReducer'
+import { DataAction, User, GalleryInterface, BlogInterface } from '../reducers/dataReducer'
 
 export type CommentState = {
   commenter?: string
   email?: string
   comment: string
 }
-type NewPost = { userId: string; content: string }
+type NewPost = { userId: string; content: string; draft: boolean }
 
 export class DataServices {
   private dispatch: Dispatch<DataAction>
@@ -40,9 +40,9 @@ export class DataServices {
         console.log('createNewPost: ', err)
       })
   }
-  updatePost = (blogId: string | undefined, content: string): void => {
+  updatePost = (blogId: string | undefined, blog: BlogInterface): void => {
     customAxios
-      .put(`/posts/${blogId}`, { content: content })
+      .put(`/posts/${blogId}`, { content: blog.content, draft: blog.draft })
       .then(res => {
         this.dispatch({
           type: 'EDIT_POST',

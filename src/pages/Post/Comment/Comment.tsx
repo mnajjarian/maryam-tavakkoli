@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import { CommentInterface } from '../../Blog/Blog'
 import { formatDate, formatTime } from '../../../Helper'
 import { AddComment } from '../AddComment/AddComment'
+import { CommentInterface } from 'reducers/dataReducer'
 
 type Props = {
   comments: CommentInterface[]

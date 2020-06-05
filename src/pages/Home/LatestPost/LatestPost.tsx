@@ -5,7 +5,7 @@ import { extractFromDraft, formatDate } from 'Helper'
 export function LatestPost(): JSX.Element {
   const { data } = useContext(DataContext)
 
-  const blogs = data.blogs.slice(0, 3)
+  const blogs = data.blogs.filter(blog => blog.draft !== false).slice(0, 3)
   if (blogs.length < 1) {
     return <div />
   }

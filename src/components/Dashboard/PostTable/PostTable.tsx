@@ -1,20 +1,21 @@
 import React, { useContext, useState, MouseEvent } from 'react'
+import { Link } from 'react-router-dom'
 import { DataContext } from '../../../contexts/dataContext'
 import { Button } from '../../Button/Button'
-import { BlogType, CommentInterface } from '../../../pages/Blog/Blog'
 import { extractFromDraft } from '../../../Helper'
 import { Modal } from '../../Modal/Modal'
 import { CommentList } from '../CommentList/CommentList'
-import { Table } from 'components/Table/Table'
-import { Link } from 'react-router-dom'
-import { DataServices } from 'services/dataService'
+import { Table } from '../../Table/Table'
+import { DataServices } from '../../../services/dataService'
+import { BlogInterface, CommentInterface } from '../../../reducers/dataReducer'
 
 type TableRow = {
-  item: BlogType
+  item: BlogInterface
   index: number
   handleClick: (id: string) => () => void
   toggleModal: (e: MouseEvent<HTMLAnchorElement>, comments: CommentInterface[]) => void
 }
+
 function BlogRow(props: TableRow): JSX.Element {
   const {
     item: { comments, content, createdAt, updatedAt, id },
@@ -54,7 +55,11 @@ function BlogRow(props: TableRow): JSX.Element {
   )
 }
 
-export function PostTable(): JSX.Element {
+type PostTableProps = {
+  heads: string[]
+  drafts: boolean
+}
+export function PostTable({ heads, drafts }: PostTableProps): JSX.Element {
   const [isOpen, setIsOpen] = useState(false)
   const [comments, setComments] = useState<CommentInterface[]>([
     {
@@ -66,13 +71,17 @@ export function PostTable(): JSX.Element {
       post: '',
     },
   ])
-  const {
-    data: { blogs },
-    dataDispatch,
-  } = useContext(DataContext)
+  const { data, dataDispatch } = useContext(DataContext)
   const dataService = new DataServices(dataDispatch)
+
+  const blogs = data.blogs.filter((blog: BlogInterface) => blog.draft === drafts)
+
   if (!blogs.length) {
-    return <div className="posts">You do not have any post in your blog.</div>
+    return (
+      <div className="posts">
+        <h1>There is nothing here!</h1>
+      </div>
+    )
   }
 
   const toggleModal = (): void => setIsOpen(!isOpen)
@@ -90,7 +99,7 @@ export function PostTable(): JSX.Element {
     setComments(commentList)
     setIsOpen(!isOpen)
   }
-  const heads = ['post', 'title', 'created', 'updated', 'comments', 'edit', 'delete']
+
   return (
     <div className="posts">
       {isOpen && (
@@ -100,7 +109,7 @@ export function PostTable(): JSX.Element {
       )}
       <div className="posts-table">
         <Table heads={heads}>
-          {blogs.map((blog: BlogType, index: number) => (
+          {blogs.map((blog: BlogInterface, index: number) => (
             <BlogRow key={blog.id} item={blog} index={index} toggleModal={toggle} handleClick={handleClick} />
           ))}
         </Table>

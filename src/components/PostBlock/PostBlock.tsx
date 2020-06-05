@@ -1,10 +1,10 @@
 import React, { useContext } from 'react'
-import { BlogType } from '../../pages/Blog/Blog'
 import { extractFromDraft, formatDateAndTime } from '../../Helper'
 import { DataContext } from '../../contexts/dataContext'
+import { BlogInterface } from 'reducers/dataReducer'
 
 type BlockType = {
-  block: BlogType
+  block: BlogInterface
 }
 export function BlockCard({ block }: BlockType): JSX.Element {
   return (
@@ -33,7 +33,7 @@ export function PostBlock(): JSX.Element {
     <div className="block">
       <h2 className="block__title">Latest Posts</h2>
       <div className="block__content">
-        {sortPosts.map((block: BlogType) => (
+        {sortPosts.map((block: BlogInterface) => (
           <BlockCard key={block.id} block={block} />
         ))}
       </div>
