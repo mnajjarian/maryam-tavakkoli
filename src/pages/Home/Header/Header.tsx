@@ -3,7 +3,6 @@ import { DataContext } from '../../../contexts/dataContext'
 
 export function Header(): JSX.Element {
   const { data } = useContext(DataContext)
-
   if (!data.users.length) {
     return <div></div>
   }

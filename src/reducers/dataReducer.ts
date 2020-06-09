@@ -28,7 +28,8 @@ export interface BlogInterface {
   draft: boolean
 }
 export interface DataState {
-  isFetched: boolean
+  loading: boolean
+  error: Error | null
   blogs: BlogInterface[]
   gallery: GalleryInterface[]
   users: User[]
@@ -51,7 +52,8 @@ export interface UserUpdateImage {
   userId: string
 }
 export const initialDataState: DataState = {
-  isFetched: false,
+  loading: false,
+  error: null,
   blogs: [],
   users: [],
   gallery: [],
@@ -59,14 +61,17 @@ export const initialDataState: DataState = {
 }
 
 export type DataAction =
-  | { type: 'FETCH_USERS'; payload: User[] }
+  | { type: 'FETCH_USERS' }
+  | { type: 'FETCH_USERS_SUCCESS'; payload: User[] }
+  | { type: 'FETCH_USERS_FAILED'; payload: Error }
   | { type: 'UPDATE_USER'; payload: any }
   | { type: 'UPDATE_USER_IMAGE'; payload: UserUpdateImage }
   | { type: 'ADD_POST'; payload: BlogInterface }
   | { type: 'EDIT_POST'; payload: BlogInterface }
   | { type: 'REMOVE_POST'; payload: string }
-  | { type: 'FETCH_POSTS'; payload: BlogInterface[] }
-  | { type: 'POSTS_FECHED' }
+  | { type: 'FETCH_POSTS' }
+  | { type: 'FETCH_POSTS_SUCCESS'; payload: BlogInterface[] }
+  | { type: 'FETCH_POSTS_FAILED'; payload: Error }
   | { type: 'FETCH_GALLERY'; payload: GalleryInterface[] }
   | { type: 'ADD_GALLERY'; payload: GalleryInterface }
   | { type: 'SET_AVATAR'; payload: string }
@@ -88,7 +93,11 @@ export const dataReducer = (state: DataState, action: DataAction): DataState => 
   //console.log(action)
   switch (action.type) {
     case 'FETCH_USERS':
-      return { ...state, users: action.payload }
+      return { ...state, users: [], loading: true }
+    case 'FETCH_USERS_SUCCESS':
+      return { ...state, users: action.payload, loading: false }
+    case 'FETCH_USERS_FAILED':
+      return { ...state, users: [], loading: false, error: action.payload }
     case 'UPDATE_USER':
       return {
         ...state,
@@ -102,9 +111,11 @@ export const dataReducer = (state: DataState, action: DataAction): DataState => 
         users: state.users.map((user: User) => (user._id !== action.payload.userId ? user : userToUpdate)),
       }
     case 'FETCH_POSTS':
-      return { ...state, blogs: sortByDate(action.payload) }
-    case 'POSTS_FECHED':
-      return { ...state, isFetched: true }
+      return { ...state, blogs: [], loading: true, error: null }
+    case 'FETCH_POSTS_SUCCESS':
+      return { ...state, blogs: sortByDate(action.payload), loading: false }
+    case 'FETCH_POSTS_FAILED':
+      return { ...state, blogs: [], loading: false, error: action.payload }
     case 'FETCH_GALLERY':
       return { ...state, gallery: action.payload }
     case 'SET_AVATAR':

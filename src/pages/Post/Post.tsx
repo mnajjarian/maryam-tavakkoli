@@ -10,21 +10,21 @@ import FacebookIcon from '../../assets/icons/facebook-2.svg'
 import TwitterIcon from '../../assets/icons/twitter-2.svg'
 import { Layout } from '../../components/Layout/Layout'
 import { formatDate } from 'Helper'
-import { RouteComponentProps } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { BlogInterface } from 'reducers/dataReducer'
 
 type Props = {
   postId: string
 }
-export function Post({ match }: RouteComponentProps<Props>): JSX.Element {
+export function Post(): JSX.Element {
   const {
     data: { blogs },
   } = useContext(DataContext)
-  const {
-    params: { postId },
-  } = match
+
+  const { postId } = useParams<Props>()
 
   const title: string = postId.split('-').join(' ')
+
   useEffect(() => {
     document.title = title
   }, [title])

@@ -1,16 +1,14 @@
-/* eslint-disable camelcase */
-/* eslint-disable @typescript-eslint/camelcase */
-import React, { useContext, useEffect } from 'react'
-import classNames from 'classnames'
-import { NavLink } from 'react-router-dom'
+import React, { useContext, useEffect, useState } from 'react'
+import { NavLink, useHistory } from 'react-router-dom'
 import { AuthContext } from '../../contexts/authContext'
 
 export function Nav(): JSX.Element {
-  const [toggle, setToggle] = React.useState<boolean>(false)
-  const handleToggle = (): void => setToggle(!toggle)
   const {
     authState: { isLoggedIn },
   } = useContext(AuthContext)
+
+  const [path, setPath] = useState('')
+
   useEffect(() => {
     const el = document.getElementById('navbar')
     const scrollFunc = (): void => {
@@ -25,30 +23,31 @@ export function Nav(): JSX.Element {
       document.removeEventListener('scroll', scrollFunc)
     }
   }, [])
+
+  const {
+    location: { pathname },
+  } = useHistory()
+
+  const scrollTo = (pathName: string) => (): void => setPath(pathName)
+  const element = document.getElementById(path)
+
+  useEffect(() => {
+    if (element) {
+      return element.scrollIntoView({ behavior: 'smooth', block: 'end' })
+    }
+  }, [path, element])
+
   return (
     <div id="navbar" className="navbar sticky">
-      <div
-        className={classNames({
-          navbar__menu: true,
-          navbar__menu__change: toggle,
-        })}
-        onClick={handleToggle}
-      >
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
-      <nav
-        id="nav"
-        className={classNames({
-          navbar__items: true,
-          show: !toggle,
-        })}
-      >
+      <nav id="nav" className="navbar__items">
         <ul className="navbar__items__list">
-          <a href="/#home">home</a>
-          <a href="/#about">about</a>
-          <a href="/#contact">contact</a>
+          <NavLink to={{ pathname: '/' }}>home</NavLink>
+          <NavLink onClick={scrollTo('about')} to={{ pathname: '/', state: { fromBlog: pathname === '/blog' } }}>
+            about
+          </NavLink>
+          <NavLink onClick={scrollTo('contact')} to={{ pathname: pathname }}>
+            contact
+          </NavLink>
           <NavLink to="/blog">blog</NavLink>
           {isLoggedIn && <NavLink to="/dashboard">Dashboard</NavLink>}
         </ul>

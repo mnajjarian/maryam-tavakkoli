@@ -1,11 +1,12 @@
-import React, { useContext, useEffect, Suspense } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { AuthContext } from '../../contexts/authContext'
 import { DataContext } from '../../contexts/dataContext'
 import { Routes } from '../Routes/Routes'
 import { DataServices } from '../../services/dataService'
 import { AuthService } from '../../services/authService'
+import { CheckRequest } from 'components/CheckRequest/CheckRequest'
 
-export function App(): JSX.Element {
+function App(): JSX.Element {
   const { authDispatch } = useContext(AuthContext)
   const { dataDispatch } = useContext(DataContext)
 
@@ -22,8 +23,10 @@ export function App(): JSX.Element {
   }, [dataDispatch, authDispatch])
 
   return (
-    <Suspense fallback={<div></div>}>
+    <CheckRequest>
       <Routes />
-    </Suspense>
+    </CheckRequest>
   )
 }
+
+export default App

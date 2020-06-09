@@ -15,16 +15,20 @@ export class DataServices {
     this.dispatch = dataDispatch
   }
   getPosts = (): void => {
+    this.dispatch({ type: 'FETCH_POSTS' })
     customAxios
       .get('/posts')
       .then(res => {
         this.dispatch({
-          type: 'FETCH_POSTS',
+          type: 'FETCH_POSTS_SUCCESS',
           payload: res.data,
         })
       })
       .catch(err => {
-        console.log('getPosts: ', err)
+        this.dispatch({
+          type: 'FETCH_POSTS_FAILED',
+          payload: err,
+        })
       })
   }
   createNewPost = (newPost: NewPost): void => {
@@ -54,16 +58,20 @@ export class DataServices {
       })
   }
   getUsers = (): void => {
+    this.dispatch({ type: 'FETCH_USERS' })
     customAxios
       .get('/users')
       .then(res => {
         this.dispatch({
-          type: 'FETCH_USERS',
+          type: 'FETCH_USERS_SUCCESS',
           payload: res.data,
         })
       })
       .catch(err => {
-        console.log('getUsers: ', err)
+        this.dispatch({
+          type: 'FETCH_USERS_FAILED',
+          payload: err,
+        })
       })
   }
   updateUser = (objId: string, obj: { imageUrl: string } | Omit<User, '_id' | 'isAdmin'>, publicId?: string): void => {

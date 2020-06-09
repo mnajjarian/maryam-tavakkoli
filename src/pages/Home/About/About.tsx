@@ -1,20 +1,29 @@
-import React, { useContext } from 'react'
+import React, { useContext, useRef, useEffect } from 'react'
 import { DataContext } from '../../../contexts/dataContext'
-import { AuthContext } from '../../../contexts/authContext'
+import { useHistory } from 'react-router-dom'
 
 export function About(): JSX.Element {
-  const { authState } = useContext(AuthContext)
-
   const {
     data: { users },
   } = useContext(DataContext)
 
-  if (!users.length || !authState) {
-    return <div></div>
-  }
+  const history = useHistory<{ fromBlog: boolean }>()
+
+  const ref = useRef<HTMLElement | null>(null)
+
+  useEffect(() => {
+    const {
+      location: { state },
+    } = history
+    if (state && state.fromBlog) {
+      if (ref && ref.current) {
+        ref.current.scrollIntoView({ behavior: 'smooth' })
+      }
+    }
+  }, [history])
 
   return (
-    <section id="about" className="about col-sm-12 col-md-12">
+    <section id="about" ref={ref} className="about col-sm-12 col-md-12">
       <p className="about-p">{users[0].bio}</p>
     </section>
   )

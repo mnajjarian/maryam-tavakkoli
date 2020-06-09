@@ -5,7 +5,7 @@ import { Subscription } from './Subscription/Subscription'
 export function Footer(): JSX.Element {
   return (
     <section id="contact" className="footer col-sm-12 col-md-6">
-      <h1>let's get in touch!</h1>
+      <h1>let&apos;s get in touch!</h1>
       <div className="footer__social">
         <a
           className="navbar__social__link"
